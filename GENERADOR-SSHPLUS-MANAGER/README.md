@@ -12,6 +12,7 @@
 * Un sistema operativo basado en Linux (Ubuntu o Debian)
 * Se recomienda usar una distro nueva o formatiada
 
+## ESTE SCRIPTS ES DE USO PRIVADO SOLO SE PUEDE INSTALAR CON LOS PERMISOS DEL DESARROLLADOR
 
 ## Installation Server
 
