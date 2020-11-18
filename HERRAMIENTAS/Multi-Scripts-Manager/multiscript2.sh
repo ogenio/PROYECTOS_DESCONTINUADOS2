@@ -3,6 +3,7 @@
 #	SCRIPT: MULTI SCRIPTS MANAGER
 #   DATA ATT:   17 de Dic 2020
 #	DESENVOLVIDO POR:	TEAM ILLUMINATI
+#	COLABORADOR:	        JONY RIVERA
 #	CONTATO TELEGRAM:	NO DISPONIBLE
 #	CANAL TELEGRAM:	https://t.me/admmanagerfree
 #====================================================
@@ -61,10 +62,10 @@ vpspack20 () {
     apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/instalarold && bash instalarold
 }
 power () {
-    wget https://www.dropbox.com/s/s6ybopqsz3wq4fx/instalador && chmod +x instalador && ./instalador
+    apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/s6ybopqsz3wq4fx/instalador && chmod +x instalador && ./instalador
 }
 dankel () {
-    wget https://raw.githubusercontent.com/DankelthaherManager/ADM-MANAGER-DANKELTHAHER/master/instala.sh; chmod +x instala.sh* && ./instala.sh*
+    apt-get update && apt-get upgrade -y: wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-DANKELTHAHER/instala.sh; chmod 777 instala.sh* && ./instala.sh*
 }
 newfreeinstaldev () {
     apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/qhftefty46hz51x/newfreeinstal?dl=0 && bash new*
