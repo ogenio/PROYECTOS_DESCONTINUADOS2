@@ -81,7 +81,7 @@ while true $x != "ok"
 do
 clear
 echo -e "$barra"
-echo -e "\E[41;1;37mMULTI-SCRIPTS MANAGER             \033[1;32m[\033[1;37m VERSAO: r001 \033[1;32m]\E[0m"
+echo -e "\E[41;1;37mMULTI-SCRIPTS MANAGER             \033[1;32m[\033[1;37m VERSAO: r005 \033[1;32m]\E[0m"
 echo -e "$barra"
 echo -ne "\033[1;33m[\033[1;31m ! \033[1;33m] \033[1;31mapt-get update "; fun_prog 'fun_update'
 echo -ne "\033[1;33m[\033[1;31m ! \033[1;33m] \033[1;31mapt-get upgrade "; fun_prog 'fun_upgrade'
@@ -98,8 +98,8 @@ echo -e "
 \033[1;31m[\033[1;36m 09 \033[1;31m] \033[1;37m• \033[1;33mVPSPACK BY POWERMX-CASITA    \033[1;32m(FREE) 
 \033[1;31m[\033[1;36m 10 \033[1;31m] \033[1;37m• \033[1;33mNEWADM BY DANKELTHAHER       \033[1;32m(FREE) 
 \033[1;31m[\033[1;36m 11 \033[1;31m] \033[1;37m• \033[1;33mNEW-ULTIMATE OFICIAL-LIV     \033[1;32m(FREE) 
-\033[1;31m[\033[1;36m 12 \033[1;31m] \033[1;37m• \033[1;32m [!] ATUALIZAR*  
-\033[1;31m[\033[1;36m 13 \033[1;31m] \033[1;37m• \033[1;31m [!] DESINSTALAR MULTI-SCRIPTS*
+\033[1;31m[\033[1;36m 12 \033[1;31m] \033[1;37m• \033[1;33m[!] \033[1;32mATUALIZAR*  
+\033[1;31m[\033[1;36m 13 \033[1;31m] \033[1;37m• \033[1;33m[!] \033[1;31mDESINSTALAR MULTI-SCRIPTS*
 \033[1;31m[\033[1;36m 00 \033[1;31m] \033[1;37m• \033[1;33mSALIR \033[1;32m<\033[1;33m<\033[1;31m<\033[0m \033[0m"
 echo -e " "
 echo -e "$barra"
