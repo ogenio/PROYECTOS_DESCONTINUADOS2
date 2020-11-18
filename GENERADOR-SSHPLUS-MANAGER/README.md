@@ -16,7 +16,7 @@
 
 ## Installation Server
 
-apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/PRIVATE-KEY-USER/instala_server; chmod +x instala_server; ./instala_server
+apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/Private-Key-Donador/instala_server; chmod +x instala_server; ./instala_server
 
 -------------------------------------------------------------------------------
 
