@@ -1,7 +1,5 @@
 ﻿# HERRAMIENTAS
 
-# ESTE PROYECTO A SIDO DESCONTINUADO.--
-
 **Herramientas Externas**
 
 
