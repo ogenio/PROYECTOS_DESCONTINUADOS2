@@ -8,7 +8,7 @@ Comandos para executar:
 wget -O /bin/velocity https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Testador-Velocidad/velocity; chmod +x /bin/velocity; /bin/velocity
 
 ```
-Despues solo necesitara ejecutar la siguiente linea para usar nuevamente: /bin/velocity 
+Despues solo necesitara ejecutar la siguiente linea para usar nuevamente: velocity 
 ```
 
 -------------------------------------------------------------------------------
