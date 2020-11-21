@@ -2,7 +2,7 @@
 
 # (NO RECOMENDADO - SOLO USAR PARA TESTEOS )
 
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/ADM-MANAGER-ALPHA/Imagenes/ADM_MANAGER_ULTIMATE.jpg)
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/ADM-MANAGER-DANKELTHAHER/Imagenes/ADM-MANAGER-DANKELTHAHER.png)
 
 -------------------------------------------------------------------------------
 
