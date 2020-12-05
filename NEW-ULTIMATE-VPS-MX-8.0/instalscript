@@ -237,3 +237,4 @@ Key="ScriptFree-Casita-Kalix1-Oficial/12345*456*"
    msg -bar
    [[ ${byinst} = "true" ]] && install_fim
 }
+kaliofc
