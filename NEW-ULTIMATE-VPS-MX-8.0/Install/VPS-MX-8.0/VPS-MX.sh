@@ -7,8 +7,8 @@ SCPidioma="${SCPdir}/idioma"
 SCPusr="${SCPdir}/ger-user"
 SCPfrm="/etc/ger-frm"
 SCPinst="/etc/ger-inst"
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+#echo "nameserver 8.8.8.8" > /etc/resolv.conf
+#echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 service apache2 restart > /dev/null 2>&1
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
@@ -27,7 +27,7 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
   -azu)cor="${MAG}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -verd)cor="${VERDE}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -bra)cor="${VERMELHO}" && echo -ne "${cor}${2}${SEMCOR}";;
-  "-bar2"|"-bar")cor="${VERMELHO}======================================================" && echo -e "${SEMCOR}${cor}${SEMCOR}";;
+  "-bar2"|"-bar")cor="${VERMELHO}————————————————————————————————————————————————————" && echo -e "${SEMCOR}${cor}${SEMCOR}";;
  esac
 }
 ### PAQUETES PRINCIPALES 
@@ -164,13 +164,13 @@ clear
 msg -bar2
 echo -e "ESCOJER PRIMERO #All locales# Y LUEGO #en_US.UTF-8# " 
 sleep 7s
-export LANGUAGE=en_US.UTF-8\
-  && export LANG=en_US.UTF-8\
-  && export LC_ALL=en_US.UTF-8\
-  && export LC_CTYPE="en_US.UTF-8"\
-  && locale-gen en_US.UTF-8\
-  && sudo apt-get -y install language-pack-en-base\
-  && sudo dpkg-reconfigure locales
+ export LANGUAGE=en_US.UTF-8\
+   && export LANG=en_US.UTF-8\
+   && export LC_ALL=en_US.UTF-8\
+   && export LC_CTYPE="en_US.UTF-8"\
+   && locale-gen en_US.UTF-8\
+   && sudo apt-get -y install language-pack-en-base\
+   && sudo dpkg-reconfigure locales
 clear
 }
 msg -bar2

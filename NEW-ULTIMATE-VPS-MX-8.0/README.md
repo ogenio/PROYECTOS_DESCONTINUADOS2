@@ -19,3 +19,4 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 
 * Creditos: https://github.com/rudi9999
 * Creditos: https://github.com/casitadelterror
+* Creditos: https://github.com/VPS-MX/
