@@ -1,4 +1,5 @@
 #!/bin/bash
+#wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/instalscript; chmod 777 instalscript* && ./instalscript*
 #SCRIPT INTERNO BY KALIX1
 #TESTIANDO SCRIPT
 msg () {
