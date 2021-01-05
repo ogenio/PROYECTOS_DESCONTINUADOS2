@@ -64,6 +64,7 @@ echo "cd /etc/adm-lite && bash ./menu" > /bin/adm && chmod +x /bin/adm
 echo "cd /etc/adm-lite && bash ./menu" > /bin/h && chmod +x /bin/h
 cd /etc/adm-lite
 touch /etc/adm-lite/index.html
+apt-get install curl -y > /dev/null 2>&1
 v1=$(curl -sSL "https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-ALPHA/versaoatt")
 echo "$v1" > /etc/adm-lite/versao_script
 wget -i $HOME/lista -o /dev/null
@@ -76,7 +77,7 @@ instalar_fun
 function_verify
 [[ -e $HOME/lista ]] && rm $HOME/lista
 echo -e "$barra"
-echo -e "${cor[3]} $(source trans -b pt:${id} "Perfeito Procedimento Feito com Sucesso!")"
+echo -e "${cor[5]} $(source trans -b pt:${id} "Perfeito Procedimento Feito com Sucesso!")"
 echo -e "$barra"
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Agora E So Voce Configurar Sua VPS com o Menu Instalacao")"
 echo -e "$barra"
@@ -113,7 +114,7 @@ apt-get install gawk -y > /dev/null 2>&1
 wget -O trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-ALPHA/Install/trans -o /dev/null 2>&1
 mv -f ./trans /bin/ && chmod 777 /bin/*
 echo -e "$barra"
-echo -e "${cor[2]}SELECCIONAR IDIOMA\n$barra \n${cor[2]}[1]-PT-BR\n[2]-EN\n[3]-ES\n[4]-FR"
+echo -e "${cor[2]}[ ADM - MANAGER - ULTIMATE ] \n$barra \n${cor[2]}[1]-PORTUGUESE-BR\n[2]-ENGLISH\n[3]-ESPANISH\n[4]-FRANCH"
 echo -e "$barra"
 echo -ne " OPCION: "; read lang
 case $lang in
@@ -133,6 +134,7 @@ id="fr"
 id="pt"
 ;;
 esac
+clear
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ADM-SCRIPTS") ®"
 echo -e "$barra"
