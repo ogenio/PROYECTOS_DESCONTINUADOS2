@@ -1036,7 +1036,7 @@ unset tcpbypass
 echo -e "$barra"
 echo -e "\033[1;31m $(fun_trans "MENU INSTALAÇÃO")"
 echo -e "$barra"
-echo -e "${cor[2]} |0| >${cor[4]} [ VOLTAR / SAIR ]"
+echo -e "${cor[2]} |0| >${cor[4]} [ $(fun_trans "VOLTAR / SAIR") ]"
 echo -e "${cor[2]} |1| >${cor[3]} $(fun_trans "CONFIGURAR") SQUID $squid"
 echo -e "${cor[2]} |2| >${cor[3]} $(fun_trans "CONFIGURAR") DROPBEAR $dropbear"
 echo -e "${cor[2]} |3| >${cor[3]} $(fun_trans "CONFIGURAR") OPENVPN $openvpn"
