@@ -26,6 +26,9 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 * TCPtweaker
 * wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/tcptweaker.sh && bash tcptweaker.sh
 -------------------------------------------------------------------------------
+## VPSPack Versao 1.0 Install (Hecho Por RicKbrL)
+* wget https://raw.githubusercontent.com/RicKbrL/VpsPack/master/install && bash install
+-------------------------------------------------------------------------------
 
 ```
 * SIN MINERIA! 
