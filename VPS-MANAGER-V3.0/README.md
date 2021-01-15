@@ -22,7 +22,7 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 ## VPS-Manager Versao 2.0 Install (Hecho Por phreaker56)
 * sudo apt-get update -y; sudo apt-get dist-upgrade -y; wget https://raw.githubusercontent.com/cantalupo555/phreaker56/master/vpsmanager/vpsmanagersetup.sh; chmod +x vpsmanagersetup.sh;./vpsmanagersetup.sh
 
-Creditos: Cantalupo555 https://github.com/cantalupo555/phreaker56
+* Creditos: Cantalupo555 https://github.com/cantalupo555/phreaker56
 -------------------------------------------------------------------------------
 
 ```
