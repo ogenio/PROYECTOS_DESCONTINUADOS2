@@ -27,7 +27,7 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ## Installation Team Casita VPS-MX
 
-apt-get update -y; apt-get upgrade -y; wget /instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Casita/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
 
