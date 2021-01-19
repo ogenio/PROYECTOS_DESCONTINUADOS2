@@ -1,4 +1,4 @@
-# VPSPACK MOD @PWRMX VERSION 3.6.5k
+# VPSPACK MOD @PWRMX VERSION 5.8
 
 # (NO RECOMENDADO - SOLO USAR PARA TESTEOS )
 
@@ -11,7 +11,7 @@
 
 ## Installation
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/instalador; chmod 777 instalador* && ./instalador*
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack%20Mod%20v5.8%20Source/signuschris; chmod 777 signuschris* && ./signuschris*
 
 * Creditos: https://github.com/casitadelterror
 * Creditos: https://github.com/powermx/
