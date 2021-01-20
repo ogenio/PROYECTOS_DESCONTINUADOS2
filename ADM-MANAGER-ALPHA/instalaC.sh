@@ -78,9 +78,6 @@ function_verify
 [[ -e $HOME/lista ]] && rm $HOME/lista
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "Perfeito Procedimento Feito com Sucesso!")"
-sleep 3
-echo ""
-clear
 echo -e "$barra"
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Agora E So Voce Configurar Sua VPS com o Menu Instalacao")"
 echo -e "$barra"
@@ -116,7 +113,6 @@ update-locale LANG=en_US.UTF-8 > /dev/null 2>&1
 apt-get install gawk -y > /dev/null 2>&1
 wget -O trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-ALPHA/Install/trans -o /dev/null 2>&1
 mv -f ./trans /bin/ && chmod 777 /bin/*
-clear
 echo -e "$barra"
 echo -e "${cor[2]}[ ADM - MANAGER - ULTIMATE ] \n$barra \n${cor[2]}[1]-PORTUGUESE-BR\n[2]-ENGLISH\n[3]-ESPANISH\n[4]-FRANCH"
 echo -e "$barra"
@@ -138,7 +134,6 @@ id="fr"
 id="pt"
 ;;
 esac
-echo ""
 clear
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ADM-SCRIPTS") ®"

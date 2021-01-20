@@ -19,10 +19,6 @@
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-ALPHA/instala.sh; chmod 777 instala.sh* && ./instala.sh*
 
-## Download Proyecto
-
-https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-ALPHA/ADM-MANAGER-ALPHA.zip
-
 -------------------------------------------------------------------------------
 
 ```
