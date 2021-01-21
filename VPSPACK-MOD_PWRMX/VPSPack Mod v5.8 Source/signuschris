@@ -29,9 +29,6 @@ done
 echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
 tput cnorm
 }
-#rm -rf /etc/VpsPackdir
-vp="/etc/VpsPackdir"
-
 if [ $(id -u) != 0 ]
 then
 echo "Ejecute el script como root"
@@ -39,42 +36,10 @@ exit
 fi
 clear
 cd /root
-[[ ! -d ${vp} ]] && mkdir ${vp}
-#extrallendo
-#SCRIPT SOLO PARA TESTEO : PUEDA QUE SALGA ALGUN ERROR..., NOTIFIQUELO AL GRUPO @
-
-#reventado por : ILLUMINATIS
-
-iniciar(){
-mkdir /etc/vp &>/dev/null
-cd /etc/vp
-wget https://raw.githubusercontent.com/casitadelterror/vpspack5.8/master/source/clean.zip &>/dev/null
-unzip clean.zip &>/dev/null
-cp pack/* ${vp}/
-chmod +x ${vp}/*
-echo -e " source extraido con exito "
-sleep 2
-rm -rf /etc/vp/clean.zip
-rm -rf /etc/vp/pack
-cd /root
-}
-iniciarbin(){
-linkbin=https://raw.githubusercontent.com/casitadelterror/vpspack5.8/master/source/rebin.zip
-cd /etc/vp
-wget $linkbin &>/dev/null
-unzip rebin.zip &>/dev/null
-cp rebin/* /bin/
-
-chmod +x /bin/vpspack /bin/toolmaster /bin/renovarusuario /bin/redefinirusuario /bin/deletarusuario /bin/criarusuario /bin/limite /bin/speedtest.py /bin/instaladores
-echo -e " bin extraido con exito "
-sleep 2
-rm -rf /etc/vp
-cd /root
-}
-echo -e "\e[1;31m ESPERE POR FAVOR......."
-fun_bar 'apt-get install zip -y'
-fun_bar 'apt-get install unzip -y'
-iniciar
+mkdir /etc/VpsPackdir  2>/dev/null
+apt-get install curl -y 1> /dev/null 2> /dev/null
+apt-get install zip -y 1> /dev/null 2> /dev/null
+curl -o /etc/VpsPackdir/logo https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/logo 1> /dev/null 2> /dev/null
 cat /etc/VpsPackdir/logo
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m ───────────────────────────────────────\033[1;33m"
 echo -e "\033[1;33mInstalando \033[1;32mVPSPack $vpspackversion\033[0m"
@@ -93,9 +58,105 @@ mkdir /etc/VpsPackdir/v 2>/dev/null
 mkdir /etc/VpsPackdir/socks 2>/dev/null
 rm -rf /etc/VpsPackdir/fecha 2>/dev/null
 rm -rf /root/name 2>/dev/null
-#
+rm -rf /bin/limite 2>/dev/null
+curl -o /bin/limite https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/limite 1> /dev/null 2> /dev/null
+chmod +x /bin/limite
+rm -rf /etc/VpsPackdir/sshconf 2>/dev/null
+curl -o /etc/VpsPackdir/sshconf https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/sshconf 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/bbrplus.sh 2>/dev/null
+curl -o /etc/VpsPackdir/bbrplus.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/bbrplus.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/bbrplus.sh
+rm -rf /etc/VpsPackdir/sslhconf 2>/dev/null
+curl -o /etc/VpsPackdir/sslhconf https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/sslhconf 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/sslhconf
+rm -rf /bin/criarusuario
+curl -o /bin/criarusuario https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/criarusuario 1> /dev/null 2> /dev/null
+chmod +x /bin/criarusuario
+rm -rf /bin/deletarusuario
+curl -o /bin/deletarusuario https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/deletarusuario 1> /dev/null 2> /dev/null
+chmod +x /bin/deletarusuario
+rm -rf /bin/redefinirusuario
+curl -o /bin/redefinirusuario https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/redefinirusuario 1> /dev/null 2> /dev/null
+chmod +x /bin/redefinirusuario
+rm -rf /bin/renovarusuario
+curl -o /bin/renovarusuario https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/renovarusuario 1> /dev/null 2> /dev/null
+chmod +x /bin/renovarusuario
+rm -rf /bin/vpspack
+curl -o /bin/vpspack https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/vpspack 1> /dev/null 2> /dev/null
+chmod +x /bin/vpspack
+rm -rf /bin/speedtest.py
+curl -o /bin/speedtest.py https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/speedtest.py 1> /dev/null 2> /dev/null
+chmod +x /bin/speedtest.py
+rm -rf /bin/toolmaster
+curl -o /bin/toolmaster https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/toolmaster 1> /dev/null 2> /dev/null
+chmod +x /bin/toolmaster
+rm -rf /etc/VpsPackdir/pl.sh
+curl -o /etc/VpsPackdir/pl.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/pl.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/pl.sh
+rm -rf /etc/VpsPackdir/d.sh
+curl -o /etc/VpsPackdir/d.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/d.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/d.sh
+rm -rf /root/dropbear
+curl -o /root/dropbear https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/dropbear 1> /dev/null 2> /dev/null
+rm /etc/VpsPackdir/ssl
+curl -o /etc/VpsPackdir/ssl https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/ssl 1> /dev/null 2> /dev/null
+rm /etc/VpsPackdir/sslmulti
+curl -o /etc/VpsPackdir/sslmulti https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/sslmulti 1> /dev/null 2> /dev/null
+rm /etc/VpsPackdir/stunnel
+curl -o /etc/VpsPackdir/stunnel https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/stunnel 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/shadowsocks.sh
+curl -o /etc/VpsPackdir/shadowsocks.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/shadowsocks.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/shadowsocks.sh
+rm -rf /bin/instaladores
+curl -o /bin/instaladores https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/instaladores 1> /dev/null 2> /dev/null
+chmod +x /bin/instaladores
+rm -rf /etc/VpsPackdir/proxyredir.py
+curl -o /etc/VpsPackdir/proxyredir.py https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/proxy.py 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/proxysocket.py
+curl -o /etc/VpsPackdir/proxysocket.py https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/proxysocket.py 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/openvpn-install.sh
+curl -o /etc/VpsPackdir/openvpn-install.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/openvpn-install.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/openvpn-install.sh
+rm -rf /etc/VpsPackdir/openvpn-auth.sh
+curl -o /etc/VpsPackdir/openvpn-auth.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/openvpn-auth.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/openvpn-auth.sh
+rm -rf /etc/VpsPackdir/confdropbear
+curl -o /etc/VpsPackdir/confdropbear https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/confdropbear 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/dropxbear
+curl -o /etc/VpsPackdir/dropxbear https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/dropxbear 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/dropxbear
+rm -rf /etc/VpsPackdir/droplimit.sh
+curl -o /etc/VpsPackdir/droplimit.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/droplimit.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/droplimit.sh
+rm -rf /etc/VpsPackdir/badvpncron.sh
+curl -o /etc/VpsPackdir/badvpncron.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/badvpncron.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/badvpncron.sh
+rm -rf /etc/VpsPackdir/danted.sh
+curl -o /etc/VpsPackdir/danted.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/danted.sh 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/limpieza.sh
+curl -o /etc/VpsPackdir/limpieza.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/limpieza.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/limpieza.sh
+rm -rf /etc/VpsPackdir/enlinea.sh
+curl -o /etc/VpsPackdir/enlinea.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/enlinea.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/enlinea.sh
+rm -rf /etc/VpsPackdir/badudp.sh
+curl -o /etc/VpsPackdir/badudp.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/badudp.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/badudp.sh
+rm -rf /etc/VpsPackdir/badvpncheck.sh
+curl -o /etc/VpsPackdir/badvpncheck.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/badvpncheck.sh 1> /dev/null 2> /dev/null
+chmod +x /etc/VpsPackdir/badudp.sh
+rm -rf /etc/VpsPackdir/PGet.py
+curl -o /etc/VpsPackdir/PGet.py https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/PGet.py 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/Directo.py
+curl -o /etc/VpsPackdir/Directo.py https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/Directo.py 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/priv.sh
+curl -o /etc/VpsPackdir/priv.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/priv.sh 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/pub.sh
+curl -o /etc/VpsPackdir/pub.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/pub.sh 1> /dev/null 2> /dev/null
+rm -rf /etc/VpsPackdir/badcron.sh
+curl -o /etc/VpsPackdir/badcron.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/badcron.sh 1> /dev/null 2> /dev/null
 rm /etc/VpsPackdir/socks/s.zip
-curl -o /etc/VpsPackdir/socks/s.zip https://raw.githubusercontent.com/casitadelterror/tests/master/s.zip
+curl -o /etc/VpsPackdir/socks/s.zip https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/s.zip
 cd /etc/VpsPackdir/socks/
 unzip s.zip
 rm /etc/VpsPackdir/socks/s.zip
@@ -107,6 +168,12 @@ cp /etc/VpsPackdir/sshconf /etc/ssh/sshd_config;
 service ssh restart
 echo "Configurado"
 fi
+if [ -f /etc/banner ];
+then
+echo "Banner Detectado"
+else
+curl -o /etc/banner https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack Mod v5.8 Source/Modulos/banner 1> /dev/null 2> /dev/null
+fi
 chmod +x /root/dropbear
 }
 fun_bar 'preparar'
@@ -117,12 +184,12 @@ apt-get update
 apt-get -y install nano 1> /dev/null 2> /dev/null
 apt-get -y install net-tools 1> /dev/null 2> /dev/null
 apt-get -y install iptables 1> /dev/null 2> /dev/null
-#apt-get -y install unzip 1> /dev/null 2> /dev/null
+apt-get -y install unzip 1> /dev/null 2> /dev/null
 apt-get -y install htop 1> /dev/null 2> /dev/null
 apt-get -y install curl 1> /dev/null 2> /dev/null
 apt-get -y install figlet 1> /dev/null 2> /dev/null
 apt-get -y install locate 1> /dev/null 2> /dev/null
-#apt-get -y install zip 1> /dev/null 2> /dev/null
+apt-get -y install zip 1> /dev/null 2> /dev/null
 apt-get -y install git 1> /dev/null 2> /dev/null
 apt-get -y install build-essential libpq-dev libffi-dev zlib1g-dev 1> /dev/null 2> /dev/null
 apt-get -y install screen 1> /dev/null 2> /dev/null
@@ -148,7 +215,6 @@ apt-get install -y neofetch 1> /dev/null 2> /dev/null
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m Instalacion Finalizada\033[1;33m"
 }
 fun_bar 'paquetes'
-iniciarbin
 sleep 5
 clear
 if cat /root/.bashrc | grep vpspack; then
@@ -168,7 +234,7 @@ echo 'echo -e "Teclee vpspack para ver el listado de comandos."' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 fi
 clear
-rm /etc/VpsPackdir/ip &>/dev/null
+rm /etc/VpsPackdir/ip
 touch /etc/VpsPackdir/ip
 echo "$IP" > /etc/VpsPackdir/ip
 cat /etc/VpsPackdir/logo
@@ -179,9 +245,7 @@ echo -e "\033[1;32mOpcion 2    \033[1;30mADMINISTRACION DE USUARIOS"
 echo -e "\033[1;32mOpcion 8    \033[1;30mPUERTOS HABILITADOS"
 echo -e "\033[1;32mOpcion 9    \033[1;30mHERRAMIENTAS"
 echo -e "\033[1;32mOpcion 10   \033[1;30mINSTALADORES"
-echo -e "\033[1;32m@- \033[1;30mcréditos : @PwrMX\033[0m"
-echo -e "\033[1;32m@- \033[1;31mREV: : illuminati\033[0m"
-echo -e "\033[1;32m@- \033[1;31mlink :by : casita\033[0m"
+echo -e "\033[1;32m@- \033[1;30mGrupo de Telegram : @PwrMX\033[0m"
 echo -e "\033[1;32mVersion     \033[1;30m$vpspackversion \033[0m"
 echo -e "$fecha" >> /etc/VpsPackdir/fecha
 echo -e "\033[1;32m Personalizacion - Escribe tu Nick:\033[0m"
@@ -189,5 +253,5 @@ echo -e "\033[1;32m (Maximo 10 Caracteres)\033[0m"
 read -p ": " nickname
 echo "$nickname" >> /root/name
 cd /root
-rm instalavps
+rm signuschris
 vpspack
