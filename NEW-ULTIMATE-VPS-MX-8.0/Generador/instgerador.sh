@@ -1,7 +1,7 @@
 #!/bin/bash
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
-SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3J1ZGk5OTk5L0dlbmVyYWRvcl9HZW5fVlBTLU1YL21hc3Rlci9nZXJhZG9y"
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FBQUFBRVhRT1N5SXBOMkpaMGVoVVEvUFJPWUVDVE9TX0RFU0NPTlRJTlVBRE9TL21hc3Rlci9ORVctVUxUSU1BVEUtVlBTLU1YLTguMC9HZW5lcmFkb3IvZ2VyYWRvcg=="
 SUB_DOM='base64 -d'
 rm $(pwd)/$0
 
@@ -63,7 +63,7 @@ echo -e "\033[1;31m- \033[1;32mRecibido con exito!"
 [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
 } || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 done
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/rudi9999/Generador_Gen_VPS-MX/master/Install/trans &> /dev/null
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Generador/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
 [[ $(dpkg --get-selections|grep -w "screen"|head -1) ]] || apt-get install screen -y &>/dev/null
@@ -78,7 +78,7 @@ echo "$Key" > $IVAR
 cp $HOME/lista-arq /etc/SCRIPT
 cp /bin/http-server.sh /etc/SCRIPT
 mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
-wget https://raw.githubusercontent.com/rudi9999/Generador_Gen_VPS-MX/master/gerador/gerar.sh &>/dev/null
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Generador/gerador/gestor.sh &>/dev/null
 mv gerar.sh /etc/SCRIPT
 cd /etc/SCRIPT
 rm -rf FERRAMENTA KEY KEY! INVALIDA!
