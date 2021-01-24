@@ -45,7 +45,7 @@ if [ ! -d "$INSTALL_DIR" ]; then
 	sleep 2
 	mkdir -p "$INSTALL_DIR_PARENT"
 	cd "$INSTALL_DIR_PARENT"
-    wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/zzupdate.default.conf -O /usr/local/vpsmxup/vpsmxup.default.conf  &> /dev/null
+    wget https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/zzupdate-master/zzupdate.default.conf -O /usr/local/vpsmxup/vpsmxup.default.conf  &> /dev/null
 	#chmod +x /usr/local/vpsmxup/vpsmxup.default.conf 
 	rm -rf /usr/local/vpsmxup/vpsmxup.sh
     wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/zzupdate.sh -O /usr/local/vpsmxup/vpsmxup.sh &> /dev/null
