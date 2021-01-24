@@ -4,7 +4,6 @@ SCPT_DIR="/etc/SCRIPT"
 SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FBQUFBRVhRT1N5SXBOMkpaMGVoVVEvUFJPWUVDVE9TX0RFU0NPTlRJTlVBRE9TL21hc3Rlci9ORVctVUxUSU1BVEUtVlBTLU1YLTguMC9HZW5lcmFkb3IvZ2VyYWRvcg=="
 SUB_DOM='base64 -d'
 rm $(pwd)/$0
-
 ofus () {
 unset server
 server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
@@ -28,7 +27,6 @@ txtofus+="${txt[$i]}"
 done
 echo "$txtofus" | rev
 }
-
 veryfy_fun () {
 [[ ! -d ${IVAR} ]] && touch ${IVAR}
 [[ ! -d ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
@@ -75,11 +73,11 @@ sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart > /dev/null 2>&1 &
 IVAR2="/etc/key-gerador"
 echo "$Key" > $IVAR
-cp $HOME/lista-arq /etc/SCRIPT
-cp /bin/http-server.sh /etc/SCRIPT
-mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Generador/gerador/gestor.sh &>/dev/null
-mv gerar.sh /etc/SCRIPT
+##cp $HOME/lista-arq /etc/SCRIPT
+##cp /bin/http-server.sh /etc/SCRIPT
+##mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
+##wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Generador/gerador/gestor.sh &>/dev/null
+##mv gerar.sh /etc/SCRIPT
 cd /etc/SCRIPT
 rm -rf FERRAMENTA KEY KEY! INVALIDA!
 rm $HOME/lista-arq
