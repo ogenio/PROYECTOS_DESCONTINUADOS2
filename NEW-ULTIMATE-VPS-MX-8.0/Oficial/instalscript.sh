@@ -102,7 +102,7 @@ wget -O /bin/resetsshdrop https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0eh
 chmod +x /bin/resetsshdrop
 wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Casita/Install/vercion &>/dev/null
 msg -bar2
-wget -O ${SCPfrm}/ADMbot.sh https://github.com/VPS-MX/VPS-MX-8.0/raw/master/Parches-TEM/ADMbot.sh &>/dev/null
+wget -O ${SCPfrm}/ADMbot.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/Parches-TEM/ADMbot.sh &>/dev/null
 chmod +x ${SCPfrm}/ADMbot.sh
 echo '#!/bin/sh -e' > /etc/rc.local
 sudo chmod +x /etc/rc.local
