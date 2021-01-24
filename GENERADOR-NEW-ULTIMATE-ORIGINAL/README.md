@@ -49,6 +49,13 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 -------------------------------------------------------------------------------
 
+```
+ SI TIENES PROBLEMAS DE TRADUCCION DEBES CAMBIAR A IDIOMA PORTUGUES MENU 7 OPCION 6
+ O EJECUTAR EL COMANDO SIGUIENTE: 
+
+ echo "pt" > /etc/newadm/idioma && chmod +x /etc/newadm/idioma
+```
+
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_NEWADM.png)
 
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/NEW_ULTIMATE.png)
