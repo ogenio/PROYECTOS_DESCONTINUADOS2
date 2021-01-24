@@ -2,16 +2,12 @@
 
 # ESTE PROYECTO A SIDO DESCONTINUADO.--
 
-```
-SI TIENES PROBLEMAS DE TRADUCCION DEBES CAMBIAR A IDIOMA PORTUGUES MENU 7 OPCION 6
-O EJECUTAR EL COMANDO SIGUIENTE: 
-
-                echo "pt" > /etc/newadm/idioma && chmod +x /etc/newadm/idioma
-```
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_GENERADOR.png)
 
 -------------------------------------------------------------------------------
 
 **Generador De Key NEWADM**
+
 
 ## :heavy_exclamation_mark: Requerimientos
 
@@ -24,13 +20,11 @@ O EJECUTAR EL COMANDO SIGUIENTE:
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
 
--------------------------------------------------------------------------------
-
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_GENERADOR.png)
-
 ```
 PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
 ```
+
+-------------------------------------------------------------------------------
 
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/GENERADOR_NEW_ULTIMATE.png)
 
