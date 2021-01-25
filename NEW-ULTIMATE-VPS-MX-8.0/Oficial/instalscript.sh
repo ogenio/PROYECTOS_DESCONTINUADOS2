@@ -165,7 +165,7 @@ apt-get install lolcat -y >/dev/null 2>&1
 apt-get install figlet -y >/dev/null 2>&1
 apt install python python3 python-pip python3-pip -y >/dev/null 2>&1
 inst_components
-link=https://raw.githubusercontent.com/VPS-MX/VPS-MX/master
+link=https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Modulos
 wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/trans &> /dev/null
 wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/Desbloqueo.sh &> /dev/null
 chmod +x /bin/Desbloqueo.sh
@@ -222,7 +222,7 @@ for _archi in ${_repomx[@]}; do
 done
 sleep 1s
 msg -bar
-Key="ScriptFree-Casita-Kalix1-Oficial/12345*456*"
+Key="qraKatsil/33?030ce55?7dff/8888:05+@%?+08?+91%@"
    cat /etc/bash.bashrc|grep -v '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2
    echo -e '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2
    mv -f /etc/bash.bashrc.2 /etc/bash.bashrc
