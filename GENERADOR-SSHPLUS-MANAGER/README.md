@@ -11,12 +11,13 @@
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian)
 * Se recomienda usar una distro nueva o formatiada
-
-## ESTE SCRIPTS ES DE USO PRIVADO SOLO SE PUEDE INSTALAR CON LOS PERMISOS DEL DESARROLLADOR
+* Debe mantener el Apache2 en Puerto 80
 
 ## Installation Server
 
-apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/Private-Key-Donador/instala_server; chmod +x instala_server; ./instala_server
+apt-get update -y; apt-get upgrade -y; wget https://www.dropbox.com/s/ypd9924q8iix88o9/instala_server; chmod 777 instala_server* && ./instala_server*
+
+ ACCESO DIRECTO AL SCRIPTS EXECUTE EL COMANDO: keyssh
 
 -------------------------------------------------------------------------------
 
