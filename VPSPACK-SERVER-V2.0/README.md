@@ -19,6 +19,20 @@
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/instalarold && bash instalarold
 
 -------------------------------------------------------------------------------
+
+## tcptweaker:
+
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/Install/tcptweaker && bash tcptweaker
+
+## openvpn_install
+
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/Install/openvpn-install && bash openvpn-install
+
+# SSL - SHADOWSOCKS
+
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Install-SSL2/SSL; chmod +x SSL; ./SSL
+
+-------------------------------------------------------------------------------
 ## VPSPack Versao 1.0 Install (Hecho Por RinghtPrince y MagodOz)
 * wget https://raw.githubusercontent.com/ringhtprince/vpspack/master/install && bash install
 * BADVPNSetud

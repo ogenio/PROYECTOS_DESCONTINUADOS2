@@ -1,6 +1,6 @@
 ﻿# HERRAMIENTAS
 
-**Install-SSL**
+**SSL - SHADOWSOCKS**
 
 Install-SSL El programa de instalación SSL es un script para conexion SSL en aplicativos Injector.
 Comandos para executar: 
