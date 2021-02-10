@@ -1,5 +1,4 @@
 #!/bin/bash
-chmod a+x /bin/addhost && chmod a+x /bin/removerhost && chmod a+x /etc/payloads > /dev/null 2>&1
 if [ $(id -u) -eq 0 ]
 then
 clear
@@ -669,12 +668,6 @@ userdel $user
 echo "$user Deletado"
 done
 }
-clear
-if [[ $1 == "" ]]
-then
-echo -e "\033[0;34m=========================================================\033[0m"
-echo -e "\033[1;33mPORTAS E INFORMACOES DO SERVIDOR - VPSPACK-SERVER V2.0\033[0m"
-echo -e "\033[0;34m=========================================================\033[0m"
 mine_port () {
 unset portas
 portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
@@ -720,9 +713,8 @@ texto="\033[1;31m${servico}: \033[1;37m${porta}"
      done
 echo -e "${texto}"
 done
-echo -e "\033[0;34m=========================================================\033[0m"
 }
-mine_port
+fun_sistema(){
 if [[ "$(grep -c "Ubuntu" /etc/issue.net)" = "1" ]]; then
 system=$(cut -d' ' -f1 /etc/issue.net)
 system+=$(echo ' ')
@@ -741,6 +733,20 @@ _core=$(printf '%-1s' "$(grep -c cpu[0-9] /proc/stat)")
 _system=$(printf '%-14s' "$system")
 _core=$(printf '%-1s' "$(grep -c cpu[0-9] /proc/stat)")
 _hora=$(printf '%(%H:%M:%S)T')
+}
+
+clear
+if [[ $1 == "" ]]
+then
+echo "/bin/vps" > /bin/vpspack && chmod +x /bin/vpspack
+chmod a+x /bin/addhost && chmod a+x /bin/removerhost && chmod a+x /etc/payloads > /dev/null 2>&1
+echo -e "\033[0;34m=========================================================\033[0m"
+echo -e "\033[1;33mVPSPACK VERSAO 2.0\033[0m"
+echo -e "\033[0;34m=========================================================\033[0m"
+mine_port
+echo -e "\033[0;34m=========================================================\033[0m"
+fun_sistema
+echo -e "\033[0;34m=========================================================\033[0m"
 echo -e "\033[1;32mSISTEMA            MEMÓRIA RAM      PROCESSADOR "
 echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mNucleos: \033[1;37m$_core\033[0m"
 echo -e "\033[1;31mHora: \033[1;37m$_hora     \033[1;31mEm uso: \033[1;37m$_usor \033[1;31mEm uso: \033[1;37m$_usop\033[0m"
@@ -821,6 +827,7 @@ case $opcao in
    rm -rf /bin/redefinirusuario 2>/dev/null
    rm -rf /bin/limite 2>/dev/null
    rm -rf /bin/criarusuario 2>/dev/null
+   rm -rf /bin/vpspack 2>/dev/null
    rm -rf /bin/vps 2>/dev/null;;
   *)
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%44s%s%-20s\n' "OPCIÓN INVÁLIDA..." ; tput sgr0
