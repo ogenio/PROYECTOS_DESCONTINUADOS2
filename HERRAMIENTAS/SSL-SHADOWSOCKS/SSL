@@ -122,6 +122,6 @@ echo -e "${cor[1]} =================================== ${cor[0]}"
 read -p " Opt: " optionss
 [[ $optionss = "1" ]] && ssl_stunel && break
 [[ $optionss = "2" ]] && ahadowsocks && break
-[[ $optionss = "0" ]] && break
+[[ $optionss = "0" ]] && exit && break
 done
 source SSL

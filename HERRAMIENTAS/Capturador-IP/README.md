@@ -5,7 +5,7 @@
 Capturador-IP es un script que tiene la finalidad de capturar tu IP guardarla en un archivo o mas para su futura utilizacion.
 Comandos para executar: 
 
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Capturador-IP/IP; chmod +x IP; ./IP
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Capturador-IP/IP; chmod +x IP; ./IP
 
 -------------------------------------------------------------------------------
 
