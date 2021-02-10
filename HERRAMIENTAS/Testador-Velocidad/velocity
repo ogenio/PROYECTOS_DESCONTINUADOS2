@@ -1,13 +1,5 @@
 #!/bin/bash
-
-echo "/bin/velocity" > /bin/vlc && chmod +x /bin/vlc > /dev/null 2>&1
-
-link_bin="https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Testador-Velocidad/speedtest"
-[[ ! -e /bin/speedtest ]] && wget -O /bin/speedtest ${link_bin} > /dev/null 2>&1 && chmod +x /bin/speedtest
-
-apt-get install python3 -y > /dev/null 2>&1
-apt-get install python-pip -y > /dev/null 2>&1
-pip install speedtest-cli > /dev/null 2>&1
+echo "/root/velocity" > /bin/vlc && chmod +x /bin/vlc > /dev/null 2>&1
 
 velocity () {
 aguarde () {
@@ -48,6 +40,11 @@ echo -e " \033[1;33mSpeed Test \033[1;32m[VELOCITY] \033[0m"
 echo -e "\033[0;34m======================================================\033[0m"
 echo -e "   \033[1;32mTESTANDO A VELOCIDADE DO SERVIDOR !\033[0m"
 echo ""
+link_bin="https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Testador-Velocidad/speedtest"
+[[ ! -e /bin/speedtest ]] && wget -O /bin/speedtest ${link_bin} > /dev/null 2>&1 && chmod +x /bin/speedtest
+apt-get install python3 -y > /dev/null 2>&1
+apt-get install python-pip -y > /dev/null 2>&1
+pip install speedtest-cli > /dev/null 2>&1
 aguarde 'fun_tst'
 echo ""
 png=$(cat speed | sed -n '5 p' |awk -F : {'print $NF'})
