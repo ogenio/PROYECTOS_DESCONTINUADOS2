@@ -78,9 +78,6 @@ function_verify
 [[ -e $HOME/lista ]] && rm $HOME/lista
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "Perfeito Procedimento Feito com Sucesso!")"
-sleep 3
-echo ""
-clear
 echo -e "$barra"
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Agora E So Voce Configurar Sua VPS com o Menu Instalacao")"
 echo -e "$barra"
@@ -138,7 +135,6 @@ id="fr"
 id="pt"
 ;;
 esac
-echo ""
 clear
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ADM-SCRIPTS") ®"
