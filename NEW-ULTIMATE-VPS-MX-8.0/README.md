@@ -13,19 +13,19 @@
 * Se recomienda usar una distro nueva o formatiada
 
 
-## Installation Team Illuminati
+## Installation Team Illuminati Versao 8.2
 
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
 
-## Installation Team Casita VPS-MX
+## Installation Team Casita VPS-MX Versao 8.1
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Casita/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
 
-## Installation Oficioal VPS-MX 
+## Installation Oficioal VPS-MX Versao 8.2
 
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Oficial/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
