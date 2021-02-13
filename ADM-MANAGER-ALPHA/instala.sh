@@ -135,7 +135,6 @@ id="fr"
 id="pt"
 ;;
 esac
-clear
 echo -e "$barra"
 echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ADM-SCRIPTS") ®"
 echo -e "$barra"
