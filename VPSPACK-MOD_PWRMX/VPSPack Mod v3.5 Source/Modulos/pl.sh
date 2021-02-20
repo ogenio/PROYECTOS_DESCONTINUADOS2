@@ -1,4 +1,6 @@
-eval fun_res () {
+#!/bin/bash
+
+fun_res () {
 pay="$3"
 exec 5<>/dev/tcp/$1/$2
 echo "$pay" >&5

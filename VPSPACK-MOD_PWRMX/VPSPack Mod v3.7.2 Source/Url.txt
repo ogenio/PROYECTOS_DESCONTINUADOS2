@@ -1,0 +1,31 @@
+vpspackversion=3.6.5
+vpspackversion=3.6.5
+3.5d
+
+wget https://www.dropbox.com/s/1t17ym8fs9c4ban/limite
+wget https://www.dropbox.com/s/2kvu7r6s1agoal1/bbrplus.sh
+wget https://www.dropbox.com/s/p2bu2gycd4p0hjb/sslhconf
+wget https://www.dropbox.com/s/9pog1pohyjsigfw/criarusuario
+wget https://www.dropbox.com/s/uqijj207x1ach92/deletarusuario
+wget https://www.dropbox.com/s/kjjcv1us3tp5bxa/redefinirusuario
+wget https://www.dropbox.com/s/pcm1manlhcneun1/vpspack
+wget https://www.dropbox.com/s/ro0nc7jsj6zo3jo/speedtest.py
+wget https://www.dropbox.com/s/yhzsmb6b4geh3wa/toolmaster
+wget https://www.dropbox.com/s/8nzogjbtb0fii8z/pl.sh
+wget https://www.dropbox.com/s/fhy2zolblx9emgy/d.sh
+wget https://www.dropbox.com/s/s8va52zhx7k9kvd/dropbear
+wget wget https://www.dropbox.com/s/3o14tavtdt89atp/ssl
+wget wget https://www.dropbox.com/s/qp9pr9yfzxrm4c0/shadowsocks.sh
+wget https://www.dropbox.com/s/3r18gyzapqux2yx/proxy.py
+wget https://www.dropbox.com/s/cctoq8sweqhm062/openvpn-install.sh
+wget https://www.dropbox.com/s/h9d9iiexwm5skpo/confdropbear
+wget wget https://www.dropbox.com/s/uchq8jpw8dsqhce/dropxbear
+wget https://www.dropbox.com/s/m38q4cf4oaigcs0/danted.conf
+wget https://www.dropbox.com/s/9uxws8qmqgw94yo/limpieza.s
+wget https://www.dropbox.com/s/ou9j7noglwe79ld/version
+wget https://www.dropbox.com/s/wd85e7oe7z15ewp/banner
+wget http://dl.bintray.com/dawidd6/neofetch jessie main
+wget https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+wget https://www.dropbox.com/s/5lcqsxb7dmlhy2d/nginx.conf
+wget https://www.dropbox.com/s/702utxwr1bhn1fm/vps.conf
+

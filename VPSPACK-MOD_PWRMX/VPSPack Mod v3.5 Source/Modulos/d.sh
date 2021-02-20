@@ -1,4 +1,5 @@
-eval RED='\033[0;31m'
+#!/bin/bash 
+RED='\033[0;31m'
 ORANGE='\033[0;33m'
 PURPLE='\033[0;35m'
 GREEN='\e[32m'
