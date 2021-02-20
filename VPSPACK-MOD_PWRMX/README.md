@@ -14,7 +14,7 @@
 
 ## Installation VPSPack MOD v3.5k Team Casita
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/instalador; chmod 777 instalador* && ./instalador*
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-MOD_PWRMX/VPSPack%20Mod%20v3.5%20Source/instalador; chmod 777 instalador* && ./instalador*
 
 -------------------------------------------------------------------------------
 
