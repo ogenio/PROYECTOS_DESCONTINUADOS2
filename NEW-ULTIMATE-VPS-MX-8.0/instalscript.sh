@@ -76,6 +76,10 @@ otro_fun () {
     
 	echo "OK OTRO"
 }
+otro_fun2 () {
+    
+	echo "OK OTRO"
+}
 echo -e "\e[1;100mRECUERDA QUE ESTE SCRIPT ES TOTALMENTE GRATUITA\nY DE CODIGO ABIERTO ESTA TOTALMENTE PROIBIDO SU VENTA\nEN CASO QUE LO AIGAS COMPRADO -\nRECUERDA QUE TE ME TIERON TODITA LA VERGA EN EL CULO\e[0m"
 msg -bar
 	echo -e "\033[1;97m           ---- QUE UBUNTU ESTA USANDO ----"
@@ -85,7 +89,8 @@ msg -bar
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
-    echo " 3).- Otra Version / Ignorar"
+    echo " 3).- Otra Version "
+    echo " 4).- Ignorar Este Paso"
 	msg -bar
 	echo -n "Digite solo el numero segun su respuesta: "
     read opcao
@@ -98,6 +103,9 @@ msg -bar
     ;;
     3)
     otro_fun
+    ;;
+    4)
+    otro_fun2
     ;;
     esac
 	
