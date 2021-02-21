@@ -76,11 +76,7 @@ otro_fun () {
     
 	echo "OK OTRO"
 }
-msg -bar
-echo -e "	\e[1;41m!ATENCION!\e[0m"
-echo -e "\e[1;100m RECUERDA QUE ESTE SCRIPT ES TOTALMENTE GRATUITA\n ESTA TOTALMENTE PROIBIDO SU VENTA\n EN CASO QUE LO AIGAS COMPRADO -\n RECUERDA QUE TE ME TIERON TODITA LA VERGA EN EL CL ðŸ¤£  \e[0m"
-msg -bar 
-echo -e "	\e[44;1;37mBY LA CASITA DEL TERROR\e[0m"
+echo -e "\e[1;100mRECUERDA QUE ESTE SCRIPT ES TOTALMENTE GRATUITA\n Y DE CODIGO ABIERTO ESTA TOTALMENTE PROIBIDO SU VENTA\n EN CASO QUE LO AIGAS COMPRADO -\n RECUERDA QUE TE ME TIERON TODITA LA VERGA EN EL CULO  \e[0m"
 msg -bar
 	echo -e "\033[1;97m           ---- QUE UBUNTU ESTA USANDO ----"
 	echo -e "\033[1;97m  Digite solo el numero segun su respuesta: "
@@ -89,7 +85,7 @@ msg -bar
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
-    echo " 3).- Otro "
+    echo " 3).- Otra Version / Ignorar"
 	msg -bar
 	echo -n "Digite solo el numero segun su respuesta: "
     read opcao
