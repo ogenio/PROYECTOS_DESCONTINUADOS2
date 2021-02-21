@@ -222,6 +222,8 @@ for _archi in ${_repomx[@]}; do
 done
 sleep 1s
 msg -bar
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/trans &> /dev/null
+[[ ! -e /etc/versin_script ]] && echo 8.3 > /etc/versin_script
 Key="qraKatsil/33?030ce55?7dff/8888:05+@%?+08?+91%@"
    cat /etc/bash.bashrc|grep -v '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2
    echo -e '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2
