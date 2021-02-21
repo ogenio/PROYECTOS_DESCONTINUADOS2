@@ -2,7 +2,6 @@
 #22/01/2021
 clear
 #ACTULIZADOR
-[[ ! -e /usr/local/lib/lsystembin2 ]] && touch /usr/local/lib/lsystembin2
 [[ ! -e /etc/versin_script ]] && echo 1 > /etc/versin_script
 v11=$(cat /etc/versin_script_new) 
 v22=$(cat /etc/versin_script)
