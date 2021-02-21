@@ -84,19 +84,19 @@ msg -ama "               Finalizando Instalacion" && msg bar2
 [[ $(find /etc/newadm/ger-user -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/newadm/ger-user/nombre.log https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/nombre.log &>/dev/null
 [[ $(find /etc/newadm/ger-user -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/newadm/ger-user/IDT.log https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/IDT.log &>/dev/null
 [[ $(find /etc/newadm/ger-user -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/newadm/ger-user/tiemlim.log https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/tiemlim.log &>/dev/null
-msg -bar
-echo -e " CAMBIO DE RESELLER (recomendado)"
-msg -bar
-read -p " SU NUEVO RESELLER SERÁ? : " mensaje
-echo "$mensaje" > ${SCPdir}/message.txt
-sleep 3.s
-echo -e " MENSAJE CAMBIADO CON ÉXITO"
-msg -bar
-echo -e " SU NUEVO RESELLER ES:\e[33m $(cat ${SCPdir}/message.txt)"
-msg bar
-read -p "enter para finalizar"
-msg -bar
-sleep 4.s
+#msg -bar
+#echo -e " CAMBIO DE RESELLER (recomendado)"
+#msg -bar
+#read -p " SU NUEVO RESELLER SERÁ? : " mensaje
+#echo "$mensaje" > ${SCPdir}/message.txt
+#sleep 3.s
+#echo -e " MENSAJE CAMBIADO CON ÉXITO"
+#msg -bar
+#echo -e " SU NUEVO RESELLER ES:\e[33m $(cat ${SCPdir}/message.txt)"
+#msg bar
+#read -p "enter para finalizar"
+#msg -bar
+#sleep 4.s
 wget -O /bin/rebootnb https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/rebootnb &> /dev/null
 chmod +x /bin/rebootnb 
 wget -O /bin/resetsshdrop https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/resetsshdrop &> /dev/null
