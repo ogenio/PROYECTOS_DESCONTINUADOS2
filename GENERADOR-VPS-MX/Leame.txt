@@ -1,12 +1,2 @@
-Install:
-
-* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
-* Se recomienda usar una distro nueva o formatiada
-
-
-## Installation Version 8.3
-
-sudo apt update -y; apt upgrade -y; wget https://www.dropbox.com/s/umy6kvfoopg8jeu/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
-
-
-
+rm -rf /etc/http-shell
+rm -rf /etc/SCRIPT
