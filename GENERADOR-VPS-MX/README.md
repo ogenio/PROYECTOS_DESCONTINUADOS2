@@ -25,17 +25,13 @@ PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
 
 ## Installation Script Manager
 
-sudo apt update -y; apt upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/attgerador.sh; chmod 777 attgerador.sh* && ./attgerador.sh*
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
 
 -------------------------------------------------------------------------------
 
 ## Installation Update generador
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
-
-```
-PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
-```
+sudo apt update -y; apt upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/attgerador.sh; chmod 777 attgerador.sh* && ./attgerador.sh*
 
 -------------------------------------------------------------------------------
 
