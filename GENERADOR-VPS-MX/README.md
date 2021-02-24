@@ -1,8 +1,8 @@
 ﻿# GENERADOR-VPS-MX
 
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_GENERADOR.png)
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-VPS-MX/Imagenes/Generador.png)
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 **Generador De Key VPS-MX**
 
@@ -25,11 +25,15 @@ PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
 
 ## Installation Script Manager
 
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-VPS-MX/Imagenes/Install-scripts.png)
+
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
 
-## Installation Update generador
+## Installation Update generador con KEY Generada
+
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-VPS-MX/Imagenes/Updatekey.png)
 
 apt-get update -y; apt-get upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/attgerador.sh; chmod 777 attgerador.sh* && ./attgerador.sh*
 
