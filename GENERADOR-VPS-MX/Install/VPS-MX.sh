@@ -194,8 +194,8 @@ function_verify () {
   v1=$(curl -sSL "https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/Vercion")
   echo "$v1" > /etc/versin_script
   [[ ! -e /usr/local/lib/lsystembin2 ]] && touch /usr/local/lib/lsystembin2
-  }
-
+ 
+}
 funcao_idioma () {
 msg -bar2
 figlet "    -VPS MX-" | lolcat 
@@ -253,14 +253,14 @@ number=$(expr length $1)
 for((i=1; i<$number+1; i++)); do
 txt[$i]=$(echo "$1" | cut -b $i)
 case ${txt[$i]} in
-".")txt[$i]="v";;
-"v")txt[$i]=".";;
+".")txt[$i]="+";;
+"+")txt[$i]=".";;
 "1")txt[$i]="@";;
 "@")txt[$i]="1";;
 "2")txt[$i]="?";;
 "?")txt[$i]="2";;
-"4")txt[$i]="p";;
-"p")txt[$i]="4";;
+"4")txt[$i]="%";;
+"%")txt[$i]="4";;
 "-")txt[$i]="K";;
 "K")txt[$i]="-";;
 esac
@@ -342,6 +342,7 @@ msg -bar2
 error_fun () {
 msg -bar2 && msg -verm "ERROR de enlace VPS<-->GENERADOR" && msg -bar2
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
+rm -rf lista-arq
 exit 1
 }
 invalid_key () {
@@ -362,18 +363,18 @@ wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;3
    }
 IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
 sleep 1s
-function_verify
+#function_verify
 updatedb
 if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
    msg -bar2
-   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @Kalix1]"
+   msg -ama "$(source trans -b pt:${id} "BEM VINDO, OBRIGADO POR UTILIZAR"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX]"
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    pontos="."
-   stopping="$(source trans -b es:${id} "Verificando Actualizaciones"|sed -e 's/[^a-z -]//ig')"
+   stopping="$(source trans -b pt:${id} "Verificando Atualizacoes"|sed -e 's/[^a-z -]//ig')"
    for arqx in $(cat $HOME/lista-arq); do
    msg -verm "${stopping}${pontos}"
-   wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
+   wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
    tput cuu1 && tput dl1
    pontos+="."
    done
@@ -400,3 +401,4 @@ else
 invalid_key
 fi
 rm -rf instalscript.sh
+rm -rf VPS-MX.sh
