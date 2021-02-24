@@ -13,7 +13,7 @@
 * Se recomienda usar una distro nueva o formatiada
 * este script instalara el generador y script VPS-MX con todos sus archivos originales y sin modificar
 
-## Installation
+## Installation Generador
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
 
@@ -23,12 +23,22 @@ PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
 
 -------------------------------------------------------------------------------
 
-```
-INSTALADOR ALTERNATIVO
-```
+## Installation Script Manager
 
-## Installation
-
-sudo apt update -y; apt upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
+sudo apt update -y; apt upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/attgerador.sh; chmod 777 attgerador.sh* && ./attgerador.sh*
 
 -------------------------------------------------------------------------------
+
+## Installation Update generador
+
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
+
+```
+PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
+```
+
+-------------------------------------------------------------------------------
+
+* Creditos: https://github.com/rudi9999
+* Creditos: https://github.com/casitadelterror
+* Creditos: https://github.com/VPS-MX/
