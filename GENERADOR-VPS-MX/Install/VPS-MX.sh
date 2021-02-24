@@ -191,7 +191,7 @@ MIP2=$(wget -qO- ifconfig.me)
 }  
 function_verify () {
   ### INTALAR VERCION DE SCRIPT
-  v1=$(curl -sSL "https://www.dropbox.com/s/xi3kfu39eawuvoc/Vercion")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/Vercion")
   echo "$v1" > /etc/versin_script
   [[ ! -e /usr/local/lib/lsystembin2 ]] && touch /usr/local/lib/lsystembin2
   }
@@ -216,7 +216,7 @@ wget -O /bin/rebootnb https://www.dropbox.com/s/4zsc3vfn5d9oi36/rebootnb &> /dev
 chmod +x /bin/rebootnb 
 wget -O /bin/resetsshdrop https://www.dropbox.com/s/244tj0ffe62hq4l/resetsshdrop &> /dev/null
 chmod +x /bin/resetsshdrop
-wget -O /etc/versin_script_new https://www.dropbox.com/s/xi3kfu39eawuvoc/Vercion &>/dev/null
+wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/Vercion &>/dev/null
 msg -bar2
 echo '#!/bin/sh -e' > /etc/rc.local
 sudo chmod +x /etc/rc.local
@@ -325,7 +325,7 @@ curl -s --max-time 10 -d "chat_id=$IDB2&disable_web_page_preview=1&text=$MSG" $U
 echo -e "\033[1;34mSE ENVIO MENSAJE DE PRUEBA SI NO LLEGA CONTACTE A @Kalix1 "
 }
 fun_ip
-wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/trans &> /dev/null
+wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/trans &> /dev/null
 wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/Desbloqueo.sh &> /dev/null
 chmod +x /bin/Desbloqueo.sh
 wget -O /bin/monitor.sh https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/Monitor-Service/monitor.sh &> /dev/null
