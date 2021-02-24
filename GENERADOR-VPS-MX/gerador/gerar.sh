@@ -16,7 +16,7 @@ mine_port4
 echo -e "$BARRA"
 cat << EOF
 
-           VPS-MX KEY GENERADOR BY ➣➣ | @Rufu99 |
+           VPS-MX KEY GENERADOR
            INSTALACIONES: $(cat $IVAR)
            
 EOF
