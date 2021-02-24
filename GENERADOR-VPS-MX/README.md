@@ -1,24 +1,21 @@
-﻿# GENERADOR-NEW-ULTIMATE-ORIGINAL
-
-# ESTE PROYECTO A SIDO DESCONTINUADO.--
+﻿# GENERADOR-VPS-MX
 
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_GENERADOR.png)
 
 -------------------------------------------------------------------------------
 
-**Generador De Key NEWADM**
+**Generador De Key VPS-MX**
 
 
 ## :heavy_exclamation_mark: Requerimientos
 
-* Un sistema operativo basado en Linux (Ubuntu o Debian)
-* Recomendamos Ubuntu 14.04
+* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
-* este script instalara el generador y script New-Ultimate con todos susu archivos originales y sin modificar
+* este script instalara el generador y script VPS-MX con todos sus archivos originales y sin modificar
 
 ## Installation
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MZ/instgerador.sh; chmod 777 instgerador.sh* && ./instgerador.sh
 
 ```
 PARA INGRESAR AL GENERADOR ESCRIBE LOS COMANDOS EN MINUSCULA  gerar.sh o gerar
@@ -45,32 +42,6 @@ INSTALADOR ALTERNATIVO
 
 ## Installation
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/instalar.sh; chmod 777 instalar.sh* && ./instalar.sh*
+sudo apt update -y; apt upgrade -y; wget  https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
-
-```
- SI TIENES PROBLEMAS DE TRADUCCION DEBES CAMBIAR A IDIOMA PORTUGUES MENU 7 OPCION 6
- O EJECUTAR EL COMANDO SIGUIENTE: 
-
- echo "pt" > /etc/newadm/idioma && chmod +x /etc/newadm/idioma
-```
-
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/INSTALL_NEWADM.png)
-
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Imagenes/NEW_ULTIMATE.png)
-
-```
-* SIN MINERIA! 
-* SIN KEYS! 
-* VERSION GRATUITA 
-* SIN VIRUS TROJANO (BOTNET) 
-* ARCHIVOS LIBERADOS (DECENCRIPTADOS)
-```
-
-```
-☆ https://t.me/admmanagerfree ☆
-
-```
-
-**By: [  ⃘⃤꙰✰ ]**
