@@ -1,11 +1,3 @@
-wget -O /etc/ger-frm/generador.sh https://www.dropbox.com/s/ccssb0luyeyuf0r/generador.sh; chmod 777 /etc/ger-frm/generador.sh
-
-wget -O /etc/newadm/menu https://www.dropbox.com/s/yp64vdubig5t9ic/menu; chmod 777 /etc/newadm/menu
-
-https://www.dropbox.com/s/hn66taw5qdi6gwa/http-server.sh?dl=0
-
-
-
 Install:
 
 * Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
