@@ -40,7 +40,7 @@ chmod +x ${ARQ}/$1
 }
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
 echo -e "\033[1;36m--------------------KEY GENERATOR UPDATER VPS-MX--------------\033[0m"
-read -p "INTRODUZCA SU KEY DE ACTUALIZACIÓN: " Key
+read -p "INTRODUZCA SU KEY DE ACTUALIZACION: " Key
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
 [[ ! $Key ]] && {
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
@@ -64,7 +64,7 @@ sleep 1s
 REQUEST=$(ofus "$Key" |cut -d'/' -f2)
 for arqx in `cat $HOME/lista-arq`; do
 echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqx] "
-wget -O $HOME/$arqx ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+wget -O $HOME/$arqx ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con exito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
 done
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans hhttps://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/trans &> /dev/null
@@ -86,7 +86,7 @@ echo -e "\033[1;33mKey Invalida!"
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
 }
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
-echo -e "\033[1;31m-------------------\033[0m \033[1;33mACTUALIZACIÓN FINALIZADA\033[0m \033[1;31m-------------------------\033[0m"
+echo -e "\033[1;31m-------------------\033[0m \033[1;33mACTUALIZACION FINALIZADA\033[0m \033[1;31m-------------------------\033[0m"
 echo -e "\033[1;31m--------------------------------------------------------------------\033[0m"
 sleep 3
 exit
