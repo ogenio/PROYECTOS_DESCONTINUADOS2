@@ -71,7 +71,15 @@ sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart > /dev/null 2>&1 &
 IVAR2="/etc/key-gerador"
 echo "$Key" > $IVAR2
+cp $HOME/lista-arq /etc/SCRIPT
+cp /bin/http-server.sh /etc/SCRIPT
+mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/gerador/gerar.sh &>/dev/null
+mv gerar.sh /etc/SCRIPT
+cd /etc/SCRIPT
+rm -rf FERRAMENTA KEY KEY! INVALIDA!
 rm $HOME/lista-arq
+sed -i -e 's/\r$//' /usr/bin/gerar.sh
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 echo "/usr/bin/gerar.sh" > /usr/bin/gerar && chmod +x /usr/bin/gerar
 echo -e "\033[1;33m Perfeito, Use o Comando \033[1;31mgerar.sh o gerar \033[1;33mpara Gerenciar as Suas Keys e
