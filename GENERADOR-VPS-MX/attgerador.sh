@@ -67,14 +67,14 @@ echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqx] "
 wget -O $HOME/$arqx ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con exito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
 done
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans hhttps://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/trans &> /dev/null
-mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
-apt-get install bc -y &>/dev/null
-apt-get install screen -y &>/dev/null
-apt-get install nano -y &>/dev/null
-apt-get install curl -y &>/dev/null
-apt-get install netcat -y &>/dev/null
-apt-get install apache2 -y &>/dev/null
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-VPS-MX/Install/trans &> /dev/null
+[[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
+[[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "screen"|head -1) ]] || apt-get install screen -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "nano"|head -1) ]] || apt-get install nano -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "curl"|head -1) ]] || apt-get install curl -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "netcat"|head -1) ]] || apt-get install netcat -y &>/dev/null
+[[ $(dpkg --get-selections|grep -w "apache2"|head -1) ]] || apt-get install apache2 -y &>/dev/null
 sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart > /dev/null 2>&1 &
 IVAR2="/etc/key-gerador"
