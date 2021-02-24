@@ -77,7 +77,7 @@ arq_list[$i]="${arqx}"
 let i++
 done
 echo -e "[x] -> \033[0;31mGENERADOR DE KEYS\033[0m"
-echo -e "[b] -> \033[0;33mINSTALACIÓN ADM-NEW\033[0m"
+echo -e "[b] -> \033[0;33mINSTALACIÓN VPS-MX\033[0m"
 read -p "Seleccione los archivos a ser repasados: " readvalue
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
