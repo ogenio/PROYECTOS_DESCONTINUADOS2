@@ -3,11 +3,20 @@
 clear
 [[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="menu message.txt ports.sh ADMbot.sh PGet.py usercodes sockspy.sh POpen.py PPriv.py PPub.py PDirect.py speedtest.py speed.sh utils.sh dropbear.sh apacheon.sh openvpn.sh shadowsocks.sh ssl.sh squid.sh gestor.sh fai2ban.sh dados.sh ultrahost paysnd.sh"
 IVAR="/etc/http-instas"
+mine_port4 () {
+PT=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
+for porta in `echo -e "$PT" | cut -d: -f2 | cut -d' ' -f1 | uniq`; do
+    svcs=$(echo -e "$PT" | grep -w "$porta" | awk '{print $1}' | uniq)
+    echo -e "\033[1;31m$svcs: \033[1;37m$porta"
+done
+}
+BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
+mine_port4
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
 cat << EOF
 
-           ADM-NEW KEY GENERADOR BY ➣➣ | @Rufu99 |
+           VPS-MX KEY GENERADOR BY ➣➣ | @Rufu99 |
            INSTALACIONES: $(cat $IVAR)
            
 EOF
