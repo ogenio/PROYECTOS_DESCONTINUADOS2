@@ -11,6 +11,36 @@
 * Se recomienda usar una distro nueva o formatiada
 
 
+# SCRIPT VPS•MX ® Script Manager de VPS
+
+ Este es un script para la administracion de Cuentas de Tipo:
+
+-SSH
+-SSL
+-DROPBEAR
+-OPENVPN
+-SHADOWSOCK, SHADOWSOCK-liv, SHADOWSOCKR (PERSONAL)-V2RAY (PERSONAL)
+-PANEL TROJAN
+-IODINE
+-BRAINFUCK PSIPHON PRO GO
+-PROXYS (PYTHON-PUB,PYTHON-SEG,PYTHON-DIR,TCP OVER,SQUID)
+
+MONITOREO DE:
+
+-USUARIOS SSH/DROPBEAR/SSL/OPENVPN
+-TIEMPO
+-EXPIRACION
+-MONITOR DE PROTOCOLOS
+
+BOT MANAGER
+
+-CONTROLA EL USO DE TUS CUENTAS SSH DESDE UN BOT DE TELEGRAM
+
+(AGERAGR,ELIMINAR,RENOVAR,MIRAR CONECTADOS,SERVICOS DE TU VPS, IFO DE CUENTAS,ETC..)
+
+-RECIBE NOTIFICACIONES CON BOT ESPECIAL
+
+
 ## Installation ( Team Illuminati VPS-MX Versao 8.3 )
 
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
@@ -30,5 +60,5 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 -------------------------------------------------------------------------------
 
 * Creditos: https://github.com/rudi9999
-* Creditos: https://github.com/casitadelterror
+* Creditos: https://github.com/lacasitamx
 * Creditos: https://github.com/VPS-MX/

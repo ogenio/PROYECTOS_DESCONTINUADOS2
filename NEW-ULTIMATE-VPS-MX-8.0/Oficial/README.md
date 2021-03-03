@@ -9,7 +9,6 @@
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian) 
 * Recomendamos Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
-* Tambien puede funcionar en algunas versiones de  Debian Server x86_64
 * Se recomienda usar una distro nueva o formatiada
 
 -------------------------------------------------------------------------------
@@ -21,5 +20,5 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 -------------------------------------------------------------------------------
 
 * Creditos: https://github.com/rudi9999
-* Creditos: https://github.com/casitadelterror
+* Creditos: https://github.com/lacasitamx
 * Creditos: https://github.com/VPS-MX/
