@@ -10,10 +10,10 @@
 * Recomendamos Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
 
-
+```
 # SCRIPT VPS•MX ® Script Manager de VPS
 
- Este es un script para la administracion de Cuentas de Tipo:
+Este es un script para la administracion de Cuentas de Tipo:
 
 -SSH
 -SSL
@@ -39,7 +39,7 @@ BOT MANAGER
 (AGERAGR,ELIMINAR,RENOVAR,MIRAR CONECTADOS,SERVICOS DE TU VPS, IFO DE CUENTAS,ETC..)
 
 -RECIBE NOTIFICACIONES CON BOT ESPECIAL
-
+```
 
 ## Installation ( Team Illuminati VPS-MX Versao 8.3 )
 
