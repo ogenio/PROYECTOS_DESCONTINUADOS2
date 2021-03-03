@@ -1,6 +1,5 @@
 # VPS-MX-Kalix1 ( MOD NEW-ULTIMATE )
 
-
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/NEW-ULTIMATE-VPS-MX-8.0/Imagenes/NEW-ULTIMATE-VPS-MX-8.0.png)
 
 -------------------------------------------------------------------------------
