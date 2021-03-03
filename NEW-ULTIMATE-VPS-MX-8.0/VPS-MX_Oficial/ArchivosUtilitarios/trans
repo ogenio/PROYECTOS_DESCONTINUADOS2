@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
+exec 2>/dev/null
 export TRANS_ENTRY="$0"
 if [[ ! $LANG =~ (UTF|utf)-?8$ ]]; then export LANG=en_US.UTF-8; fi
 read -r -d '' TRANS_PROGRAM << 'EOF'
 BEGIN {
 Name        = "Translate Shell"
 Description = "Command-line translator using Google Translate, Bing Translator, Yandex.Translate, etc."
-Version     = "0.9.6.12"
-ReleaseDate = "2020-05-11"
+Version     = "0.9.6.7"
+ReleaseDate = "2018-03-17"
 Command     = "trans"
 EntryPoint  = "translate.awk"
 EntryScript = "translate"
 }
 function initConst() {
 NULLSTR = ""
-NONE = "\0"
 TRUE = 1
 STDIN  = "/dev/stdin"
 STDOUT = "/dev/stdout"
@@ -137,8 +137,6 @@ case "u003c":
 return "<"
 case "u003e":
 return ">"
-case "u200b":
-return ""
 default:
 return char
 }
@@ -181,7 +179,7 @@ gsub(/"/, "\\\"", string)
 return string
 }
 function unescape(string) {
-gsub(/\\"/, "\"", string)
+gsub(/\\\"/, "\"", string)
 gsub(/\\\\/, "\\", string)
 return string
 }
@@ -413,7 +411,6 @@ function getOutput(command,    content, line) {
 content = NULLSTR
 while ((command |& getline line) > 0)
 content = (content ? content "\n" : NULLSTR) line
-close(command)
 return content
 }
 function fileExists(file) {
@@ -422,15 +419,12 @@ return !system("test -f " parameterize(file))
 function dirExists(file) {
 return !system("test -d " parameterize(file))
 }
-function detectProgram(prog, arg, returnOutput,    command, temp) {
-command = prog " " arg SUPERR
-command | getline temp
-close(command)
-if (returnOutput)
+function detectProgram(prog, arg, returnOutput,    temp) {
+if (returnOutput) {
+prog " " arg SUPERR | getline temp
 return temp
-if (temp)
-return prog
-return NULLSTR
+} else
+return (prog " " arg SUPERR | getline) ? prog : NULLSTR
 }
 function getGitHead(    line, group) {
 if (fileExists(".git/HEAD")) {
@@ -461,17 +455,11 @@ e("[ERROR] Oops! Your gawk (version " GawkVersion ") "\
 exit 1
 }
 }
-function initBiDiTerm() {
-if (ENVIRON["MLTERM"])
-BiDiTerm = "mlterm"
-else if (ENVIRON["KONSOLE_VERSION"])
-BiDiTerm = "konsole"
-}
 function initBiDi() {
 FriBidi = detectProgram("fribidi", "--version", 1)
 BiDiNoPad = FriBidi ? "fribidi --nopad" : "rev" SUPERR
 BiDi = FriBidi ? "fribidi --width %s" :
-"rev" SUPERR "| sed \"s/'/\\\\\\'/\" | xargs -0 printf '%%%ss'"
+"rev" SUPERR "| sed \"s/'/\\\\\\'/\" | xargs printf '%%s '"
 }
 function initRlwrap() {
 Rlwrap = detectProgram("rlwrap", "--version")
@@ -587,7 +575,6 @@ return NULLSTR
 content = NULLSTR
 while ((command |& getline line) > 0)
 content = (content ? content "\n" : NULLSTR) line
-close(command)
 return content
 }
 function curlPost(url, data, output,    command, content, line) {
@@ -612,43 +599,25 @@ return NULLSTR
 content = NULLSTR
 while ((command |& getline line) > 0)
 content = (content ? content "\n" : NULLSTR) line
-close(command)
 return content
 }
 function dump(text, group,    command, temp) {
 command = "hexdump" " -v -e'1/1 \"%03u\" \" \"'"
-command = "echo " parameterize(text) PIPE command
-command | getline temp
+("echo " parameterize(text) PIPE command) | getline temp
 split(temp, group, " ")
-close(command)
-return length(group) - 1
-}
-function dumpX(text, group,    command, temp) {
-command = "hexdump" " -v -e'1/1 \"%02X\" \" \"'"
-command = "echo " parameterize(text) PIPE command
-command | getline temp
-split(temp, group, " ")
-close(command)
 return length(group) - 1
 }
 function base64(text,    command, temp) {
-if (detectProgram("uname", "-s", 1) == "Linux")
-command = "echo -n " parameterize(text) PIPE "base64 -w0"
-else
-command = "echo -n " parameterize(text) PIPE "base64"
-command = "bash -c " parameterize(command, "\"")
-command | getline temp
-close(command)
+command = "base64"
+("echo -n " parameterize(text) PIPE command) | getline temp
 return temp
 }
 function uprintf(text,    command, temp) {
 command = "echo -en " parameterize(text)
-command = "bash -c " parameterize(command, "\"")
-command | getline temp
-close(command)
+("bash -c " parameterize(command, "\"")) | getline temp
 return temp
 }
-function initLocale() {
+function initLocale(    i) {
 Locale["af"]["name"]               = "Afrikaans"
 Locale["af"]["endonym"]            = "Afrikaans"
 Locale["af"]["translations-of"]    = "Vertalings van %s"
@@ -2024,12 +1993,8 @@ Locale["chr"]["family"]            = "Iroquoian"
 Locale["chr"]["iso"]               = "chr"
 Locale["chr"]["glotto"]            = "cher1273"
 Locale["chr"]["script"]            = "Cher"
-Locale["emj"]["support"]           = "yandex-only"
-Locale["emj"]["name"]              = "Emoji"
-Locale["emj"]["endonym"]           = "Emoji"
-}
-function initLocaleAlias(    i) {
 for (i in Locale) {
+Locale[i]["display"] = show(Locale[i]["endonym"], i)
 LocaleAlias[Locale[i]["iso"]] = i
 LocaleAlias[tolower(Locale[i]["name"])] = i
 LocaleAlias[tolower(Locale[i]["endonym"])] = i
@@ -2048,17 +2013,10 @@ LocaleAlias["serbian"] = "sr-Cyrl"
 LocaleAlias["zh"]      = "zh-CN"
 LocaleAlias["zh-CHS"]  = "zh-CN"
 LocaleAlias["zh-CHT"]  = "zh-TW"
-LocaleAlias["zh-Hans"] = "zh-CN"
-LocaleAlias["zh-Hant"] = "zh-TW"
 LocaleAlias["zho"]     = "zh-CN"
 LocaleAlias["chinese"] = "zh-CN"
 LocaleAlias["tlh-Latn"] = "tlh"
 LocaleAlias["tlh-Piqd"] = "tlh-Qaak"
-}
-function initLocaleDisplay(    i) {
-for (i in Locale) {
-Locale[i]["display"] = show(Locale[i]["endonym"], i)
-}
 }
 function getCode(code,    group) {
 if (code == "auto" || code in Locale)
@@ -2195,33 +2153,29 @@ return "/" phonetics "/"
 else
 return "(" phonetics ")"
 }
-function show(text, code,    command, temp) {
+function show(text, code,    temp) {
 if (!code || isRTL(code)) {
 if (Cache[text][0])
 return Cache[text][0]
 else {
-if ((FriBidi || (code && isRTL(code))) && BiDiNoPad) {
-command = "echo " parameterize(text) PIPE BiDiNoPad
-command | getline temp
-close(command)
-} else
+if ((FriBidi || (code && isRTL(code))) && BiDiNoPad)
+("echo " parameterize(text) PIPE BiDiNoPad) | getline temp
+else
 temp = text
 return Cache[text][0] = temp
 }
 } else
 return text
 }
-function s(text, code, width,    command, temp) {
+function s(text, code, width,    temp) {
 if (!code || isRTL(code)) {
 if (!width) width = Option["width"]
 if (Cache[text][width])
 return Cache[text][width]
 else {
-if ((FriBidi || (code && isRTL(code))) && BiDi) {
-command = "echo " parameterize(text) PIPE sprintf(BiDi, width)
-command | getline temp
-close(command)
-} else
+if ((FriBidi || (code && isRTL(code))) && BiDi)
+("echo " parameterize(text) PIPE sprintf(BiDi, width)) | getline temp
+else
 temp = text
 return Cache[text][width] = temp
 }
@@ -2244,6 +2198,10 @@ if (!code) code = "en"
 return code
 }
 function initUserLang(    lang, utf) {
+if (lang = ENVIRON["LANGUAGE"]) {
+if (!UserLocale) UserLocale = lang
+utf = utf || tolower(lang) ~ /utf-?8$/
+}
 if (lang = ENVIRON["LC_ALL"]) {
 if (!UserLocale) UserLocale = lang
 utf = utf || tolower(lang) ~ /utf-?8$/
@@ -2260,10 +2218,10 @@ if (!utf)
 w("[WARNING] Your locale codeset (" UserLocale ") is not UTF-8.")
 UserLang = parseLang(UserLocale)
 }
-function getVersion(    build, gitHead) {
+function getVersion(    build, gitHead, platform) {
 initAudioPlayer()
 initPager()
-Platform = Platform ? Platform : detectProgram("uname", "-s", 1)
+platform = detectProgram("uname", "-s", 1)
 if (ENVIRON["TRANS_BUILD"])
 build = "-" ENVIRON["TRANS_BUILD"]
 else {
@@ -2271,10 +2229,7 @@ gitHead = getGitHead()
 build = gitHead ? "-git:" gitHead : ""
 }
 return ansi("bold", sprintf("%-22s%s%s\n\n", Name, Version, build))\
-sprintf("%-22s%s\n", "platform", Platform)\
-sprintf("%-22s%s\n", "terminal type", ENVIRON["TERM"])\
-sprintf("%-22s%s\n", "bi-di emulator", BiDiTerm ? BiDiTerm :
-"[N/A]")\
+sprintf("%-22s%s\n", "platform", platform)\
 sprintf("%-22s%s\n", "gawk (GNU Awk)", PROCINFO["version"])\
 sprintf("%s\n", FriBidi ? FriBidi :
 "fribidi (GNU FriBidi) [NOT INSTALLED]")\
@@ -2282,19 +2237,16 @@ sprintf("%-22s%s\n", "audio player", AudioPlayer ? AudioPlayer :
 "[NOT INSTALLED]")\
 sprintf("%-22s%s\n", "terminal pager", Pager ? Pager :
 "[NOT INSTALLED]")\
-sprintf("%-22s%s\n", "web browser", Option["browser"] != NONE ?
-Option["browser"] :"[NONE]")\
+sprintf("%-22s%s\n", "terminal type", ENVIRON["TERM"])\
 sprintf("%-22s%s (%s)\n", "user locale", UserLocale, getName(UserLang))\
 sprintf("%-22s%s\n", "home language", Option["hl"])\
-sprintf("%-22s%s\n", "source language", join(Option["sls"], "+"))\
+sprintf("%-22s%s\n", "source language", Option["sl"])\
 sprintf("%-22s%s\n", "target language", join(Option["tl"], "+"))\
 sprintf("%-22s%s\n", "translation engine", Option["engine"])\
 sprintf("%-22s%s\n", "proxy", Option["proxy"] ? Option["proxy"] :
 "[NONE]")\
 sprintf("%-22s%s\n", "user-agent", Option["user-agent"] ? Option["user-agent"] :
 "[NONE]")\
-sprintf("%-22s%s\n", "ip version", Option["ip-version"] ? Option["ip-version"] :
-"[DEFAULT]")\
 sprintf("%-22s%s\n", "theme", Option["theme"])\
 sprintf("%-22s%s\n", "init file", InitScript ? InitScript : "[NONE]")\
 sprintf("\n%-22s%s", "Report bugs to:", "https://github.com/soimort/translate-shell/issues")
@@ -2302,7 +2254,7 @@ sprintf("\n%-22s%s", "Report bugs to:", "https://github.com/soimort/translate-sh
 function getHelp() {
 return "Usage:  " ansi("bold", Command)\
 " [" ansi("underline", "OPTIONS") "]"\
-" [" ansi("underline", "SOURCES") "]"\
+" [" ansi("underline", "SOURCE") "]"\
 ":[" ansi("underline", "TARGETS") "]"\
 " [" ansi("underline", "TEXT") "]..." RS\
 RS "Information options:" RS\
@@ -2369,8 +2321,6 @@ ins(1, ansi("bold", "-no-autocorrect")) RS\
 ins(2, "Do not autocorrect. (if defaulted by the translation engine)") RS\
 ins(1, ansi("bold", "-no-bidi")) RS\
 ins(2, "Do not convert bidirectional texts.") RS\
-ins(1, ansi("bold", "-bidi")) RS\
-ins(2, "Always convert bidirectional texts.") RS\
 ins(1, ansi("bold", "-no-warn")) RS\
 ins(2, "Do not write warning messages to stderr.") RS\
 ins(1, ansi("bold", "-dump")) RS\
@@ -2398,12 +2348,10 @@ ins(1, ansi("bold", "-v") ", " ansi("bold", "-view")) RS\
 ins(2, "View the translation in a terminal pager.") RS\
 ins(1, ansi("bold", "-pager ") ansi("underline", "PROGRAM")) RS\
 ins(2, "Specify the terminal pager to use, and view the translation.") RS\
-ins(1, ansi("bold", "-no-view") ", " ansi("bold", "-no-pager")) RS\
+ins(1, ansi("bold", "-no-view")) RS\
 ins(2, "Do not view the translation in a terminal pager.") RS\
 ins(1, ansi("bold", "-browser ") ansi("underline", "PROGRAM")) RS\
 ins(2, "Specify the web browser to use.") RS\
-ins(1, ansi("bold", "-no-browser")) RS\
-ins(2, "Do not open the web browser.") RS\
 RS "Networking options:" RS\
 ins(1, ansi("bold", "-x ") ansi("underline", "HOST:PORT")\
 ", " ansi("bold", "-proxy ") ansi("underline", "HOST:PORT")) RS\
@@ -2411,12 +2359,6 @@ ins(2, "Use HTTP proxy on given port.") RS\
 ins(1, ansi("bold", "-u ") ansi("underline", "STRING")\
 ", " ansi("bold", "-user-agent ") ansi("underline", "STRING")) RS\
 ins(2, "Specify the User-Agent to identify as.") RS\
-ins(1, ansi("bold", "-4") ", " ansi("bold", "-ipv4")\
-", " ansi("bold", "-inet4-only")) RS\
-ins(2, "Connect only to IPv4 addresses.") RS\
-ins(1, ansi("bold", "-6") ", " ansi("bold", "-ipv6")\
-", " ansi("bold", "-inet6-only")) RS\
-ins(2, "Connect only to IPv6 addresses.") RS\
 RS "Interactive shell options:" RS\
 ins(1, ansi("bold", "-I") ", " ansi("bold", "-interactive") ", " ansi("bold", "-shell")) RS\
 ins(2, "Start an interactive shell.") RS\
@@ -2436,19 +2378,16 @@ ins(1, ansi("bold", "-l ") ansi("underline", "CODE")\
 ", " ansi("bold", "-hl ") ansi("underline", "CODE")\
 ", " ansi("bold", "-lang ") ansi("underline", "CODE")) RS\
 ins(2, "Specify your home language.") RS\
-ins(1, ansi("bold", "-s ") ansi("underline", "CODES")\
-", " ansi("bold", "-sl ") ansi("underline", "CODES")\
-", " ansi("bold", "-source ") ansi("underline", "CODES")\
-", " ansi("bold", "-from ") ansi("underline", "CODES")) RS\
-ins(2, "Specify the source language(s), joined by '+'.") RS\
+ins(1, ansi("bold", "-s ") ansi("underline", "CODE")\
+", " ansi("bold", "-sl ") ansi("underline", "CODE")\
+", " ansi("bold", "-source ") ansi("underline", "CODE")\
+", " ansi("bold", "-from ") ansi("underline", "CODE")) RS\
+ins(2, "Specify the source language.") RS\
 ins(1, ansi("bold", "-t ") ansi("underline", "CODES")\
-", " ansi("bold", "-tl ") ansi("underline", "CODES")\
+", " ansi("bold", "-tl ") ansi("underline", "CODE")\
 ", " ansi("bold", "-target ") ansi("underline", "CODES")\
 ", " ansi("bold", "-to ") ansi("underline", "CODES")) RS\
 ins(2, "Specify the target language(s), joined by '+'.") RS\
-RS "Text preprocessing options:" RS\
-ins(1, ansi("bold", "-j") ", " ansi("bold", "-join-sentence")) RS\
-ins(2, "Treat all arguments as one single sentence.") RS\
 RS "Other options:" RS\
 ins(1, ansi("bold", "-no-init")) RS\
 ins(2, "Do not load any initialization script.") RS\
@@ -3027,7 +2966,7 @@ return Option["engine"] methodName
 }
 function initAudioPlayer() {
 AudioPlayer = !system("mpv" SUPOUT SUPERR) ?
-"mpv --no-config" :
+"mpv --loop-file=no" :
 (!system("mplayer" SUPOUT SUPERR) ?
 "mplayer" :
 (!system("mpg123 --version" SUPOUT SUPERR) ?
@@ -3050,33 +2989,22 @@ Pager = !system("less -V" SUPOUT SUPERR) ?
 "most" :
 ""))
 }
-function initHttpService(    inet) {
+function initHttpService() {
 _Init()
-inet = "inet"
-if (Option["ip-version"])
-inet = inet Option["ip-version"]
 if (Option["proxy"]) {
 match(Option["proxy"], /^(http:\/*)?(([^:]+):([^@]+)@)?([^\/]*):([^\/:]*)/, HttpProxySpec)
 HttpAuthUser = HttpProxySpec[3]
 HttpAuthPass = HttpProxySpec[4]
 HttpAuthCredentials = base64(unquote(HttpAuthUser) ":" HttpAuthPass)
-HttpService = "/" inet "/tcp/0/" HttpProxySpec[5] "/" HttpProxySpec[6]
+HttpService = "/inet/tcp/0/" HttpProxySpec[5] "/" HttpProxySpec[6]
 HttpPathPrefix = HttpProtocol HttpHost
 } else {
-HttpService = "/" inet "/tcp/0/" HttpHost "/" HttpPort
+HttpService = "/inet/tcp/0/" HttpHost "/" HttpPort
 HttpPathPrefix = ""
 }
-PROCINFO[HttpService, "READ_TIMEOUT"] = 2000
 }
 function preprocess(text) {
 return quote(text)
-}
-function preprocessByDump(text,    arr, len, temp) {
-len = dumpX(text, arr)
-temp = ""
-for (i = 1; i <= len; i++)
-temp = temp "%" arr[i]
-return temp
 }
 function postprocess(text) {
 text = gensub(/ ([.,;:?!"])/, "\\1", "g", text)
@@ -3096,11 +3024,10 @@ header = header "Cookie: " Cookie "\r\n"
 if (HttpAuthUser && HttpAuthPass)
 header = header "Proxy-Authorization: Basic " HttpAuthCredentials "\r\n"
 content = NULLSTR; isBody = 0
-while (1) {
 print header |& HttpService
 while ((HttpService |& getline) > 0) {
 if (isBody)
-content = content ? content "\n" $0 : $0
+content = content ? content "\r\n" $0 : $0
 else if (length($0) <= 1)
 isBody = 1
 else {
@@ -3112,25 +3039,15 @@ if (RSTART) location = squeeze(group[1])
 l(sprintf("%4s bytes > %s", length($0), $0))
 }
 close(HttpService)
-if (ERRNO == "Connection timed out") {
-w("[WARNING] " ERRNO ". Retrying IPv4 connection.")
-Option["ip-version"] = 4
-initHttpService()
-PROCINFO[HttpService, "READ_TIMEOUT"] = 0
-ERRNO = ""
-} else
-break
-}
 if ((status == "301" || status == "302") && location)
 content = curl(location)
 return assert(content, "[ERROR] Null response.")
 }
 function postResponse(text, sl, tl, hl, type,
 content, contentLength, contentType, group,
-header, isBody, reqBody, url, status, location, userAgent) {
+header, isBody, reqBody, url, status, location) {
 url = _PostRequestUrl(text, sl, tl, hl, type)
 contentType = _PostRequestContentType(text, sl, tl, hl, type)
-userAgent = _PostRequestUserAgent(text, sl, tl, hl, type)
 reqBody = _PostRequestBody(text, sl, tl, hl, type)
 if (DumpContentengths[reqBody])
 contentLength = DumpContentengths[reqBody]
@@ -3141,20 +3058,17 @@ header = "POST " url " HTTP/1.1\r\n"\
 "Connection: close\r\n"\
 "Content-Length: " contentLength "\r\n"\
 "Content-Type: " contentType "\r\n"
-if (Option["user-agent"] && !userAgent)
+if (Option["user-agent"])
 header = header "User-Agent: " Option["user-agent"] "\r\n"
-if (userAgent)
-header = header "User-Agent: " userAgent "\r\n"
 if (Cookie)
 header = header "Cookie: " Cookie "\r\n"
 if (HttpAuthUser && HttpAuthPass)
 header = header "Proxy-Authorization: Basic " HttpAuthCredentials "\r\n"
 content = NULLSTR; isBody = 0
-while (1) {
 print (header "\r\n" reqBody) |& HttpService
 while ((HttpService |& getline) > 0) {
 if (isBody)
-content = content ? content "\n" $0 : $0
+content = content ? content "\r\n" $0 : $0
 else if (length($0) <= 1)
 isBody = 1
 else {
@@ -3166,15 +3080,6 @@ if (RSTART) location = squeeze(group[1])
 l(sprintf("%4s bytes > %s", length($0), $0))
 }
 close(HttpService)
-if (ERRNO == "Connection timed out") {
-w("[WARNING] " ERRNO ". Retrying IPv4 connection.")
-Option["ip-version"] = 4
-initHttpService()
-PROCINFO[HttpService, "READ_TIMEOUT"] = 0
-ERRNO = ""
-} else
-break
-}
 if (status == "404") {
 e("[ERROR] 404 Not Found")
 exit 1
@@ -3186,18 +3091,14 @@ content = curlPost(url, reqBody)
 return content
 }
 function p(string) {
-if (Option["view"]) {
+if (Option["view"])
 print string | Option["pager"]
-close(Option["pager"])
-} else
+else
 print string > Option["output"]
 }
-function play(text, tl,    url, status) {
+function play(text, tl,    url) {
 url = _TTSUrl(text, tl)
-status = system(Option["player"] " " parameterize(url) SUPOUT SUPERR)
-if (status)
-w("Voice output isn't available for " getName(tl))
-return status
+system(Option["player"] " " parameterize(url) SUPOUT SUPERR)
 }
 function download_audio(text, tl,    url, output) {
 url = _TTSUrl(text, tl)
@@ -3225,13 +3126,9 @@ translateMain()
 Option["input"] = temp1
 Option["verbose"] = temp2
 }
-function webTranslation(uri, sl, tl, hl,    temp) {
-temp = _WebTranslateUrl(uri, sl, tl, hl)
-if (temp) {
-p(temp)
-if (Option["browser"] != NONE)
-system(Option["browser"] " " parameterize(temp) SUPOUT SUPERR)
-}
+function webTranslation(uri, sl, tl, hl) {
+system(Option["browser"] " "\
+parameterize(_WebTranslateUrl(uri, sl, tl, hl)) "&")
 }
 function translate(text, inline,
 i, j, playlist, il, saveSortedIn) {
@@ -3290,19 +3187,6 @@ download_audio(text, il[0])
 }
 PROCINFO["sorted_in"] = saveSortedIn
 }
-function translates(text, inline,
-i) {
-saveSortedIn = PROCINFO["sorted_in"]
-PROCINFO["sorted_in"] = "@ind_num_asc"
-for (i in Option["sls"]) {
-if (!Option["interactive"])
-if (Option["verbose"] && i > 1)
-p(prettify("target-seperator", replicate(Option["chr-target-seperator"], Option["width"])))
-Option["sl"] = Option["sls"][i]
-translate(text, inline)
-}
-PROCINFO["sorted_in"] = saveSortedIn
-}
 function translateMain(    i, line) {
 if (Option["interactive"])
 prompt()
@@ -3318,7 +3202,7 @@ Option["width"])))
 if (Option["interactive"])
 repl(line)
 else
-translates(line)
+translate(line)
 } else {
 if (!Option["interactive"])
 if (!Option["verbose"])
@@ -3341,10 +3225,6 @@ return @vm(text, sl, tl, hl, type)
 }
 function _PostRequestContentType(text, sl, tl, hl, type,    vm) {
 vm = engineMethod("PostRequestContentType")
-return @vm(text, sl, tl, hl, type)
-}
-function _PostRequestUserAgent(text, sl, tl, hl, type,    vm) {
-vm = engineMethod("PostRequestUserAgent")
 return @vm(text, sl, tl, hl, type)
 }
 function _PostRequestBody(text, sl, tl, hl, type,    vm) {
@@ -3409,13 +3289,13 @@ function googleRequestUrl(text, sl, tl, hl,    qc) {
 qc = Option["no-autocorrect"] ? "qc" : "qca";
 return HttpPathPrefix "/translate_a/single?client=gtx"\
 "&ie=UTF-8&oe=UTF-8"\
-"&dt=bd&dt=ex&dt=ld&dt=md&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=gt"\
+"&dt=bd&dt=ex&dt=ld&dt=md&dt=rw&dt=rm&dt=ss&dt=t&dt=at"\
 "&dt=" qc "&sl=" sl "&tl=" tl "&hl=" hl\
-"&q=" preprocessByDump(text)
+"&q=" preprocess(text)
 }
 function googleTTSUrl(text, tl) {
 return HttpProtocol HttpHost "/translate_tts?ie=UTF-8&client=gtx"\
-"&tl=" tl "&q=" preprocessByDump(text)
+"&tl=" tl "&q=" preprocess(text)
 }
 function googleWebTranslateUrl(uri, sl, tl, hl) {
 return "https://translate.google.com/translate?"\
@@ -3437,7 +3317,7 @@ wShowTranslation, wShowTranslationPhonetics,
 wShowPromptMessage, wShowLanguages,
 wShowOriginalDictionary, wShowDictionary,
 wShowAlternatives,
-genderedTrans, hasWordClasses, hasAltTranslations,
+hasWordClasses, hasAltTranslations,
 i, j, k, group, temp, saveSortedIn) {
 isPhonetic = match(tl, /^@/)
 tl = substr(tl, 1 + isPhonetic)
@@ -3518,8 +3398,6 @@ if (match(i, "^0" SUBSEP "13" SUBSEP "0" SUBSEP "([[:digit:]]+)" SUBSEP "0$", gr
 oExamples[group[1]] = literal(ast[i])
 if (match(i, "^0" SUBSEP "14" SUBSEP "0" SUBSEP "([[:digit:]]+)$", group))
 oSeeAlso[group[1]] = literal(ast[i])
-if (match(i, "^0" SUBSEP "18" SUBSEP "0" SUBSEP "([[:digit:]]+)" SUBSEP "1$", group))
-genderedTrans[group[1]] = literal(ast[i])
 }
 PROCINFO["sorted_in"] = saveSortedIn
 translation = join(translations)
@@ -3534,7 +3412,7 @@ prettify("brief-translation-phonetics", join(phonetics, " ")) :
 prettify("brief-translation", s(translation, tl))
 if (toSpeech) {
 returnPlaylist[0]["text"] = translation
-returnPlaylist[0]["tl"] = _tl
+returnPlaylist[0]["tl"] = tl
 }
 } else {
 wShowOriginal = Option["show-original"]
@@ -3570,14 +3448,7 @@ r = r RS prettify("original-phonetics", showPhonetics(join(oPhonetics, " "), il)
 if (wShowTranslation) {
 if (r) r = r RS RS
 r = r m("-- display major translation & phonetics")
-if (!exists(genderedTrans))
 r = r prettify("translation", s(translation, tl))
-else {
-r = r prettify("prompt-message", s("(♂) ", hl))
-r = r prettify("translation", s(genderedTrans[0], tl)) RS
-r = r prettify("prompt-message", s("(♀) ", hl))
-r = r prettify("translation", s(genderedTrans[1], tl))
-}
 if (wShowTranslationPhonetics)
 r = r RS prettify("translation-phonetics", showPhonetics(join(phonetics, " "), tl))
 }
@@ -3746,17 +3617,17 @@ r = r RS ins(1, temp)
 if (toSpeech) {
 if (index(showTranslationsOf(hl, "%s"), "%s") > 2) {
 returnPlaylist[0]["text"] = showTranslationsOf(hl)
-returnPlaylist[0]["tl"] = _hl
+returnPlaylist[0]["tl"] = hl
 returnPlaylist[1]["text"] = join(original)
 returnPlaylist[1]["tl"] = il
 } else {
 returnPlaylist[0]["text"] = join(original)
 returnPlaylist[0]["tl"] = il
 returnPlaylist[1]["text"] = showTranslationsOf(hl)
-returnPlaylist[1]["tl"] = _hl
+returnPlaylist[1]["tl"] = hl
 }
 returnPlaylist[2]["text"] = translation
-returnPlaylist[2]["tl"] = _tl
+returnPlaylist[2]["tl"] = tl
 }
 }
 return r
@@ -3783,7 +3654,7 @@ if (group[1]) {
 cookie = cookie (cookie ?  "; " : NULLSTR) group[1]
 }
 if (isBody)
-content = content ? content "\n" $0 : $0
+content = content ? content "\r\n" $0 : $0
 else if (length($0) <= 1)
 isBody = 1
 else {
@@ -3839,9 +3710,9 @@ else if (tl == "ru") tl = tl "-RU"
 else if (tl == "sv") tl = tl "-SE"
 else if (tl == "yue") ;
 else if (tl == "zh") tl = tl "-CN"
-header = "GET " "/tspeak?"\
-"&language=" tl "&text=" preprocess(text)\
-"&options=" gender "&format=audio%2Fmp3" " HTTP/1.1\r\n"\
+header = "GET " "/translator/api/language/Speak?"\
+"locale=" tl "&text=" preprocess(text)\
+"&gender=" gender "&media=audio/mp3" " HTTP/1.1\r\n"\
 "Host: " HttpHost "\r\n"\
 "Connection: close\r\n"
 if (Option["user-agent"])
@@ -3852,7 +3723,7 @@ content = NULLSTR; isBody = 0
 print header |& HttpService
 while ((HttpService |& getline) > 0) {
 if (isBody)
-content = content ? content "\n" $0 : $0
+content = content ? content "\r\n" $0 : $0
 else if (length($0) <= 1)
 isBody = 1
 }
@@ -3863,51 +3734,45 @@ printf("%s", content) > TempFile
 close(TempFile)
 return TempFile
 }
-function bingWebTranslateUrl(uri, sl, tl, hl,    _sl, _tl) {
-_sl = sl; _tl = tl
-if (_sl == "bs")    _sl = "bs-Latn"
-if (_sl == "zh")    _sl = "zh-CHS"
-if (_sl == "zh-CN") _sl = "zh-CHS"
-if (_sl == "zh-TW") _sl = "zh-CHT"
-if (_tl == "bs")    _tl = "bs-Latn"
-if (_tl == "zh")    _tl = "zh-CHS"
-if (_tl == "zh-CN") _tl = "zh-CHS"
-if (_tl == "zh-TW") _tl = "zh-CHT"
-return "https://www.translatetheweb.com/?" "from=" _sl "&to=" _tl "&a=" uri
+function bingWebTranslateUrl(uri, sl, tl, hl) {
+return "http://www.microsofttranslator.com/bv.aspx?"\
+"from=" sl "&to=" tl "&a=" uri
 }
 function bingRequestUrl(text, sl, tl, hl) {
 return HttpPathPrefix "/translator/api/Dictionary/Lookup?"\
 "from=" sl "&to=" tl "&text=" preprocess(text)
 }
 function bingPostRequestUrl(text, sl, tl, hl, type) {
-if (type == "lookup")
-return HttpPathPrefix "/tlookupv3"
-else # type == "translate"
-return HttpPathPrefix "/ttranslatev3"
+if (type == "translate")
+return HttpPathPrefix "/ttranslate?&IG=" IG "&IID=translator.5032.2"
+else if (type == "translationlookup")
+return HttpPathPrefix "/ttranslationlookup?&IG=" IG "&IID=translator.5032.2"
+else if (type == "transliterate")
+return HttpPathPrefix "/ttransliterate?&IG=" IG "&IID=translator.5032.1"
+else # type == "detect"
+return HttpPathPrefix "/tdetect?&IG=" IG "&IID=translator.5032.2"
 }
 function bingPostRequestContentType(text, sl, tl, hl, type) {
 return "application/x-www-form-urlencoded"
 }
-function bingPostRequestUserAgent(text, sl, tl, hl, type) {
-return ""
-}
 function bingPostRequestBody(text, sl, tl, hl, type) {
-if (type == "lookup")
+if (type == "translate")
 return "&text=" quote(text) "&from=" sl "&to=" tl
-else # type == "translate"
-return "&text=" quote(text) "&fromLang=" sl "&to=" tl
+else if (type == "translationlookup")
+return "&text=" quote(text) "&from=" sl "&to=" tl
+else if (type == "transliterate")
+return "&text=" quote(text) "&language=" sl "&toScript=" "latn"
+else # type == "detect"
+return "&text=" quote(text)
 }
 function bingTranslate(text, sl, tl, hl,
 isVerbose, toSpeech, returnPlaylist, returnIl,
 r,
-content, tokens, ast, dicContent, dicTokens, dicAst,
+content, tokens, ast,
 _sl, _tl, _hl, il, isPhonetic,
-translation, phonetics, oPhonetics,
-wordClasses, words, wordBackTranslations,
-wShowOriginal, wShowOriginalPhonetics,
-wShowTranslation, wShowTranslationPhonetics,
-wShowLanguages, wShowDictionary,
-i, j, k, group, temp, saveSortedIn) {
+translation,
+wShowOriginal, wShowTranslation, wShowLanguages,
+group, temp) {
 isPhonetic = match(tl, /^@/)
 tl = substr(tl, 1 + isPhonetic)
 if (!getCode(tl)) {
@@ -3919,27 +3784,26 @@ w("[WARNING] " getName(tl) " is a right-to-left language, but FriBidi is not fou
 _sl = getCode(sl); if (!_sl) _sl = sl
 _tl = getCode(tl); if (!_tl) _tl = tl
 _hl = getCode(hl); if (!_hl) _hl = hl
-if (_sl == "auto")  _sl = "auto-detect"
+bingSetIG()
+il = postResponse(text, _sl, _tl, _hl, "detect")
+if (!il) {
+e("[ERROR] Oops! Something went wrong and I can't translate it for you :(")
+ExitCode = 1
+return
+}
+returnIl[0] = il
+if (Option["verbose"] < -1)
+return il
+if (Option["verbose"] < 0)
+return getList(il)
+if (_sl == "auto")  _sl = il
 if (_sl == "bs")    _sl = "bs-Latn"
-if (_sl == "no")    _sl = "nb"
-if (_sl == "pt")    _sl = "pt-pt"
-if (_sl == "zh-CN") _sl = "zh-Hans"
-if (_sl == "zh-TW") _sl = "zh-Hant"
+if (_sl == "zh-CN") _sl = "zh-CHS"
+if (_sl == "zh-TW") _sl = "zh-CHT"
 if (_tl == "bs")    _tl = "bs-Latn"
-if (_tl == "no")    _tl = "nb"
-if (_tl == "pt")    _tl = "pt-pt"
-if (_tl == "zh-CN") _tl = "zh-Hans"
-if (_tl == "zh-TW") _tl = "zh-Hant"
+if (_tl == "zh-CN") _tl = "zh-CHS"
+if (_tl == "zh-TW") _tl = "zh-CHT"
 content = postResponse(text, _sl, _tl, _hl, "translate")
-if (content == "") {
-HttpHost = "cn.bing.com"
-if (Option["proxy"]) {
-HttpPathPrefix = HttpProtocol HttpHost
-} else {
-HttpService = "/" "inet" "/tcp/0/" HttpHost "/" HttpPort
-}
-content = postResponse(text, _sl, _tl, _hl, "translate")
-}
 if (Option["dump"])
 return content
 tokenize(tokens, content)
@@ -3951,19 +3815,17 @@ if (!isarray(ast) || !anything(ast)) {
 e("[ERROR] Oops! Something went wrong and I can't translate it for you :(")
 ExitCode = 1
 return
+} else if (ast[0 SUBSEP "statusCode"] != "200") {
+e("[ERROR] statusCode: " ast[0 SUBSEP "statusCode"])
+ExitCode = 1
+return
 }
-translation = unparameterize(ast[0 SUBSEP 0 SUBSEP "translations" SUBSEP 0 SUBSEP "text"])
-returnIl[0] = il = _sl == "auto-detect" ?
-unparameterize(ast[0 SUBSEP 0 SUBSEP "detectedLanguage" SUBSEP "language"]) : _sl
-if (Option["verbose"] < -1)
-return il
-if (Option["verbose"] < 0)
-return getList(il)
+translation = unparameterize(ast[0 SUBSEP "translationResponse"])
 wShowTranslationPhonetics = Option["show-translation-phonetics"]
 if (wShowTranslationPhonetics) {
 split(_tl, group, "-")
-phonetics = unparameterize(ast[0 SUBSEP 0 SUBSEP "translations" SUBSEP 0 SUBSEP "transliteration"\
-SUBSEP "text"])
+content = postResponse(translation, group[1], group[1], _hl, "transliterate")
+phonetics = unparameterize(content)
 if (phonetics == translation) phonetics = ""
 }
 if (!isVerbose) {
@@ -3977,13 +3839,9 @@ wShowLanguages = Option["show-languages"]
 wShowDictionary = Option["show-dictionary"]
 wShowOriginalPhonetics = Option["show-original-phonetics"]
 if (wShowOriginalPhonetics) {
-split(_sl, group, "-")
-delete ast
-content = postResponse(text, il, il, _hl, "translate")
-tokenize(tokens, content)
-parseJson(ast, tokens)
-oPhonetics = unparameterize(ast[0 SUBSEP 0 SUBSEP "translations" SUBSEP 0\
-SUBSEP "transliteration" SUBSEP "text"])
+split(il, group, "-")
+content = postResponse(text, group[1], group[1], _hl, "transliterate")
+oPhonetics = unparameterize(content)
 if (oPhonetics == text) oPhonetics = ""
 }
 if (!oPhonetics) wShowOriginalPhonetics = 0
@@ -3991,9 +3849,9 @@ if (!phonetics) wShowTranslationPhonetics = 0
 if (wShowOriginal) {
 if (r) r = r RS RS
 r = r m("-- display original text")
-r = r prettify("original", s(text, _sl))
+r = r prettify("original", s(text, il))
 if (wShowOriginalPhonetics)
-r = r RS prettify("original-phonetics", showPhonetics(join(oPhonetics, " "), _sl))
+r = r RS prettify("original-phonetics", showPhonetics(join(oPhonetics, " "), il))
 }
 if (wShowTranslation) {
 if (r) r = r RS RS
@@ -4020,58 +3878,19 @@ if (temp ~ /%T/)
 r = r prettify("languages-tl", getName(tl))
 r = r prettify("languages", group[3])
 }
-if (wShowDictionary) {
-dicContent = postResponse(text, il, _tl, _hl, "lookup")
-if (dicContent != "") {
+if (wShowDictionary && false) {
+dicContent = getResponse(text, il, _tl, _hl)
 tokenize(dicTokens, dicContent)
 parseJson(dicAst, dicTokens)
-l(dicContent, "dicContent", 1, 1)
-l(dicTokens, "dicTokens", 1, 0, 1)
-l(dicAst, "dicAst")
-saveSortedIn = PROCINFO["sorted_in"]
-PROCINFO["sorted_in"] = "compareByIndexFields"
-for (i in dicAst) {
-if (match(i, "^0" SUBSEP "0" SUBSEP "translations" SUBSEP "([[:digit:]]+)" SUBSEP\
-"posTag$", group))
-wordClasses[group[1]] = tolower(literal(dicAst[i]))
-}
-for (i in dicAst) {
-if (match(i, "^0" SUBSEP "0" SUBSEP "translations" SUBSEP "([[:digit:]]+)" SUBSEP\
-"displayTarget$", group))
-words[wordClasses[group[1]]][group[1]] = literal(dicAst[i])
-if (match(i, "^0" SUBSEP "0" SUBSEP "translations" SUBSEP "([[:digit:]]+)" SUBSEP\
-"backTranslations" SUBSEP "([[:digit:]]+)" SUBSEP "displayText$", group))
-wordBackTranslations[wordClasses[group[1]]][group[1]][group[2]] = literal(dicAst[i])
-}
-PROCINFO["sorted_in"] = saveSortedIn
+if (anything(dicAst)) {
 if (r) r = r RS
 r = r m("-- display dictionary entries")
-for (i = 0; i < length(words); i++) {
-r = (i > 0 ? r RS : r) RS prettify("dictionary-word-class", s(wordClasses[i], hl))
-for (j in words[wordClasses[i]]) {
-r = r RS prettify("dictionary-word", ins(1, words[wordClasses[i]][j], tl))
-if (isRTL(il))
-explanation = join(wordBackTranslations[wordClasses[i]][j], ", ")
-else {
-explanation = prettify("dictionary-explanation-item",
-wordBackTranslations[wordClasses[i]][j][0])
-for (k = 1; k < length(wordBackTranslations[wordClasses[i]][j]); k++)
-explanation = explanation prettify("dictionary-explanation", ", ")\
-prettify("dictionary-explanation-item",
-wordBackTranslations[wordClasses[i]][j][k])
-}
-if (isRTL(il))
-r = r RS prettify("dictionary-explanation-item", ins(2, explanation, il))
-else
-r = r RS ins(2, explanation)
-}
-}
 }
 }
 }
 if (toSpeech) {
 returnPlaylist[0]["text"] = translation
-returnPlaylist[0]["tl"] = _tl
+returnPlaylist[0]["tl"] = tl
 }
 return r
 }
@@ -4199,7 +4018,7 @@ return
 }
 translation = unparameterize(ast[0 SUBSEP "text" SUBSEP 0])
 wShowTranslationPhonetics = Option["show-translation-phonetics"]
-if (wShowTranslationPhonetics && _tl != "emj") {
+if (wShowTranslationPhonetics) {
 split(_tl, group, "-")
 data = yandexPostRequestBody(translation, group[1], group[1], _hl, "translit")
 content = curlPost("https://translate.yandex.net/translit/translit", data)
@@ -4221,7 +4040,7 @@ wShowTranslation = Option["show-translation"]
 wShowLanguages = Option["show-languages"]
 wShowDictionary = Option["show-dictionary"]
 wShowOriginalPhonetics = Option["show-original-phonetics"]
-if (wShowTranslationPhonetics && il != "emj") {
+if (wShowTranslationPhonetics) {
 split(il, group, "-")
 data = yandexPostRequestBody(text, group[1], group[1], _hl, "translit")
 content = curlPost("https://translate.yandex.net/translit/translit", data)
@@ -4314,7 +4133,7 @@ PROCINFO["sorted_in"] = saveSortedIn
 }
 if (toSpeech) {
 returnPlaylist[0]["text"] = translation
-returnPlaylist[0]["tl"] = _tl
+returnPlaylist[0]["tl"] = tl
 }
 return r
 }
@@ -4407,7 +4226,7 @@ r = r prettify("languages", group[3])
 }
 if (toSpeech) {
 returnPlaylist[0]["text"] = translation
-returnPlaylist[0]["tl"] = _tl
+returnPlaylist[0]["tl"] = tl
 }
 return r
 }
@@ -4474,27 +4293,129 @@ function hunspellTranslate(text, sl, tl, hl,
 isVerbose, toSpeech, returnPlaylist, returnIl) {
 return spellTranslate(text, sl, tl, hl)
 }
-function spellTTSUrl(text, tl,    narrator) {
-e("[ERROR] Spell checker does not support TTS.")
+BEGIN { provides("deepl") }
+function deeplInit() {
+HttpProtocol = "http://"
+HttpHost = "www.deepl.com"
+HttpPort = 80
+}
+function deeplRequestUrl(text, sl, tl, hl) {
+}
+function deeplTTSUrl(text, tl,    narrator) {
+}
+function deeplWebTranslateUrl(uri, sl, tl, hl) {
+}
+function deeplPost(text, sl, tl, hl,
+content, data, url) {
+data = "{\"jsonrpc\":\"2.0\",\"method\":\"LMT_handle_jobs\","
+data = data "\"params\":{\"jobs\":[{\"kind\":\"default\","
+data = data "\"raw_en_sentence\":" parameterize(text, "\"") "}],"
+data = data "\"lang\":{\"user_preferred_langs\":[\"" hl "\"],"
+data = data "\"source_lang_user_selected\":\"" sl "\","
+data = data "\"target_lang\":\"" tl "\"},"
+data = data "\"priority\":1},\"id\":1}"
+l(data)
+url = "https://www.deepl.com/jsonrpc"
+content = curlPost(url, data)
+return assert(content, "[ERROR] Null response.")
+}
+function deeplTranslate(text, sl, tl, hl,
+isVerbose, toSpeech, returnPlaylist, returnIl,
+r,
+content, tokens, ast,
+_sl, _tl, _hl, il,
+translation, translations,
+wShowOriginal, wShowTranslation,
+wShowLanguages, wShowAlternatives,
+group, temp) {
+if (!getCode(tl)) {
+w("[WARNING] Unknown target language code: " tl)
+} else if (isRTL(tl)) {
+if (!FriBidi)
+w("[WARNING] " getName(tl) " is a right-to-left language, but FriBidi is not found.")
+}
+_sl = getCode(sl); if (!_sl) _sl = sl
+_tl = getCode(tl); if (!_tl) _tl = tl
+_hl = getCode(hl); if (!_hl) _hl = hl
+if (_sl != "auto") _sl = toupper(_sl)
+if (_tl != "auto") _tl = toupper(_tl)
+if (_hl != "auto") _hl = toupper(_hl)
+content = deeplPost(text, _sl, _tl, _hl)
+if (Option["dump"])
+return content
+tokenize(tokens, content)
+parseJson(ast, tokens)
+l(content, "content", 1, 1)
+l(tokens, "tokens", 1, 0, 1)
+l(ast, "ast")
+if (!isarray(ast) || !anything(ast)) {
+e("[ERROR] Oops! Something went wrong and I can't translate it for you :(")
 ExitCode = 1
 return
 }
-function aspellTTSUrl(text, tl,    narrator) {
-return spellTTSUrl(text, tl)
+saveSortedIn = PROCINFO["sorted_in"]
+PROCINFO["sorted_in"] = "compareByIndexFields"
+for (i in ast) {
+if (i ~ "^0" SUBSEP "result" SUBSEP "translations" SUBSEP 0 SUBSEP "beams" SUBSEP "[[:digit:]]+" SUBSEP "postprocessed_sentence$") {
+append(translations, uprintf(unquote(unparameterize(ast[i]))))
 }
-function hunspellTTSUrl(text, tl,    narrator) {
-return spellTTSUrl(text, tl)
 }
-function spellWebTranslateUrl(uri, sl, tl, hl) {
-e("[ERROR] Spell checker does not support web translation.")
-ExitCode = 1
-return
+PROCINFO["sorted_in"] = saveSortedIn
+translation = translations[0]
+returnIl[0] = il = tolower(unparameterize(ast[0 SUBSEP "result" SUBSEP "source_lang"]))
+if (Option["verbose"] < -1)
+return il
+else if (Option["verbose"] < 0)
+return getList(il)
+if (!isVerbose) {
+r = translation
+} else {
+wShowOriginal = Option["show-original"]
+wShowTranslation = Option["show-translation"]
+wShowLanguages = Option["show-languages"]
+wShowAlternatives = Option["show-alternatives"]
+if (length(translations) <= 1) wShowAlternatives = 0
+if (wShowOriginal) {
+if (r) r = r RS RS
+r = r m("-- display original text")
+r = r prettify("original", s(text, il))
 }
-function aspellWebTranslateUrl(uri, sl, tl, hl) {
-return spellWebTranslateUrl(uri, sl, tl, hl)
+if (wShowTranslation) {
+if (r) r = r RS RS
+r = r m("-- display major translation")
+r = r prettify("translation", s(translation, tl))
 }
-function hunspellWebTranslateUrl(uri, sl, tl, hl) {
-return spellWebTranslateUrl(uri, sl, tl, hl)
+if (wShowLanguages) {
+if (r) r = r RS RS
+r = r m("-- display source language -> target language")
+temp = Option["fmt-languages"]
+if (!temp) temp = "[ %s -> %t ]"
+split(temp, group, /(%s|%S|%t|%T)/)
+r = r prettify("languages", group[1])
+if (temp ~ /%s/)
+r = r prettify("languages-sl", getDisplay(il))
+if (temp ~ /%S/)
+r = r prettify("languages-sl", getName(il))
+r = r prettify("languages", group[2])
+if (temp ~ /%t/)
+r = r prettify("languages-tl", getDisplay(tl))
+if (temp ~ /%T/)
+r = r prettify("languages-tl", getName(tl))
+r = r prettify("languages", group[3])
+}
+if (wShowAlternatives) {
+if (r) r = r RS
+r = r m("-- display alternative translations")
+r = r RS ins(1, prettify("alternatives-translations-item", translations[1]))
+for (i = 2; i < length(translations); i++)
+r = r RS ins(1, prettify("alternatives-translations-item", translations[i]))
+}
+}
+if (toSpeech) {
+returnPlaylist[0]["text"] = translation
+returnPlaylist[0]["tl"] = tl
+}
+return r
 }
 function loadOptions(script,    i, j, tokens, name, value) {
 tokenize(tokens, script)
@@ -4596,12 +4517,8 @@ if (p ~ /%l/)
 gsub(/%l/, getDisplay(Option["hl"]), p)
 if (p ~ /%L/)
 gsub(/%L/, getName(Option["hl"]), p)
-if (p ~ /%S/) {
-temp = getName(Option["sls"][1])
-for (i = 2; i <= length(Option["sls"]); i++)
-temp = temp "+" getName(Option["sls"][i])
-gsub(/%S/, temp, p)
-}
+if (p ~ /%S/)
+gsub(/%S/, getName(Option["sl"]), p)
 if (p ~ /%t/) {
 temp = getDisplay(Option["tl"][1])
 for (i = 2; i <= length(Option["tl"]); i++)
@@ -4638,10 +4555,7 @@ for (i = 2; i <= length(Option["tl"]); i++)
 temp = temp "/" getName(Option["tl"][i])
 gsub(/%\?/, temp, p)
 }
-temp = getDisplay(Option["sls"][1])
-for (i = 2; i <= length(Option["sls"]); i++)
-temp = temp "+" getDisplay(Option["sls"][i])
-printf(prettify("prompt", p), temp) > STDERR
+printf(prettify("prompt", p), getDisplay(Option["sl"])) > STDERR
 }
 function repl(line,    command, group, name, i, value, words) {
 split(line, words, " ")
@@ -4660,19 +4574,16 @@ value = words[2]
 Option["engine"] = value
 initHttpService()
 } else {
-match(command, /^[{(\[]?((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)?(:|=)((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)[})\]]?$/, group)
+match(command, /^[{(\[]?([[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?(:|=)((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)[})\]]?$/, group)
 if (RSTART) {
-if (group[1]) {
-split(group[1], Option["sls"], "+")
-Option["sl"] = Option["sls"][1]
-}
-if (group[7]) split(group[7], Option["tl"], "+")
+if (group[1]) Option["sl"] = group[1]
+if (group[4]) split(group[4], Option["tl"], "+")
 line = words[2]
 for (i = 3; i <= length(words); i++)
 line = line " " words[i]
 }
 if (line) {
-translates(line)
+translate(line)
 if (Option["verbose"]) printf RS
 }
 }
@@ -4680,10 +4591,8 @@ prompt()
 }
 function init() {
 initGawk()
-initBiDiTerm()
 initBiDi()
 initLocale()
-initLocaleAlias()
 initUserLang()
 RS = "\n"
 ExitCode = 0
@@ -4704,7 +4613,6 @@ Option["indent"] = 4
 Option["no-ansi"] = 0
 Option["no-autocorrect"] = 0
 Option["no-bidi"] = 0
-Option["force-bidi"] = 0
 Option["no-warn"] = 0
 Option["theme"] = "default"
 Option["dump"] = 0
@@ -4719,11 +4627,9 @@ Option["pager"] = ENVIRON["PAGER"]
 Option["browser"] = ENVIRON["BROWSER"]
 Option["proxy"] = ENVIRON["HTTP_PROXY"] ? ENVIRON["HTTP_PROXY"] : ENVIRON["http_proxy"]
 Option["user-agent"] = ENVIRON["USER_AGENT"] ? ENVIRON["USER_AGENT"] :
-"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) "\
-"AppleWebKit/537.36 (KHTML, like Gecko) "\
-"Chrome/81.0.4044.138 "\
-"Safari/537.36"
-Option["ip-version"] = 0
+"Mozilla/5.0 (X11; Linux x86_64) "\
+"AppleWebKit/602.1 (KHTML, like Gecko) Version/8.0 "\
+"Safari/602.1 Epiphany/3.18.2"
 Option["no-rlwrap"] = 0
 Option["interactive"] = 0
 Option["emacs"] = 0
@@ -4731,9 +4637,7 @@ Option["input"] = NULLSTR
 Option["output"] = STDOUT
 Option["hl"] = ENVIRON["HOME_LANG"] ? ENVIRON["HOME_LANG"] : UserLang
 Option["sl"] = ENVIRON["SOURCE_LANG"] ? ENVIRON["SOURCE_LANG"] : "auto"
-Option["sls"][1] = Option["sl"]
 Option["tl"][1] = ENVIRON["TARGET_LANG"] ? ENVIRON["TARGET_LANG"] : UserLang
-Option["join-sentence"] = 0
 }
 function initScript(    file, line, script, temp) {
 file = ".trans"
@@ -4761,23 +4665,16 @@ delete Option["tl"]
 Option["tl"][1] = temp
 }
 }
-function initMisc(    command, group, temp) {
+function initMisc(    group, temp) {
 initHttpService()
 if (!Option["width"] && detectProgram("tput", "-V")) {
-command = "tput cols" SUPERR
-command | getline temp
-close(command)
-Option["width"] = temp > 5 ? temp - 2 : 64
+"tput cols" SUPERR | getline temp
+Option["width"] = temp ? temp - 2 : 64
 }
 if (Option["no-ansi"])
 delete AnsiCode
-if (Option["no-bidi"] || BiDiTerm == "mlterm")
+if (Option["no-bidi"])
 BiDi = BiDiNoPad = NULLSTR
-else if (!Option["force-bidi"] && BiDiTerm == "konsole") {
-BiDiNoPad = NULLSTR
-BiDi = "sed \"s/'/\\\\\\'/\" | xargs -0 printf '%%%ss'"
-}
-initLocaleDisplay()
 if (Option["no-warn"])
 STDERR = "/dev/null"
 if (Option["play"]) {
@@ -4803,8 +4700,9 @@ Option["view"] = 0
 }
 }
 if (!Option["browser"]) {
-Platform = detectProgram("uname", "-s", 1)
-Option["browser"] = Platform == "Darwin" ? "open" : "xdg-open"
+"xdg-mime query default text/html" SUPERR | getline Option["browser"]
+match(Option["browser"], "(.*).desktop$", group)
+Option["browser"] = group[1]
 }
 }
 BEGIN {
@@ -4989,11 +4887,6 @@ if (RSTART) {
 Option["no-bidi"] = 1
 continue
 }
-match(ARGV[pos], /^--?bidi/)
-if (RSTART) {
-Option["force-bidi"] = 1
-continue
-}
 match(ARGV[pos], /^--?no-warn/)
 if (RSTART) {
 Option["no-warn"] = 1
@@ -5066,7 +4959,7 @@ Option["pager"] = group[1] ?
 ARGV[++pos]
 continue
 }
-match(ARGV[pos], /^--?no-(view|pager)$/)
+match(ARGV[pos], /^--?no-view$/)
 if (RSTART) {
 Option["view"] = 0
 continue
@@ -5076,11 +4969,6 @@ if (RSTART) {
 Option["browser"] = group[1] ?
 (group[2] ? group[2] : Option["browser"]) :
 ARGV[++pos]
-continue
-}
-match(ARGV[pos], /^--?no-browser$/)
-if (RSTART) {
-Option["browser"] = NONE
 continue
 }
 match(ARGV[pos], /^--?(x|proxy)(=(.*)?)?$/, group)
@@ -5095,16 +4983,6 @@ if (RSTART) {
 Option["user-agent"] = group[2] ?
 (group[3] ? group[3] : Option["user-agent"]) :
 ARGV[++pos]
-continue
-}
-match(ARGV[pos], /^--?(4|ipv4|inet4-only)$/)
-if (RSTART) {
-Option["ip-version"] = 4
-continue
-}
-match(ARGV[pos], /^--?(6|ipv6|inet6-only)$/)
-if (RSTART) {
-Option["ip-version"] = 6
 continue
 }
 match(ARGV[pos], /^--?(I|int(e(r(a(c(t(i(ve?)?)?)?)?)?)?)?|shell)$/)
@@ -5157,11 +5035,9 @@ continue
 }
 match(ARGV[pos], /^--?(s(o(u(r(ce?)?)?)?|l)?|f|from)(=(.*)?)?$/, group)
 if (RSTART) {
-if (group[6]) {
-if (group[7]) split(group[7], Option["sls"], "+")
-} else
-split(ARGV[++pos], Option["sls"], "+")
-Option["sl"] = Option["sls"][1]
+Option["sl"] = group[6] ?
+(group[7] ? group[7] : Option["sl"]) :
+ARGV[++pos]
 continue
 }
 match(ARGV[pos], /^--?t(a(r(g(et?)?)?)?|l|o)?(=(.*)?)?$/, group)
@@ -5172,18 +5048,10 @@ if (group[6]) split(group[6], Option["tl"], "+")
 split(ARGV[++pos], Option["tl"], "+")
 continue
 }
-match(ARGV[pos], /^[{(\[]?((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)?(:|=)((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)[})\]]?$/, group)
+match(ARGV[pos], /^[{(\[]?([[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?(:|=)((@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?\+)*(@?[[:alpha:]][[:alpha:]][[:alpha:]]?(-[[:alpha:]][[:alpha:]][[:alpha:]]?[[:alpha:]]?)?)?)[})\]]?$/, group)
 if (RSTART) {
-if (group[1]) {
-split(group[1], Option["sls"], "+")
-Option["sl"] = Option["sls"][1]
-}
-if (group[7]) split(group[7], Option["tl"], "+")
-continue
-}
-match(ARGV[pos], /^--?j(o(i(n(-(s(e(n(t(e(n(ce?)?)?)?)?)?)?)?)?)?)?)?$/)
-if (RSTART) {
-Option["join-sentence"] = 1
+if (group[1]) Option["sl"] = group[1]
+if (group[4]) split(group[4], Option["tl"], "+")
 continue
 }
 match(ARGV[pos], /^--?(D|debug)$/)
@@ -5243,15 +5111,11 @@ welcome()
 if (pos < ARGC)
 for (i = pos; i < ARGC; i++)
 noargv[noargc++] = ARGV[i]
-if (noargc > 1 && Option["join-sentence"]) {
-noargv[0] = join(noargv, " ")
-noargc = 1
-}
 if (noargc) {
 for (i = 0; i < noargc; i++) {
 if (Option["verbose"] && i > pos)
 p(prettify("source-seperator", replicate(Option["chr-source-seperator"], Option["width"])))
-translates(noargv[i], 1)
+translate(noargv[i], 1)
 }
 } else {
 if (!Option["input"]) Option["input"] = STDIN
@@ -5262,68 +5126,87 @@ exit ExitCode
 }
 EOF
 read -r -d '' TRANS_MANPAGE << 'EOF'
-.\" Automatically generated by Pandoc 2.5
+.\" Automatically generated by Pandoc 2.1.1
 .\"
-.TH "TRANS" "1" "2020\-05\-11" "0.9.6.12" ""
+.TH "TRANS" "1" "2018\-03\-17" "0.9.6.7" ""
 .hy
 .SH NAME
 .PP
 trans \- Command\-line translator using Google Translate, Bing
-Translator, Yandex.Translate, etc.
+Translator, Yandex.Translate, DeepL Translator, etc.
 .SH SYNOPSIS
 .PP
-\f[B]trans\f[R] [\f[I]OPTIONS\f[R]]
-[\f[I]SOURCE\f[R]]:[\f[I]TARGETS\f[R]] [\f[I]TEXT\f[R]]...
+\f[B]trans\f[] [\f[I]OPTIONS\f[]] [\f[I]SOURCE\f[]]:[\f[I]TARGETS\f[]]
+[\f[I]TEXT\f[]]...
 .SH DESCRIPTION
 .PP
 This tool translates text into any language from the command\-line,
 using a translation engine such as Google Translate, Bing Translator and
 Yandex.Translate.
 .PP
-Each argument which is not a valid option is treated as \f[I]TEXT\f[R]
-to be translated.
+Each argument which is not a valid option is treated as \f[I]TEXT\f[] to
+be translated.
 .PP
-If neither \f[I]TEXT\f[R] nor the input file is specified by
+If neither \f[I]TEXT\f[] nor the input file is specified by
 command\-line arguments, the program will read and translate from
 standard input.
 .SH OPTIONS
 .SS Information options
 .TP
-.B \f[B]\-V\f[R], \f[B]\-version\f[R]
+.B \f[B]\-V\f[], \f[B]\-version\f[]
 Print version and exit.
+.RS
+.RE
 .TP
-.B \f[B]\-H\f[R], \f[B]\-help\f[R]
+.B \f[B]\-H\f[], \f[B]\-help\f[]
 Print help message and exit.
-\f[B]\-M\f[R], \f[B]\-man\f[R]
-Show man page and exit.
+.RS
+.RE
 .TP
-.B \f[B]\-T\f[R], \f[B]\-reference\f[R]
+.B \f[B]\-M\f[], \f[B]\-man\f[]
+Show man page and exit.
+.RS
+.RE
+.TP
+.B \f[B]\-T\f[], \f[B]\-reference\f[]
 Print reference table of all supported languages and codes, and exit.
 Names of languages are displayed in their endonyms (language name in the
 language itself).
+.RS
+.RE
 .TP
-.B \f[B]\-R\f[R], \f[B]\-reference\-english\f[R]
+.B \f[B]\-R\f[], \f[B]\-reference\-english\f[]
 Print reference table of all supported languages and codes, and exit.
 Names of languages are displayed in English.
+.RS
+.RE
 .TP
-.B \f[B]\-L\f[R] \f[I]CODES\f[R], \f[B]\-list\f[R] \f[I]CODES\f[R]
+.B \f[B]\-L\f[] \f[I]CODES\f[], \f[B]\-list\f[] \f[I]CODES\f[]
 Print details of languages and exit.
 When specifying two or more language codes, concatenate them by plus
-sign \[dq]+\[dq].
+sign "+".
+.RS
+.RE
 .TP
-.B \f[B]\-S\f[R], \f[B]\-list\-engines\f[R]
+.B \f[B]\-S\f[], \f[B]\-list\-engines\f[]
 List available translation engines and exit.
+.RS
+.RE
 .TP
-.B \f[B]\-U\f[R], \f[B]\-upgrade\f[R]
+.B \f[B]\-U\f[], \f[B]\-upgrade\f[]
 Check for upgrade of this program.
+.RS
+.RE
 .SS Translator options
 .TP
-.B \f[B]\-e\f[R] \f[I]ENGINE\f[R], \f[B]\-engine\f[R] \f[I]ENGINE\f[R]
+.B \f[B]\-e\f[] \f[I]ENGINE\f[], \f[B]\-engine\f[] \f[I]ENGINE\f[]
 Specify the translation engine to use.
 (default: google)
+.RS
+.RE
 .SS Display options
 .TP
-.B \f[B]\-verbose\f[R]
+.B \f[B]\-verbose\f[]
 Verbose mode.
 .RS
 .PP
@@ -5335,52 +5218,64 @@ This option is unnecessary in most cases since verbose mode is enabled
 by default.
 .RE
 .TP
-.B \f[B]\-b\f[R], \f[B]\-brief\f[R]
+.B \f[B]\-b\f[], \f[B]\-brief\f[]
 Brief mode.
 .RS
 .PP
 Show the most relevant translation or its phonetic notation only.
 .RE
 .TP
-.B \f[B]\-d\f[R], \f[B]\-dictionary\f[R]
+.B \f[B]\-d\f[], \f[B]\-dictionary\f[]
 Dictionary mode.
 .RS
 .PP
 Show the definition of the original word in the dictionary.
 .RE
 .TP
-.B \f[B]\-identify\f[R]
+.B \f[B]\-identify\f[]
 Language identification.
 .RS
 .PP
 Show the identified language of the original text.
 .RE
 .TP
-.B \f[B]\-show\-original\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-original\f[] \f[I]Y/n\f[]
 Show original text or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-original\-phonetics\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-original\-phonetics\f[] \f[I]Y/n\f[]
 Show phonetic notation of original text or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-translation\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-translation\f[] \f[I]Y/n\f[]
 Show translation or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-translation\-phonetics\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-translation\-phonetics\f[] \f[I]Y/n\f[]
 Show phonetic notation of translation or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-prompt\-message\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-prompt\-message\f[] \f[I]Y/n\f[]
 Show prompt message or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-languages\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-languages\f[] \f[I]Y/n\f[]
 Show source and target languages or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-original\-dictionary\f[R] \f[I]y/N\f[R]
+.B \f[B]\-show\-original\-dictionary\f[] \f[I]y/N\f[]
 Show dictionary entry of original text or not.
 (default: no)
 .RS
@@ -5388,174 +5283,198 @@ Show dictionary entry of original text or not.
 This option is enabled in dictionary mode.
 .RE
 .TP
-.B \f[B]\-show\-dictionary\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-dictionary\f[] \f[I]Y/n\f[]
 Show dictionary entry of translation or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-show\-alternatives\f[R] \f[I]Y/n\f[R]
+.B \f[B]\-show\-alternatives\f[] \f[I]Y/n\f[]
 Show alternative translations or not.
 (default: yes)
+.RS
+.RE
 .TP
-.B \f[B]\-w\f[R] \f[I]NUM\f[R], \f[B]\-width\f[R] \f[I]NUM\f[R]
+.B \f[B]\-w\f[] \f[I]NUM\f[], \f[B]\-width\f[] \f[I]NUM\f[]
 Specify the screen width for padding.
 .RS
 .PP
 This option overrides the setting of environment variable
-$\f[B]COLUMNS\f[R].
+$\f[B]COLUMNS\f[].
 .RE
 .TP
-.B \f[B]\-indent\f[R] \f[I]NUM\f[R]
+.B \f[B]\-indent\f[] \f[I]NUM\f[]
 Specify the size of indent (number of spaces).
 (default: 4)
+.RS
+.RE
 .TP
-.B \f[B]\-theme\f[R] \f[I]FILENAME\f[R]
+.B \f[B]\-theme\f[] \f[I]FILENAME\f[]
 Specify the theme to use.
 (default: default)
+.RS
+.RE
 .TP
-.B \f[B]\-no\-theme\f[R]
+.B \f[B]\-no\-theme\f[]
 Do not use any other theme than default.
+.RS
+.RE
 .TP
-.B \f[B]\-no\-ansi\f[R]
+.B \f[B]\-no\-ansi\f[]
 Do not use ANSI escape codes.
+.RS
+.RE
 .TP
-.B \f[B]\-no\-autocorrect\f[R]
+.B \f[B]\-no\-autocorrect\f[]
 Do not autocorrect.
 (if defaulted by the translation engine)
+.RS
+.RE
 .TP
-.B \f[B]\-no\-bidi\f[R]
+.B \f[B]\-no\-bidi\f[]
 Do not convert bidirectional texts.
+.RS
+.RE
 .TP
-.B \f[B]\-bidi\f[R]
-Always convert bidirectional texts.
-.TP
-.B \f[B]\-no\-warn\f[R]
+.B \f[B]\-no\-warn\f[]
 Do not write warning messages to stderr.
+.RS
+.RE
 .TP
-.B \f[B]\-dump\f[R]
+.B \f[B]\-dump\f[]
 Print raw API response instead.
+.RS
+.RE
 .SS Audio options
 .TP
-.B \f[B]\-p\f[R], \f[B]\-play\f[R]
+.B \f[B]\-p\f[], \f[B]\-play\f[]
 Listen to the translation.
 .RS
 .PP
 You must have at least one of the supported audio players
-(\f[B]mplayer\f[R], \f[B]mpv\f[R] or \f[B]mpg123\f[R]) installed to
-stream from Google Text\-to\-Speech engine.
-Otherwise, a local speech synthesizer may be used instead (\f[B]say\f[R]
-on macOS, \f[B]espeak\f[R] on Linux or other platforms).
+(\f[B]mplayer\f[], \f[B]mpv\f[] or \f[B]mpg123\f[]) installed to stream
+from Google Text\-to\-Speech engine.
+Otherwise, a local speech synthesizer may be used instead (\f[B]say\f[]
+on macOS, \f[B]espeak\f[] on Linux or other platforms).
 .RE
 .TP
-.B \f[B]\-speak\f[R]
+.B \f[B]\-speak\f[]
 Listen to the original text.
+.RS
+.RE
 .TP
-.B \f[B]\-n\f[R] \f[I]VOICE\f[R], \f[B]\-narrator\f[R] \f[I]VOICE\f[R]
+.B \f[B]\-n\f[] \f[I]VOICE\f[], \f[B]\-narrator\f[] \f[I]VOICE\f[]
 Specify the narrator, and listen to the translation.
 .RS
 .PP
-Common values for this option are \f[B]male\f[R] and \f[B]female\f[R].
+Common values for this option are \f[B]male\f[] and \f[B]female\f[].
 .RE
 .TP
-.B \f[B]\-player\f[R] \f[I]PROGRAM\f[R]
+.B \f[B]\-player\f[] \f[I]PROGRAM\f[]
 Specify the audio player to use, and listen to the translation.
 .RS
 .PP
-Option \f[B]\-play\f[R] will try to use \f[B]mplayer\f[R], \f[B]mpv\f[R]
-or \f[B]mpg123\f[R] by default, since these players are known to work
-for streaming URLs.
+Option \f[B]\-play\f[] will try to use \f[B]mplayer\f[], \f[B]mpv\f[] or
+\f[B]mpg123\f[] by default, since these players are known to work for
+streaming URLs.
 Not all command\-line audio players can work this way.
 Use this option only when you have your own preference.
 .PP
 This option overrides the setting of environment variable
-$\f[B]PLAYER\f[R].
+$\f[B]PLAYER\f[].
 .RE
 .TP
-.B \f[B]\-no\-play\f[R]
+.B \f[B]\-no\-play\f[]
 Do not listen to the translation.
+.RS
+.RE
 .TP
-.B \f[B]\-no\-translate\f[R]
+.B \f[B]\-no\-translate\f[]
 Do not translate anything when using \-speak.
+.RS
+.RE
 .TP
-.B \f[B]\-download\-audio\f[R]
+.B \f[B]\-download\-audio\f[]
 Download the audio to the current directory.
+.RS
+.RE
 .TP
-.B \f[B]\-download\-audio\-as\f[R] \f[I]FILENAME\f[R]
+.B \f[B]\-download\-audio\-as\f[] \f[I]FILENAME\f[]
 Download the audio to the specified file.
+.RS
+.RE
 .SS Terminal paging and browsing options
 .TP
-.B \f[B]\-v\f[R], \f[B]\-view\f[R]
-View the translation in a terminal pager (\f[B]less\f[R], \f[B]more\f[R]
-or \f[B]most\f[R]).
+.B \f[B]\-v\f[], \f[B]\-view\f[]
+View the translation in a terminal pager (\f[B]less\f[], \f[B]more\f[]
+or \f[B]most\f[]).
+.RS
+.RE
 .TP
-.B \f[B]\-pager\f[R] \f[I]PROGRAM\f[R]
+.B \f[B]\-pager\f[] \f[I]PROGRAM\f[]
 Specify the terminal pager to use, and view the translation.
 .RS
 .PP
 This option overrides the setting of environment variable
-$\f[B]PAGER\f[R].
+$\f[B]PAGER\f[].
 .RE
 .TP
-.B \f[B]\-no\-view\f[R], \f[B]\-no\-pager\f[R]
+.B \f[B]\-no\-view\f[]
 Do not view the translation in a terminal pager.
+.RS
+.RE
 .TP
-.B \f[B]\-browser\f[R] \f[I]PROGRAM\f[R]
+.B \f[B]\-browser\f[] \f[I]PROGRAM\f[]
 Specify the web browser to use.
 .RS
 .PP
 This option overrides the setting of environment variable
-$\f[B]BROWSER\f[R].
+$\f[B]BROWSER\f[].
 .RE
-.TP
-.B \f[B]\-no\-browser\f[R]
-Do not open the web browser.
 .SS Networking options
 .TP
-.B \f[B]\-x\f[R] \f[I]HOST:PORT\f[R], \f[B]\-proxy\f[R] \f[I]HOST:PORT\f[R]
+.B \f[B]\-x\f[] \f[I]HOST:PORT\f[], \f[B]\-proxy\f[] \f[I]HOST:PORT\f[]
 Use HTTP proxy on given port.
 .RS
 .PP
 This option overrides the setting of environment variables
-$\f[B]HTTP_PROXY\f[R] and $\f[B]http_proxy\f[R].
+$\f[B]HTTP_PROXY\f[] and $\f[B]http_proxy\f[].
 .RE
 .TP
-.B \f[B]\-u\f[R] \f[I]STRING\f[R], \f[B]\-user\-agent\f[R] \f[I]STRING\f[R]
+.B \f[B]\-u\f[] \f[I]STRING\f[], \f[B]\-user\-agent\f[] \f[I]STRING\f[]
 Specify the User\-Agent to identify as.
 .RS
 .PP
 This option overrides the setting of environment variables
-$\f[B]USER_AGENT\f[R].
+$\f[B]USER_AGENT\f[].
 .RE
-.TP
-.B \f[B]\-4\f[R], \f[B]\-ipv4\f[R], \f[B]\-inet4\-only\f[R]
-Connect only to IPv4 addresses.
-.TP
-.B \f[B]\-6\f[R], \f[B]\-ipv6\f[R], \f[B]\-inet6\-only\f[R]
-Connect only to IPv6 addresses.
 .SS Interactive shell options
 .TP
-.B \f[B]\-I\f[R], \f[B]\-interactive\f[R], \f[B]\-shell\f[R]
-Start an interactive shell, invoking \f[B]rlwrap\f[R] whenever possible
-(unless \f[B]\-no\-rlwrap\f[R] is specified).
+.B \f[B]\-I\f[], \f[B]\-interactive\f[], \f[B]\-shell\f[]
+Start an interactive shell, invoking \f[B]rlwrap\f[] whenever possible
+(unless \f[B]\-no\-rlwrap\f[] is specified).
+.RS
+.RE
 .TP
-.B \f[B]\-E\f[R], \f[B]\-emacs\f[R]
+.B \f[B]\-E\f[], \f[B]\-emacs\f[]
 Start the GNU Emacs front\-end for an interactive shell.
 .RS
 .PP
-This option does not need to, and cannot be used along with
-\f[B]\-I\f[R] or \f[B]\-no\-rlwrap\f[R].
+This option does not need to, and cannot be used along with \f[B]\-I\f[]
+or \f[B]\-no\-rlwrap\f[].
 .RE
 .TP
-.B \f[B]\-no\-rlwrap\f[R]
-Do not invoke \f[B]rlwrap\f[R] when starting an interactive shell.
+.B \f[B]\-no\-rlwrap\f[]
+Do not invoke \f[B]rlwrap\f[] when starting an interactive shell.
 .RS
 .PP
 This option is useful when your terminal type is not supported by
-\f[B]rlwrap\f[R] (e.g.
-\f[B]emacs\f[R]).
+\f[B]rlwrap\f[] (e.g.
+\f[B]emacs\f[]).
 .RE
 .SS I/O options
 .TP
-.B \f[B]\-i\f[R] \f[I]FILENAME\f[R], \f[B]\-input\f[R] \f[I]FILENAME\f[R]
+.B \f[B]\-i\f[] \f[I]FILENAME\f[], \f[B]\-input\f[] \f[I]FILENAME\f[]
 Specify the input file.
 .RS
 .PP
@@ -5563,7 +5482,7 @@ Source text to be translated will be read from the input file, instead
 of standard input.
 .RE
 .TP
-.B \f[B]\-o\f[R] \f[I]FILENAME\f[R], \f[B]\-output\f[R] \f[I]FILENAME\f[R]
+.B \f[B]\-o\f[] \f[I]FILENAME\f[], \f[B]\-output\f[] \f[I]FILENAME\f[]
 Specify the output file.
 .RS
 .PP
@@ -5572,7 +5491,7 @@ output.
 .RE
 .SS Language preference options
 .TP
-.B \f[B]\-l\f[R] \f[I]CODE\f[R], \f[B]\-hl\f[R] \f[I]CODE\f[R], \f[B]\-lang\f[R] \f[I]CODE\f[R]
+.B \f[B]\-l\f[] \f[I]CODE\f[], \f[B]\-hl\f[] \f[I]CODE\f[], \f[B]\-lang\f[] \f[I]CODE\f[]
 Specify your home language (the language you would like to see for
 displaying prompt messages in the translation).
 .RS
@@ -5586,13 +5505,12 @@ This option is optional.
 When its setting is omitted, English will be used.
 .PP
 This option overrides the setting of environment variables
-$\f[B]LC_ALL\f[R], $\f[B]LANG\f[R], and $\f[B]HOME_LANG\f[R].
+$\f[B]LANGUAGE\f[], $\f[B]LC_ALL\f[], $\f[B]LANG\f[] and
+$\f[B]HOME_LANG\f[].
 .RE
 .TP
-.B \f[B]\-s\f[R] \f[I]CODES\f[R], \f[B]\-sl\f[R] \f[I]CODES\f[R], \f[B]\-source\f[R] \f[I]CODES\f[R], \f[B]\-from\f[R] \f[I]CODES\f[R]
-Specify the source language(s) (the language(s) of original text).
-When specifying two or more language codes, concatenate them by plus
-sign \[dq]+\[dq].
+.B \f[B]\-s\f[] \f[I]CODE\f[], \f[B]\-sl\f[] \f[I]CODE\f[], \f[B]\-source\f[] \f[I]CODE\f[], \f[B]\-from\f[] \f[I]CODE\f[]
+Specify the source language (the language of original text).
 .RS
 .PP
 This option is optional.
@@ -5600,108 +5518,132 @@ When its setting is omitted, the language of original text will be
 identified automatically (with a possibility of misidentification).
 .PP
 This option overrides the setting of environment variable
-$\f[B]SOURCE_LANG\f[R].
+$\f[B]SOURCE_LANG\f[].
 .RE
 .TP
-.B \f[B]\-t\f[R] \f[I]CODES\f[R], \f[B]\-tl\f[R] \f[I]CODES\f[R], \f[B]\-target\f[R] \f[I]CODES\f[R], \f[B]\-to\f[R] \f[I]CODES\f[R]
+.B \f[B]\-t\f[] \f[I]CODES\f[], \f[B]\-tl\f[] \f[I]CODE\f[], \f[B]\-target\f[] \f[I]CODES\f[], \f[B]\-to\f[] \f[I]CODES\f[]
 Specify the target language(s) (the language(s) of translated text).
 When specifying two or more language codes, concatenate them by plus
-sign \[dq]+\[dq].
+sign "+".
 .RS
 .PP
 This option is optional.
 When its setting is omitted, everything will be translated into English.
 .PP
 This option overrides the setting of environment variables
-$\f[B]LC_ALL\f[R], $\f[B]LANG\f[R], and $\f[B]TARGET_LANG\f[R].
+$\f[B]LANGUAGE\f[], $\f[B]LC_ALL\f[], $\f[B]LANG\f[] and
+$\f[B]TARGET_LANG\f[].
 .RE
 .TP
-.B [\f[I]SOURCE\f[R]]:[\f[I]TARGETS\f[R]]
+.B [\f[I]SOURCE\f[]]:[\f[I]TARGETS\f[]]
 A simpler, alternative way to specify the source language and target
 language(s) is to use a shortcut formatted string:
 .RS
 .IP \[bu] 2
-\f[I]SOURCE\-CODE\f[R]:\f[I]TARGET\-CODE\f[R]
+\f[I]SOURCE\-CODE\f[]:\f[I]TARGET\-CODE\f[]
 .IP \[bu] 2
-\f[I]SOURCE\-CODE\f[R]:\f[I]TARGET\-CODE1\f[R]+\f[I]TARGET\-CODE2\f[R]+...
+\f[I]SOURCE\-CODE\f[]:\f[I]TARGET\-CODE1\f[]+\f[I]TARGET\-CODE2\f[]+...
 .IP \[bu] 2
-\f[I]SOURCE\-CODE\f[R]=\f[I]TARGET\-CODE\f[R]
+\f[I]SOURCE\-CODE\f[]=\f[I]TARGET\-CODE\f[]
 .IP \[bu] 2
-\f[I]SOURCE\-CODE\f[R]=\f[I]TARGET\-CODE1\f[R]+\f[I]TARGET\-CODE2\f[R]+...
+\f[I]SOURCE\-CODE\f[]=\f[I]TARGET\-CODE1\f[]+\f[I]TARGET\-CODE2\f[]+...
 .PP
-Delimiter \[dq]:\[dq] and \[dq]=\[dq] can be used interchangeably.
+Delimiter ":" and "=" can be used interchangeably.
 .PP
-Either \f[I]SOURCE\f[R] or \f[I]TARGETS\f[R] may be omitted, but the
+Either \f[I]SOURCE\f[] or \f[I]TARGETS\f[] may be omitted, but the
 delimiter character must be kept.
 .RE
-.SS Text preprocessing options
-.TP
-.B \f[B]\-j\f[R], \f[B]\-join\-sentence\f[R]
-Treat all arguments as one single sentence.
 .SS Other options
 .TP
-.B \f[B]\-no\-init\f[R]
+.B \f[B]\-no\-init\f[]
 Do not load any initialization script.
+.RS
+.RE
 .TP
-.B \f[B]\-\-\f[R]
+.B \f[B]\-\-\f[]
 End\-of\-options.
 .RS
 .PP
-All arguments after this option are treated as \f[I]TEXT\f[R] to be
+All arguments after this option are treated as \f[I]TEXT\f[] to be
 translated.
 .RE
 .SH EXIT STATUS
 .TP
-.B \f[B]0\f[R]
+.B \f[B]0\f[]
 Successful translation.
+.RS
+.RE
 .TP
-.B \f[B]1\f[R]
+.B \f[B]1\f[]
 Error.
+.RS
+.RE
 .SH ENVIRONMENT
 .TP
-.B \f[B]PAGER\f[R]
-Equivalent to option setting \f[B]\-pager\f[R].
+.B \f[B]PAGER\f[]
+Equivalent to option setting \f[B]\-pager\f[].
+.RS
+.RE
 .TP
-.B \f[B]BROWSER\f[R]
-Equivalent to option setting \f[B]\-browser\f[R].
+.B \f[B]BROWSER\f[]
+Equivalent to option setting \f[B]\-browser\f[].
+.RS
+.RE
 .TP
-.B \f[B]PLAYER\f[R]
-Equivalent to option setting \f[B]\-player\f[R].
+.B \f[B]PLAYER\f[]
+Equivalent to option setting \f[B]\-player\f[].
+.RS
+.RE
 .TP
-.B \f[B]HTTP_PROXY\f[R]
-Equivalent to option setting \f[B]\-proxy\f[R].
+.B \f[B]HTTP_PROXY\f[]
+Equivalent to option setting \f[B]\-proxy\f[].
+.RS
+.RE
 .TP
-.B \f[B]USER_AGENT\f[R]
-Equivalent to option setting \f[B]\-user\-agent\f[R].
+.B \f[B]USER_AGENT\f[]
+Equivalent to option setting \f[B]\-user\-agent\f[].
+.RS
+.RE
 .TP
-.B \f[B]HOME_LANG\f[R]
-Equivalent to option setting \f[B]\-lang\f[R].
+.B \f[B]HOME_LANG\f[]
+Equivalent to option setting \f[B]\-lang\f[].
+.RS
+.RE
 .TP
-.B \f[B]SOURCE_LANG\f[R]
-Equivalent to option setting \f[B]\-source\f[R].
+.B \f[B]SOURCE_LANG\f[]
+Equivalent to option setting \f[B]\-source\f[].
+.RS
+.RE
 .TP
-.B \f[B]TARGET_LANG\f[R]
-Equivalent to option setting \f[B]\-target\f[R].
+.B \f[B]TARGET_LANG\f[]
+Equivalent to option setting \f[B]\-target\f[].
+.RS
+.RE
 .SH FILES
 .TP
-.B \f[I]/etc/translate\-shell\f[R]
+.B \f[I]/etc/translate\-shell\f[]
 Initialization script.
 (system\-wide)
+.RS
+.RE
 .TP
-.B \f[I]$HOME/.translate\-shell/init.trans\f[R]
+.B \f[I]$HOME/.translate\-shell/init.trans\f[]
 Initialization script.
 (user\-specific)
+.RS
+.RE
 .TP
-.B \f[I]$XDG_CONFIG_HOME/translate\-shell/init.trans\f[R]
+.B \f[I]$XDG_CONFIG_HOME/translate\-shell/init.trans\f[]
 Initialization script.
 (user\-specific)
+.RS
+.RE
 .TP
-.B \f[I]./.trans\f[R]
+.B \f[I]./.trans\f[]
 Initialization script.
 (current directory)
-.SH FURTHER DOCUMENTATION
-.PP
-<https://github.com/soimort/translate-shell/wiki>
+.RS
+.RE
 .SH REPORTING BUGS
 .PP
 <https://github.com/soimort/translate-shell/issues>
