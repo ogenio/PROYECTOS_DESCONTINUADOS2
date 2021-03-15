@@ -42,12 +42,12 @@ msg -bar
 dpkg --configure -a &>/dev/null
 apt-get install software-properties-common -y &>/dev/null
 apt-add-repository universe -y &>/dev/null
-SCPdir="/etc/newadm" #&& [[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
+SCPdir="/etc/VPS-MX" #&& [[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
 SCPinstal="$HOME/install" && [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
 SCPidioma="${SCPdir}/idioma"
-SCPusr="${SCPdir}/ger-user" #&& [[ ! -d ${SCPusr} ]] && mkdir ${SCPusr}
-SCPfrm="/etc/ger-frm" #&& [[ ! -d ${SCPfrm} ]] && mkdir ${SCPfrm}
-SCPinst="/etc/ger-inst" #&& [[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
+SCPusr="${SCPdir}/controlador" #&& [[ ! -d ${SCPusr} ]] && mkdir ${SCPusr}
+SCPfrm="/etc/herramientas" #&& [[ ! -d ${SCPfrm} ]] && mkdir ${SCPfrm}
+SCPinst="/etc/protocolos" #&& [[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
 mkdir -p /etc/B-ADMuser &>/dev/null
@@ -101,7 +101,7 @@ wget -O /bin/rebootnb https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/P
 chmod +x /bin/rebootnb 
 wget -O /bin/resetsshdrop https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/resetsshdrop &> /dev/null
 chmod +x /bin/resetsshdrop
-wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.3/Vercion &>/dev/null
+wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.4/Vercion &>/dev/null
 msg -bar2
 wget -O ${SCPfrm}/ADMbot.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/Parches-TEM/ADMbot.sh &>/dev/null
 chmod +x ${SCPfrm}/ADMbot.sh
@@ -125,7 +125,7 @@ echo 'echo "" '>> .bashrc
 echo 'echo -e "\033[92m        RESELLER : $mess1 "'>> .bashrc
 echo 'echo "" '>> .bashrc                                               
 echo 'echo -e "\033[97m   PARA MOSTAR PANEL BASH ESCRIBA:  sudo menu "'>> .bashrc
-#echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.3/Vercion &>/dev/null'>> .bashrc
+#echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.4/Vercion &>/dev/null'>> .bashrc
 echo 'echo ""'>> .bashrc
 echo -e "         COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
 echo -e "\033[1;41m                     sudo menu                        \033[0;37m" && msg -bar2
@@ -165,7 +165,7 @@ apt-get install lolcat -y >/dev/null 2>&1
 apt-get install figlet -y >/dev/null 2>&1
 apt install python python3 python-pip python3-pip -y >/dev/null 2>&1
 inst_components
-link=https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.3/SCRIPT
+link=https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/_%24_Versiones/VPS-MX-8.4/SCRIPT
 wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/trans &> /dev/null
 wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/Desbloqueo.sh &> /dev/null
 chmod +x /bin/Desbloqueo.sh
