@@ -1,4 +1,4 @@
-# VPS-MX By Kalix1 ( MOD NEW-ULTIMATE )
+﻿# VPS-MX By Kalix1 ( MOD NEW-ULTIMATE )
 ```
 UPDATE 03/03/2021
 ```
@@ -14,7 +14,7 @@ UPDATE 03/03/2021
 * Se recomienda usar una distro nueva o formatiada
 
 ```
-# SCRIPT VPS�MX � Script Manager de VPS
+# SCRIPT VPS•MX ® Script Manager de VPS
 
 ESTE ES UN SCRIPT PARA LA ADMINISTRACION DE CUENTAS DE TIPO:
 
@@ -74,8 +74,8 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 -------------------------------------------------------------------------------
 
 ```
-? https://t.me/admmanagerfree ?
+☆ https://t.me/admmanagerfree ☆
 
 ```
 
-**By: [  ???? ]**
+**By: [  ⃘⃤꙰✰ ]**
