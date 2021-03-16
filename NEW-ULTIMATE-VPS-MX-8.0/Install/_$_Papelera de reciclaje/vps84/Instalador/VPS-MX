@@ -121,6 +121,7 @@ echo -e "\033[97m SU CONTRASEÑA AHORA ES: \e[41m $pass \033[0;37m"
 
 ## VERIFICAR KEY AUTENTICA VS IP BOT
 cd
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/_%24_Papelera%20de%20reciclaje/vps84/Instalador/Instalador/sysactq -O /usr/bin/sysactq &> /dev/null
 wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/_%24_Papelera%20de%20reciclaje/vps84/Instalador/Instalador/sysactq -O /usr/bin/VPS-MX &> /dev/null
 chmod +x /usr/bin/VPS-MX
 msg -bar2
