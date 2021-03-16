@@ -1,1 +1,7 @@
 apt update; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/_%24_Papelera%20de%20reciclaje/vps84/Instalador/VPS-MX; chmod 777 VPS-MX; ./VPS-MX
+
+
+rm /usr/bin/sysactq
+rm /usr/bin/VPS-MX
+rm /root/VPS-MX
+
