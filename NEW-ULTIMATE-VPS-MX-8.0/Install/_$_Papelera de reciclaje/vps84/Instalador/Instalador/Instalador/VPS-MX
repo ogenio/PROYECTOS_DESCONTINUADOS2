@@ -9,6 +9,8 @@ SCPidioma="${SCPdir}/idioma"
 SCPusr="${SCPdir}/controlador"
 SCPfrm="${SCPdir}/herramientas"
 SCPinst="${SCPdir}/protocolos"
+kalix1="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FBQUFBRVhRT1N5SXBOMkpaMGVoVVEvUFJPWUVDVE9TX0RFU0NPTlRJTlVBRE9TL21hc3Rlci9ORVctVUxUSU1BVEUtVlBTLU1YLTguMC9Nb2R1bG9z"
+PUTO='base64 -d'
 #echo "nameserver 8.8.8.8" > /etc/resolv.conf
 #echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 service apache2 restart > /dev/null 2>&1
@@ -209,17 +211,9 @@ MIP2=$(wget -qO- ifconfig.me)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }  
 function_verify () {
-  permited=$(curl -sSL "https://www.dropbox.com/s/bg8bpaefxq9s5jl/Control-IP")
-  [[ $(echo $permited|grep "${IP}") = "" ]] && {
-  clear
-  echo -e "\n\n\n\033[1;91m————————————————————————————————————————————————————\n      ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR! \n                 CONATACTE A @Kalix1\n————————————————————————————————————————————————————\n\n\n"
-  [[ -d /etc/VPS-MX ]] && rm -rf /etc/VPS-MX
-  exit 1
-  } || {
-  ### INTALAR VERSION DE SCRIPT
-  v1=$(curl -sSL "https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version")
-  echo "$v1" > /etc/versin_script
-  }
+wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Install/trans &> /dev/null
+wget -O /etc/versin_script https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version &> /dev/null
+[[ ! -e /usr/local/lib/lsystembin2 ]] && touch /usr/local/lib/lsystembin2
 }
 funcao_idioma () {
 clear
@@ -370,41 +364,30 @@ msg -bar2
 [[ $1 = "" ]] && funcao_idioma || {
 [[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
  }
-error_fun () {
-msg -bar2 && msg -verm "ERROR entre VPS<-->GENERADOR (Port 81 TCP)" && msg -bar2
-[[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
-exit 1
-}
-invalid_key () {
-msg -bar2 && msg -verm "  Code Invalido -- #¡Key Invalida#! " && msg -bar2
-[[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
-exit 1
-}
-while [[ ! $Key ]]; do
-msg -bar2 && msg -ne "\033[1;93m          >>> INTRODUSCA LA KEY ABAJO <<<\n   \033[1;37m" && read Key
-tput cuu1 && tput dl1
-done
-msg -ne "    # Verificando Key # : "
+Key="qraKatsil/33?030ce55?7dff/8888:%05+@%?+08?+91%@"
+REQUEST=$(echo $kalix1|$PUTO)
+echo "$IP" > /usr/bin/vendor_code
 cd $HOME
-wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Code Correcto de KEY" || {
-   echo -e "\033[1;91m Code Incorrecto de KEY"
+msg -ne "Files: "
+wget -O $HOME/lista-arq ${REQUEST}/lista-arq > /dev/null 2>&1 && echo -e "\033[1;32m Verificado" || {
+   echo -e "\033[1;32m Verificada"
    invalid_key
    exit
    }
-IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
 sleep 1s
+updatedb
 function_verify
 updatedb
-if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "Code de KEY Invalido!") ]]; then
+function_verify
+if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
    msg -bar2
-   msg -verd "    $(source trans -b es:${id} "Ficheros Copiados"|sed -e 's/[^a-z -]//ig'): \e[97m[\e[93mVPS-MX #MOD by @Kalix1\e[97m]"
-   REQUEST=$(ofus "$Key"|cut -d'/' -f2)
+   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @Kalix1]"
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
-   pontos="." 
-   stopping="Configurando Directorios"
+   pontos="."
+   stopping="$(source trans -b es:${id} "Verificando Actualizaciones"|sed -e 's/[^a-z -]//ig')"
    for arqx in $(cat $HOME/lista-arq); do
-   msg -verm "${stopping}${pontos}" 
-   wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
+   msg -verm "${stopping}${pontos}"
+   wget --no-check-certificate -O ${SCPinstal}/${arqx} ${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
    tput cuu1 && tput dl1
    pontos+="."
    done
