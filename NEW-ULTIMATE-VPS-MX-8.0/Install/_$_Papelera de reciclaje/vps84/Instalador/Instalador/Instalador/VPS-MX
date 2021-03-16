@@ -407,7 +407,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    read -p " [ s | n ]: " NOTIFY   
    [[ "$NOTIFY" = "s" || "$NOTIFY" = "S" ]] && NOTIFY
    msg -bar2
-   [[ ${byinst} = "true" ]] && install_fim
+[[ ${byinst} = "true" ]] && install_fim
 else
 invalid_key
 fi
