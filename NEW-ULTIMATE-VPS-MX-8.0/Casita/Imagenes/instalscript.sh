@@ -113,4 +113,4 @@ sleep 5
 ## Restore working directory
 cd $WORKING_DIR_ORIGINAL
 clear
-chmod +x /root/VPS-MX; ./VPS-MX
+cd && ./VPS-MX

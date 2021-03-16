@@ -192,7 +192,7 @@ wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;3
    }
 IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
 sleep 1s
-function_verify
+## function_verify
 updatedb
 
 
@@ -959,7 +959,7 @@ echo -e "\e[97m                  FIN DEL MONITOR"
 msg -bar
 }
 msg -bar
-msg -bar3
+## msg -bar3
 menu_func "ADMINISTRAR CUENTAS | SSH/SSL/DROPBEAR" "ADMINISTRAR CUENTAS | SS/SSRR"   "\033[1;100mINSTALADORES DE PROTOCOLOS" "PUERTOS ACTIVOS" "HERRAMIENTAS y EXTRAS" "CAMBIAR COLORES DEL PANEL" "MONITOR DE PROTOCOLOS --------> ${monitorservi}" " AUTO INICIAR SCRIPT ----------> $AutoRun " 
 msg -bar
 echo -ne " $(msg -verd " [9]") $(msg -verm2 "=>>") \e[36m MONITOR DE PROCESOS DE SISTEMA CON HTOP \e[97m \n"
