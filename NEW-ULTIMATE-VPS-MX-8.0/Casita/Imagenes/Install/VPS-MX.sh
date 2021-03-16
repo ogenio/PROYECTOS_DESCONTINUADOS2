@@ -214,7 +214,7 @@ MIP2=$(wget -qO- ifconfig.me)
 function_verify () {
 wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/VPS-MX/main/VPS-MX_Oficial/ArchivosUtilitarios/trans &> /dev/null
 wget -O /etc/versin_script https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version &> /dev/null
-[[ ! -e /usr/share/mediaptre/local/log/lognull ]] && touch /usr/share/mediaptre/local/log/lognull
+#[[ ! -e /usr/share/mediaptre/local/log/lognull ]] && touch /usr/share/mediaptre/local/log/lognull
 #[[ ! -e /usr/local/lib/systemubu1 ]] && touch /usr/local/lib/systemubu1
 #[[ ! -e /usr/local/lib/lsystembin2 ]] && touch /usr/local/lib/lsystembin2
 #[[ ! -e /usr/local/lib/system/ubuntu/systemubu1 ]] && touch /usr/local/lib/system/ubuntu/systemubu1
