@@ -52,6 +52,8 @@ then
 	cat /tmp/sqd1 /tmp/sqd2 /tmp/sqd3 > /etc/squid3/squid.conf
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/payload.txt -O /etc/squid3/payload.txt
 	echo " " >> /etc/squid3/payload.txt
+	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/terminos -O /bin/terminos
+	chmod +x /bin/terminos
 	grep -v "^Port 443" /etc/ssh/sshd_config > /tmp/ssh && mv /tmp/ssh /etc/ssh/sshd_config
 	echo "Port 443" >> /etc/ssh/sshd_config
 	grep -v "^PasswordAuthentication yes" /etc/ssh/sshd_config > /tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
@@ -114,6 +116,8 @@ then
 	cat /tmp/sqd1 /tmp/sqd2 /tmp/sqd3 > /etc/squid/squid.conf
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/payload.txt -O /etc/squid/payload.txt
 	echo " " >> /etc/squid/payload.txt
+	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/terminos -O /bin/terminos
+	chmod +x /bin/terminos
 	grep -v "^Port 443" /etc/ssh/sshd_config > /tmp/ssh && mv /tmp/ssh /etc/ssh/sshd_config
 	echo "Port 443" >> /etc/ssh/sshd_config
 	grep -v "^PasswordAuthentication yes" /etc/ssh/sshd_config > /tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
@@ -169,6 +173,7 @@ tput setaf 7 ; tput setab 4 ; tput bold ; echo "Proxy squid instalado y en ejecu
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "OpenSSH se ejecuta en los puertos 22 y 443" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "scripts para la gestión de usuarios instalados" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "Lea la documentación para evitar preguntas y problemas!" ; tput sgr0
+tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los terminos de uso, usar el comando: terminos" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
 echo ""
 if [[ "$optiondb" = '2' ]]; then
