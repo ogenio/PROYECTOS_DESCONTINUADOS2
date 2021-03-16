@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 rm -rf $HOME/vpsmanagersetup.sh
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
 tput setaf 3 ; tput bold ; echo "" ; echo "Este script irá:" ; echo ""
@@ -7,6 +6,40 @@ echo "● Instalar y configurar el proxy squid en las puertos 80, 3128, 8080 e 8
 echo "● Configurar OpenSSH para ejecutarse en los puertos 22 e 443"
 echo "● Instalar un conjunto de secuencias de comandos y comandos del sistema para la gestión de los usuarios" ; tput sgr0
 echo ""
+tput setaf 3 ; tput bold ; read -n 1 -s -p "Pulse cualquier tecla para continuar ... " ; echo "" ; echo "" ; tput sgr0
+tput setaf 2 ; tput bold ; echo "	Terminos de uso" ; tput sgr0
+echo ""
+echo "Mediante el uso de 'Administrador de VPS-MANAGER V3.0' está de acuerdo con las siguientes condiciones de uso:"
+echo ""
+echo "1. Tu puedes:"
+echo "a. Instalar y utilizar el 'VPS-MANAGER V3.0' en el servidor ."
+echo "b. Crear, administrar y eliminar un número ilimitado de usuarios a través de este conjunto de scripts."
+echo ""
+tput setaf 3 ; tput bold ; read -n 1 -s -p "Aperte qualquer tecla para continuar..." ; echo "" ; echo "" ; tput sgr0
+echo "2. Tu no puedes:"
+echo "a. Editar, modificar, compartir o redistribuir"
+echo "este conjunto de secuencias de comandos sin autorización desarrollador."
+echo "b. Modificar O editar el conjunto de script para hacer que se mira el programador de scripts."
+echo ""
+echo "3. El usuario acepta que:"
+echo "a. El conjunto de scripts no incluye garantías o apoyo adicional,"
+echo "pero el usuario puede, promocional y de forma no vinculante, por un tiempo limitado,"
+echo "recibir apoyo y ayuda para la solución de problemas, siempre que reúna las condiciones de uso."
+echo "b. El usuario de este conjunto de scripts es el único responsable de cualquier tipo de implicación"
+echo "legal o ética causada por el uso de este conjunto de secuencias de comandos para cualquier propósito."
+echo ""
+tput setaf 3 ; tput bold ; read -n 1 -s -p "Aperte qualquer tecla para continuar..." ; echo "" ; echo "" ; tput sgr0
+echo "4. El usuario acepta que el promotor no se hace responsable de:"
+echo "a. Los problemas causados por el uso de scripts no autorizados distribuidos."
+echo "b. Los problemas causados por conflictos entre este conjunto de secuencias de comandos y scripts de desarrollador."
+echo "c. Los problemas causados por problemas o modificaciones de código script sin permiso."
+echo "d. problemas del sistema causados por programas de terceros o cambios / pruebas con usuarios."
+echo "e. Los problemas causados por los cambios en el sistema del servidor."
+echo "f. problemas causados por el usuario no sigue las instrucciones del conjunto de documentación de los scripts."
+echo "g. problemas ocurrieron durante el uso de scripts para beneficio comercial."
+echo "h. Los problemas que pueden ocurrir cuando se utiliza el conjunto de scripts en sistemas que no están en la lista de sistemas a prueba."
+echo ""
+tput setaf 3 ; tput bold ; read -n 1 -s -p "Presina Cualquier tecla para continuar..." ; echo "" ; echo "" ; tput sgr0
 IP=$(wget -qO- ipv4.icanhazip.com)
 read -p "Para continuar confirme o IP de este servidor: " -e -i $IP ipdovps
 if [ -z "$ipdovps" ]
@@ -43,7 +76,6 @@ apt-get purge apache2 -y
 if [ -f "/usr/sbin/ufw" ] ; then
 	ufw allow 443/tcp ; ufw allow 80/tcp ; ufw allow 3128/tcp ; ufw allow 8799/tcp ; ufw allow 8080/tcp
 fi
-clear
 if [ -d "/etc/squid3/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid.txt -O /tmp/sqd1
@@ -105,7 +137,6 @@ then
 		/etc/init.d/ssh reload > /dev/null
 	fi
 fi
-clear
 if [ -d "/etc/squid/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid1.txt -O /tmp/sqd1
@@ -164,7 +195,6 @@ then
 	fi
 fi
 echo ""
-clear
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "OpenSSH se ejecuta en los puertos 22 y 443" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "scripts para la gestión de usuarios instalados" ; tput sgr0
