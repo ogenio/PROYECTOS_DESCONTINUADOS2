@@ -1,12 +1,13 @@
-﻿# PROYECTOS_DESCONTINUADO
+﻿# PROYECTOS DESCONTINUADO
 
 **Script Descontinuados**
 
+```
 * EN ESTE REPOSITORIO SE ENCUENTRAN LOS SCRIPTS QUE AN SIDO DESCONTINUADOS 
 * AUNQUE ALGUNOS DE ELLOS RECIBEN ACTULIZACION CADA SIERTO TIEMPO 
-
 ```
- • Recontruidos:
+
+# • Recontruidos:
 
 *  HERRAMIENTAS
 *  REPOSITORIO-MANAGER
@@ -19,18 +20,14 @@
 *  GENERADOR-ADM-MANAGER-ULTIMATE-FREE
 *  GENERADOR-NEW-ULTIMATE-ORIGINAL
 *  GENERADOR-VPS-MX
-```
 
-```
- • Recontruidos (NO RECOMENDADO):
+# • Recontruidos (NO RECOMENDADO):
 
 *  GOLDEN-ADM-MANAGER 
 *  ADM-MANAGER-DANKELTHAHER
 *  VPSPACK-MOD_PWRMX
-```
 
 -------------------------------------------------------------------------------
-
 
 ```
 ☆ https://t.me/admmanagerfree ☆
