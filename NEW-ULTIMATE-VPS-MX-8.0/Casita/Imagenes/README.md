@@ -1,5 +1,7 @@
 ﻿## :book: Installation
+
 rm /root/VPS-MX
+rm /root/instalscript.sh
 rm /usr/bin/sysactq
 rm /usr/bin/VPS-MX
 
