@@ -43,7 +43,6 @@ apt-get purge apache2 -y
 if [ -f "/usr/sbin/ufw" ] ; then
 	ufw allow 443/tcp ; ufw allow 80/tcp ; ufw allow 3128/tcp ; ufw allow 8799/tcp ; ufw allow 8080/tcp
 fi
-clear
 if [ -d "/etc/squid3/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid.txt -O /tmp/sqd1
@@ -107,7 +106,6 @@ then
 		/etc/init.d/ssh reload > /dev/null
 	fi
 fi
-clear
 if [ -d "/etc/squid/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid1.txt -O /tmp/sqd1
