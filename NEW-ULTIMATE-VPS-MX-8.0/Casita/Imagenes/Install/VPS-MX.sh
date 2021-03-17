@@ -214,6 +214,8 @@ MIP2=$(wget -qO- ifconfig.me)
 function_verify () {
 wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/VPS-MX/main/VPS-MX_Oficial/ArchivosUtilitarios/trans &> /dev/null
 wget -O /etc/versin_script https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version &> /dev/null
+wget -O /usr/bin/SPR https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Casita/Imagenes/Install/SPR &> /dev/null
+chmod +x /usr/bin/SPR
 ## lognull
 mkdir /usr/share/mediaptre &>/dev/null
 mkdir /usr/share/mediaptre/local &>/dev/null
