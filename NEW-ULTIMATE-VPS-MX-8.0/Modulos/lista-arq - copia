@@ -29,6 +29,7 @@ squidpass.sh
 ssl.sh
 tcp.sh
 ultrahost
+Unlock-Pass-VULTR.sh
 usercodes
 utils.sh
 v2ray.sh
