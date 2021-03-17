@@ -75,7 +75,6 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 
 ```
 ☆ https://t.me/admmanagerfree ☆
-
 ```
 
 **By: [  ⃘⃤꙰✰ ]**
