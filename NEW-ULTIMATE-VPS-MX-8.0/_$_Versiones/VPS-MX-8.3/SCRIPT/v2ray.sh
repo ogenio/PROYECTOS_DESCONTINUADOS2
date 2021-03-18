@@ -28,7 +28,7 @@ echo ""
 v2ray tls
 }
 unistallv2 () {
-source <(curl -sL https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX_Oficial/ArchivosUtilitarios/V2RAY/install.sh) --remove
+source <(curl -sL https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/V2RAY/install.sh) --remove
 }
 infocuenta () {
 v2ray info
