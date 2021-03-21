@@ -1,6 +1,7 @@
-﻿# VPS-MANAGER-V3.0
-
-# ESTE PROYECTO A SIDO DESCONTINUADO.--
+﻿# VPS-MANAGER v3.0
+```
+* UPDATE 12/03/2021 - Proyecto Finalizado
+```
 
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/VPS-MANAGER-V3.0/Imagenes/VPS_MANAGER.jpg)
 
@@ -9,10 +10,9 @@
 ## :heavy_exclamation_mark: Requerimientos
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian) 
-* Recomendamos Ubuntu 14.04
 * Se recomienda usar una distro nueva o formatiada
 
-## Installation
+## :book: Installation
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/vpsmanagersetup.sh; chmod +x vpsmanagersetup.sh; ./vpsmanagersetup.sh
 
@@ -28,6 +28,17 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 * Creditos: Cantalupo555 https://github.com/cantalupo555/phreaker56
 -------------------------------------------------------------------------------
 
+## :scroll: Terminos de uso
+
+**VERSION: v3.0**
+
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/terminos
+
+## :octocat: Contribute
+
+1. @E8th4ver - Developer of New-Ultimate
+2. Team Illuminati - Contributor 
+
 ```
 * SIN MINERIA! 
 * SIN KEYS! 
@@ -38,7 +49,6 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ```
 ☆ https://t.me/admmanagerfree ☆
-
 ```
 
 **By: [  ⃘⃤꙰✰ ]**

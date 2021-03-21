@@ -1,32 +1,35 @@
-clear
-tput setaf 2 ; tput bold ; echo "	Terminos de uso" ; tput sgr0
-echo ""
-echo "Mediante el uso de 'Administrador de VPS-MANAGER V3.0' está de acuerdo con las siguientes condiciones de uso:"
-echo ""
-echo "1. Tu puedes:"
-echo "a. Instalar y utilizar el 'VPS-MANAGER V3.0' en el servidor ."
-echo "b. Crear, administrar y eliminar un número ilimitado de usuarios a través de este conjunto de scripts."
-echo ""
-echo "2. Tu no puedes:"
-echo "a. Editar, modificar, compartir o redistribuir"
-echo "este conjunto de secuencias de comandos sin autorización desarrollador."
-echo "b. Modificar O editar el conjunto de script para hacer que se mira el programador de scripts."
-echo ""
-echo "3. El usuario acepta que:"
-echo "a. El conjunto de scripts no incluye garantías o apoyo adicional,"
-echo "pero el usuario puede, promocional y de forma no vinculante, por un tiempo limitado,"
-echo "recibir apoyo y ayuda para la solución de problemas, siempre que reúna las condiciones de uso."
-echo "b. El usuario de este conjunto de scripts es el único responsable de cualquier tipo de implicación"
-echo "legal o ética causada por el uso de este conjunto de secuencias de comandos para cualquier propósito."
-echo ""
-echo "4. El usuario acepta que el promotor no se hace responsable de:"
-echo "a. Los problemas causados por el uso de scripts no autorizados distribuidos."
-echo "b. Los problemas causados por conflictos entre este conjunto de secuencias de comandos y scripts de desarrollador."
-echo "c. Los problemas causados por problemas o modificaciones de código script sin permiso."
-echo "d. problemas del sistema causados por programas de terceros o cambios / pruebas con usuarios."
-echo "e. Los problemas causados por los cambios en el sistema del servidor."
-echo "f. problemas causados por el usuario no sigue las instrucciones del conjunto de documentación de los scripts."
-echo "g. problemas ocurrieron durante el uso de scripts para beneficio comercial."
-echo "h. Los problemas que pueden ocurrir cuando se utiliza el conjunto de scripts en sistemas que no están en la lista de sistemas a prueba."
-echo ""
+Terminos de uso
+
+Mediante el uso de 'Administrador de VPS-MANAGER V3.0' está de acuerdo con las siguientes condiciones de uso:
+
+1. Tu puedes:
+
+ a. Instalar y utilizar el 'VPS-MANAGER V3.0' en el servidor .
+ b. Crear, administrar y eliminar un número ilimitado de usuarios a través de este conjunto de scripts.
+
+2. Tu no puedes:
+
+ a. Editar, modificar, compartir o redistribuir
+    este conjunto de secuencias de comandos sin autorización desarrollador.
+ b. Modificar O editar el conjunto de script para hacer que se mira el programador de scripts.
+
+3. El usuario acepta que:
+
+ a. El conjunto de scripts no incluye garantías o apoyo adicional,
+    pero el usuario puede, promocional y de forma no vinculante, por un tiempo limitado,
+    recibir apoyo y ayuda para la solución de problemas, siempre que reúna las condiciones de uso.
+ b. El usuario de este conjunto de scripts es el único responsable de cualquier tipo de implicación
+    legal o ética causada por el uso de este conjunto de secuencias de comandos para cualquier propósito.
+
+4. El usuario acepta que el promotor no se hace responsable de:
+
+ a. Los problemas causados por el uso de scripts no autorizados distribuidos.
+ b. Los problemas causados por conflictos entre este conjunto de secuencias de comandos y scripts de desarrollador.
+ c. Los problemas causados por problemas o modificaciones de código script sin permiso.
+ d. problemas del sistema causados por programas de terceros o cambios / pruebas con usuarios.
+ e. Los problemas causados por los cambios en el sistema del servidor.
+ f. problemas causados por el usuario no sigue las instrucciones del conjunto de documentación de los scripts.
+ g. problemas ocurrieron durante el uso de scripts para beneficio comercial.
+ h. Los problemas que pueden ocurrir cuando se utiliza el conjunto de scripts en sistemas que no están en la lista de sistemas a prueba.
+
 
