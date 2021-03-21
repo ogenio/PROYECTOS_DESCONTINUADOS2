@@ -29,5 +29,4 @@ echo "f. problemas causados por el usuario no sigue las instrucciones del conjun
 echo "g. problemas ocurrieron durante el uso de scripts para beneficio comercial."
 echo "h. Los problemas que pueden ocurrir cuando se utiliza el conjunto de scripts en sistemas que no están en la lista de sistemas a prueba."
 echo ""
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
-echo ""
+

@@ -165,13 +165,12 @@ then
 		/etc/init.d/ssh restart > /dev/null
 	fi
 fi
-echo ""
 clear
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799" ; tput sgr0
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "OpenSSH se ejecuta en los puertos 22 y 443" ; tput sgr0
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "scripts para la gestión de usuarios instalados" ; tput sgr0
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "Lea la documentación para evitar preguntas y problemas!" ; tput sgr0
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
+tput setaf 3 ; tput bold ; echo "" ; echo "Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799" ; echo ""
+echo "● OpenSSH se ejecuta en los puertos 22 y 443" ; echo "  scripts para la gestión de usuarios instalados"
+echo "● Lea la documentación para evitar preguntas y problemas!"
+echo "● Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
 echo ""
 if [[ "$optiondb" = '2' ]]; then
 	awk -F : '$3 >= 500 { print $1 " 1" }' /etc/passwd | grep -v '^nobody' > /root/usuarios.db
