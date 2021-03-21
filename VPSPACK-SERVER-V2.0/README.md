@@ -21,9 +21,11 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 -------------------------------------------------------------------------------
 ## VPSPack Versao 1.0 Install (Hecho Por RinghtPrince y MagodOz)
 * wget https://raw.githubusercontent.com/ringhtprince/vpspack/master/install && bash install
-* BADVPNSetud
+
+**BADVPNSetud**
 * wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/badvpnsetup.sh && bash badvpnsetup.sh
-* TCPtweaker
+
+**TCPtweaker**
 * wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/tcptweaker.sh && bash tcptweaker.sh
 -------------------------------------------------------------------------------
 
