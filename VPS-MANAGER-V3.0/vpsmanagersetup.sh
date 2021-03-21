@@ -167,7 +167,7 @@ then
 fi
 clear
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
-tput setaf 3 ; tput bold ; echo "" ; echo "Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799" ; echo ""
+tput setaf 3 ; tput bold ; echo "Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799" ; echo ""
 echo "● OpenSSH se ejecuta en los puertos 22 y 443" ; echo "  scripts para la gestión de usuarios instalados"
 echo "● Lea la documentación para evitar preguntas y problemas!"
 echo "● Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
