@@ -171,7 +171,6 @@ tput setaf 7 ; tput setab 4 ; tput bold ; echo "Proxy squid instalado y en ejecu
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "OpenSSH se ejecuta en los puertos 22 y 443" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "scripts para la gestión de usuarios instalados" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "Lea la documentación para evitar preguntas y problemas!" ; tput sgr0
-tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los terminos de uso, usar el comando: terminos" ; tput sgr0
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
 echo ""
 if [[ "$optiondb" = '2' ]]; then
