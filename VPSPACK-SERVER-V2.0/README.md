@@ -21,10 +21,8 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 -------------------------------------------------------------------------------
 ## VPSPack Versao 1.0 Install (Version de RinghtPrince y MagodOz)
 * wget https://raw.githubusercontent.com/ringhtprince/vpspack/master/install && bash install
-**BADVPNSetud**
-* wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/badvpnsetup.sh && bash badvpnsetup.sh
-**TCPtweaker**
-* wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/tcptweaker.sh && bash tcptweaker.sh
+* BADVPNSetud:  wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/badvpnsetup.sh && bash badvpnsetup.sh
+* TCPtweaker:   wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/tcptweaker.sh && bash tcptweaker.sh
 -------------------------------------------------------------------------------
 
 ## :scroll: Registro de cambios
