@@ -22,11 +22,6 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 * Creditos: Phreaker56 https://phreaker56.obex.pw/
 -------------------------------------------------------------------------------
-## VPS-Manager Versao 2.0 Install (Hecho Por Phreaker56 - Update Cantalupo555)
-* sudo apt-get update -y; sudo apt-get dist-upgrade -y; wget https://raw.githubusercontent.com/cantalupo555/phreaker56/master/vpsmanager/vpsmanagersetup.sh; chmod +x vpsmanagersetup.sh;./vpsmanagersetup.sh
-
-* Creditos: Cantalupo555 https://github.com/cantalupo555/phreaker56
--------------------------------------------------------------------------------
 
 ## :scroll: Terminos de uso
 
@@ -36,7 +31,7 @@ https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADO
 
 ## :octocat: Contribute
 
-1. @E8th4ver - Developer of New-Ultimate
+1. @Phreaker56 - Developer of VPS Manager
 2. Team Illuminati - Contributor 
 
 ```

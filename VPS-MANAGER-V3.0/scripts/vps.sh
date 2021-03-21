@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ $(id -u) -eq 0 ]
 then
 	clear
@@ -21,7 +20,7 @@ if [ "$1" = "" ]; then
 clear
 echo -e "\033[1;34m ===================================\033[0m"
 echo -e "\033[1;31m ∆ \033[1;37mOFICIAL VPS-SERVER\033[0m"
-echo -e "\033[1;31m √ \033[1;37mVPS-MANAGER V3.0\033[0m"
+echo -e "\033[1;31m √ \033[1;37mVPS-MANAGER v3.0\033[0m"
 echo -e "\033[1;34m ===================================\033[0m"
 sso=$(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 echo -e "\033[1;31m ° \033[1;37m SU SISTEMA \033[1;31m$sso"
@@ -29,7 +28,7 @@ echo -e "\033[1;34m ===================================\033[0m"
 echo -e "\033[1;31m ∆ \033[1;33m¡BIENVENIDO AL MENÚ!\033[0m"
 echo -e "\033[1;34m ===================================\033[0m"
 echo -e " \033[1;31m|\033[1;36m01\033[1;31m| \033[1;33m• \033[1;37mCREAR USUARIOS\033[01;37m"
-echo -e " \033[1;31m|\033[1;36m02\033[1;31m| \033[1;33m• \033[1;37mALTERAR PASSWD USUARIOS\033[01;37m"
+echo -e " \033[1;31m|\033[1;36m02\033[1;31m| \033[1;33m• \033[1;37mALTERAR CONTRASEÑA USUARIOS\033[01;37m"
 echo -e " \033[1;31m|\033[1;36m03\033[1;31m| \033[1;33m• \033[1;37mMODIFICAR FECHA USUARIOS\033[01;37m"
 echo -e " \033[1;31m|\033[1;36m04\033[1;31m| \033[1;33m• \033[1;37mALTERAR LIMITE USUARIOS\033[01;37m"
 echo -e " \033[1;31m|\033[1;36m05\033[1;31m| \033[1;33m• \033[1;37mELIMINAR USUARIOS\033[01;37m"
