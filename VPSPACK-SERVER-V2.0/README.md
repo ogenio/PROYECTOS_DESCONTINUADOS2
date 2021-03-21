@@ -1,23 +1,23 @@
-﻿# VPSPACK-SERVER-V2.0
-
-# ESTE PROYECTO A SIDO DESCONTINUADO.--
-
+﻿# VPSPACK-SERVER v2.0
+```
+* UPDATE 12/03/2021
+```
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/VPSPACK-SERVER-V2.0/Imagenes/VPSPACK_SERVER.png)
-
--------------------------------------------------------------------------------
 
 **Manager Script**
 
 ## :heavy_exclamation_mark: Requerimientos
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian) 
-* Recomendamos Ubuntu 14.04
 * Se recomienda usar una distro nueva o formatiada
 
-## Installation
+## :book: Installation
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/instalarold && bash instalarold
 
+-------------------------------------------------------------------------------
+## VPSPack Versao 1.0 Install (Hecho Por RicKbrL)
+* wget https://raw.githubusercontent.com/RicKbrL/VpsPack/master/install && bash install
 -------------------------------------------------------------------------------
 ## VPSPack Versao 1.0 Install (Hecho Por RinghtPrince y MagodOz)
 * wget https://raw.githubusercontent.com/ringhtprince/vpspack/master/install && bash install
@@ -26,9 +26,17 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 * TCPtweaker
 * wget https://raw.githubusercontent.com/ringhtprince/Scripts/master/tcptweaker.sh && bash tcptweaker.sh
 -------------------------------------------------------------------------------
-## VPSPack Versao 1.0 Install (Hecho Por RicKbrL)
-* wget https://raw.githubusercontent.com/RicKbrL/VpsPack/master/install && bash install
--------------------------------------------------------------------------------
+
+## :scroll: Registro de cambios
+
+**VERSION: v2.0**
+
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/ADM-ULTIMATE-NEW-FREE/master/versao
+
+## :octocat: Contribute
+
+1. RicKbrL - Developer of VPS-Pack
+2. Team Illuminati - Contributor 
 
 ```
 * SIN MINERIA! 
@@ -40,7 +48,6 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ```
 ☆ https://t.me/admmanagerfree ☆
-
 ```
 
 **By: [  ⃘⃤꙰✰ ]**
