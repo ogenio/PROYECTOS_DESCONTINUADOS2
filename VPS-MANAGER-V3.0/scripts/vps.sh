@@ -128,7 +128,8 @@ rm -rf /bin/userbackup 2>/dev/null
 rm -rf /bin/openvpn-install 2>/dev/null
 rm -rf /bin/tcptweaker 2>/dev/null
 rm -rf /bin/ajuda 2>/dev/null
-apt-get purge squid3 bc screen nano unzip dos2unix wget -y
+sed -i 's/Port 22222/Port 22/g' /etc/ssh/sshd_config  > /dev/null 2>&1
+apt-get purge squid3 -y
 echo 3 > /proc/sys/vm/drop_caches &>/dev/null
 sleep 1s
 sysctl -w vm.drop_caches=3 &>/dev/null
@@ -138,6 +139,7 @@ apt-get clean -y &>/dev/null
 rm /tmp/* &>/dev/null
 touch /tmp/abc
 sleep 0.5s
+service ssh restart  > /dev/null 2>&1
 exit
 ;;
 *)
