@@ -25,7 +25,12 @@ echo -e "\033[0;34m ===================================\033[0m"
 sso=$(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 echo -e "\033[1;31m ° \033[1;37m SU SISTEMA \033[1;31m$sso"
 echo -e "\033[0;34m ===================================\033[0m"
-echo -e "\033[1;31m ∆ \033[1;33m¡BIENVENIDO AL MENÚ!\033[0m"
+PT=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
+for porta in `echo -e "$PT" | cut -d: -f2 | cut -d' ' -f1 | uniq`; do
+    svcs=$(echo -e "$PT" | grep -w "$porta" | awk '{print $1}' | uniq)
+    echo -e " 033[1;37m$svcs \033[1;31m$porta"
+done
+#echo -e "\033[1;31m ∆ \033[1;33m¡BIENVENIDO AL MENÚ!\033[0m"
 echo -e "\033[0;34m ===================================\033[0m"
 echo -e " \033[1;31m|\033[1;36m01\033[1;31m| \033[1;32m> \033[1;37mCREAR USUARIOS\033[01;37m"
 echo -e " \033[1;31m|\033[1;36m02\033[1;31m| \033[1;32m> \033[1;37mALTERAR CONTRASEÑA USUARIOS\033[01;37m"
