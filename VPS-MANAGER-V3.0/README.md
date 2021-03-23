@@ -29,8 +29,7 @@ https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADO
 
 ## :octocat: Contribute
 
-1. @Phreaker56 - Developer of VPS Manager
-                 Website: https://phreaker56.obex.pw/
+1. @Phreaker56 - Developer of VPS Manager Website: https://phreaker56.obex.pw/
 2. Team Illuminati - Contributor 
 
 ```
