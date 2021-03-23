@@ -130,6 +130,7 @@ rm -rf /bin/tcptweaker 2>/dev/null
 rm -rf /bin/ajuda 2>/dev/null
 sed -i 's/Port 22222/Port 22/g' /etc/ssh/sshd_config  > /dev/null 2>&1
 apt-get purge squid3 -y
+#apt-get purge squid3 bc screen nano unzip dos2unix wget -y
 echo 3 > /proc/sys/vm/drop_caches &>/dev/null
 sleep 1s
 sysctl -w vm.drop_caches=3 &>/dev/null
