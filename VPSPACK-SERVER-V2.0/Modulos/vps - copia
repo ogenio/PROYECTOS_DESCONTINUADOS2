@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "/bin/vps" > /bin/vpspack && chmod +x /bin/vpspack
-
+chmod a+x /bin/addhost && chmod a+x /bin/removerhost && chmod a+x /etc/payloads > /dev/null 2>&1
 if [ $(id -u) -eq 0 ]
 then
 clear
@@ -27,209 +27,28 @@ else
 mkdir /etc/VpsPackdir/limite
 fi
 
+function configurarsquid(){
+clear
+cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/	//' > /etc/so 
+if [ -f /etc/lsb-release ]
+then
+sistema=$(cat /etc/lsb-release |grep "DISTRIB_DESCRIPTION" | awk -F = '{print $2}' |sed 's/"//g')
+else
+sistema=Null
+fi
+
+#MEU IP
+apt-get install curl -y > /dev/null 2>&1
 fun_ip () {
 MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
-if [[ "$MEU_IP" != "$MEU_IP2" ]]; then
-MEU_IP="$MEU_IP2"
- else
-MEU_IP="$MEU_IP"
-fi
+[[ "$MEU_IP" != "$MEU_IP2" ]] && IP="$MEU_IP2" || IP="$MEU_IP"
 }
 
-function configurarsquid(){
-
-minhas_portas () {
-sleep 3s
-portas_var="/tmp/portas"
-porta_var="/tmp/portas2"
-lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" > $portas_var
-while read port; do
-var1=$(echo $port | awk '{print $1}')
-var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
-if [ ! -e "$porta_var" ]; then
-echo -e "$var1 $var2" > $porta_var
-fi
-if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
-echo -e "$var1 $var2" >> $porta_var
-fi
-done < $portas_var
-i=1
-while read pts; do
-if [ "$pts" = "" ]; then
-break
-fi
-service_porta[$i]=$(echo "$pts" | awk '{print $2}')
-service_serv[$i]=$(echo "$pts" | awk '{print $1}')
-echo -e "\033[1;37m [Porta $i]\033[1;37m Serviço: \033[1;31m${service_serv[$i]} \033[1;37mPorta: \033[1;31m${service_porta[$i]}"
-i=$(($i+1))
-done < $porta_var
-rm $portas_var
-rm $porta_var
-}
-
-fun_ssh () {
-sshvar=$(cat /etc/ssh/sshd_config | grep -v "Port $1")
-echo "$sshvar" > /etc/ssh/sshd_config
-sed -i "s;Port 22;Port 22\nPort $1;g" /etc/ssh/sshd_config
-service ssh restart > /dev/null 2>&1 &
-}
-
-clear
-echo -e "\033[0;34m=========================================================\033[0m"
-echo -e "\033[1;32mCONFIGURE SQUID AS SSH"
-echo -e "\033[0;34m=========================================================\033[0m"
 fun_ip
-read -p "Digite seu IP: " -e -i $MEU_IP ip
-apt-get update -y > /dev/null 2>&1
-apt-get upgrade -y > /dev/null 2>&1
-apt-get purge squid -y > /dev/null 2>&1
-apt-get purge squid3 -y > /dev/null 2>&1
-apt-get install squid -y > /dev/null 2>&1
-apt-get install squid3 -y > /dev/null 2>&1
-echo " "
-echo -e "INICIANDO INSTALAÇAO"
-cp /etc/ssh/sshd_config /etc/ssh/sshd_back
-fun_ssh 443
-
-if [[ -e /etc/squid/squid.conf ]]; then
-var_squid="/etc/squid/squid.conf"
-elif [[ -e /etc/squid3/squid.conf ]]; then
-var_squid="/etc/squid3/squid.conf"
-fi
-
-echo -e ".bookclaro.com.br/\n.claro.com.ar/\n.claro.com.br/\n.claro.com.co/\n.claro.com.ec/\n.claro.com.gt/\n.claro.com.ni/\n.claro.com.pe/\n.claro.com.sv/\n.claro.cr/\n.clarocurtas.com.br/\n.claroideas.com/\n.claroideias.com.br/\n.claromusica.com/\n.clarosomdechamada.com.br/\n.clarovideo.com/\n.facebook.net/\n.facebook.com/\n.netclaro.com.br/\n.oi.com.br/\n.oimusica.com.br/\n.speedtest.net/\n.tim.com.br/\n.timanamaria.com.br/\n.vivo.com.br/\n.rdio.com/\n.compute-1.amazonaws.com/\n.portalrecarga.vivo.com.br/\n.vivo.ddivulga.com/" > /etc/payloads
-
-##ProxySystem##
-echo " "
-echo -e "\033[1;32m Agora Escolha Uma Conf Para Seu Proxy"
-echo " "
-echo -e "|1|• Basico"
-echo -e "|2|• Completo - \033[1;31mPara Usuarios Avançados!\033[1;37m"
-echo " "
-read -p "[ 1 | 2 ]: " proxy_opt
-if [ "$proxy_opt" = "2" ]; then
-echo "#ConfiguracaoSquiD
-acl url1 dstdomain -i $ip
-acl url2 dstdomain -i 127.0.0.1
-acl url3 url_regex -i '/etc/payloads'
-acl url4 dstdomain -i localhost
-acl accept dstdomain -i GET
-acl accept dstdomain -i POST
-acl accept dstdomain -i OPTIONS
-acl accept dstdomain -i CONNECT
-acl accept dstdomain -i PUT
-acl HEAD dstdomain -i HEAD
-acl accept dstdomain -i TRACE
-acl accept dstdomain -i OPTIONS
-acl accept dstdomain -i PATCH
-acl accept dstdomain -i PROPATCH
-acl accept dstdomain -i DELETE
-acl accept dstdomain -i REQUEST
-acl accept dstdomain -i METHOD
-acl accept dstdomain -i NETDATA
-acl accept dstdomain -i MOVE
-acl all src 0.0.0.0/0
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access allow accept
-http_access allow HEAD
-http_access deny all
-
-# Request Headers Forcing
-
-request_header_access Allow allow all
-request_header_access Authorization allow all
-request_header_access WWW-Authenticate allow all
-request_header_access Proxy-Authorization allow all
-request_header_access Proxy-Authenticate allow all
-request_header_access Cache-Control allow all
-request_header_access Content-Encoding allow all
-request_header_access Content-Length allow all
-request_header_access Content-Type allow all
-request_header_access Date allow all
-request_header_access Expires allow all
-request_header_access Host allow all
-request_header_access If-Modified-Since allow all
-request_header_access Last-Modified allow all
-request_header_access Location allow all
-request_header_access Pragma allow all
-request_header_access Accept allow all
-request_header_access Accept-Charset allow all
-request_header_access Accept-Encoding allow all
-request_header_access Accept-Language allow all
-request_header_access Content-Language allow all
-request_header_access Mime-Version allow all
-request_header_access Retry-After allow all
-request_header_access Title allow all
-request_header_access Connection allow all
-request_header_access Proxy-Connection allow all
-request_header_access User-Agent allow all
-request_header_access Cookie allow all
-request_header_access All deny all
-
-# Response Headers Spoofing
-
-reply_header_access Via deny all
-reply_header_access X-Cache deny all
-reply_header_access X-Cache-Lookup deny all
-
-
-#portas
-http_port 80
-http_port 8080
-http_port 8799
-http_port 3128
-
-#nome
-visible_hostname VPSPACK
-
-via off
-forwarded_for off
-pipeline_prefetch off" > $var_squid
- else
-echo "#ConfiguracaoSquiD
-acl url1 dstdomain -i $ip
-acl url2 dstdomain -i 127.0.0.1
-acl url3 url_regex -i '/etc/payloads'
-acl url4 dstdomain -i localhost
-acl all src 0.0.0.0/0
-http_access allow url1
-http_access allow url2
-http_access allow url3
-http_access allow url4
-http_access deny all
-
-#portas
-http_port 80
-http_port 8080
-http_port 8799
-http_port 3128
-
-visible_hostname VPSPACK
-
-via off
-forwarded_for off
-pipeline_prefetch off" > $var_squid
-fi
-
-echo " "
-echo -e "REINICIANDO SERVIÇOS"
-squid3 -k reconfigure > /dev/null 2>&1
-service ssh restart > /dev/null 2>&1
-service squid3 restart > /dev/null 2>&1
-echo " "
-sleep 5
+echo -ne "\033[1;31mPara que la instalacion sea correcta confirme seu IP"; read -p ": " -e -i $IP ip
 clear
 echo -e "\033[0;34m=========================================================\033[0m"
-echo -e "\033[0;37mSQUID CONFIGURADO"
-echo -e "\033[0;34m=========================================================\033[0m"
-minhas_portas
-echo -e "\033[0;34m=========================================================\033[0m"
-addihost
-removerhostf
 echo -e "\033[1;31m-----> \033[01;37mSu Sitema Operativo es:\033[1;31m $sistema"
 echo -e "\033[1;31m-----> \033[01;37mSu IP:\033[1;31m $ip"
 echo -e "\033[1;31m-----> \033[1;37mSQUID CON LOS PUERTOS\033[1;31m 80, 8080, 8799, 3128\033[0m"
@@ -237,6 +56,13 @@ echo -e "\033[1;31m-----> \033[1;37mSSH CON LOS PUERTOS \033[1;31m443, 22\033[0m
 echo -e "\033[1;31m-----> \033[1;37mSSH HOST SU IP Es: \033[1;31m$ip, localhost, 127.0.0.1\033[0m"
 echo -e "\033[1;31m-----> \033[1;37mHerramientas para agregar Host:\033[1;31m addhost\033[0m"
 echo -e "\033[0;34m=========================================================\033[0m"
+
+function sshd_config(){ 
+echo 'Port 443
+PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
+' >> /etc/ssh/sshd_config
 }
 
 function addihost(){ echo '#!/bin/bash
@@ -249,8 +75,6 @@ squid3 -k reconfigure > /dev/null 2> /dev/null
 echo "$host Agregado" ' > /bin/addhost
 chmod a+x /bin/addhost
 }
-chmod a+x /bin/addhost  > /dev/null 2>&1
-
 function removerhostf(){ echo '#!/bin/bash
 echo -e "\033[1;31mHosts atualmente permitidos\n\n\033[1;32m$(cat /etc/payloads)\n\033[0m"
 echo -ne "\033[1;37mCual Host desea Eliminar ?: \033[0m"
@@ -260,10 +84,227 @@ echo "$hosts" > /etc/payloads
 squid -k reconfigure >/dev/null 2>/dev/null
 squid3 -k reconfigure >/dev/null 2>/dev/null
 echo -e "\n\033[1;32mHost Eliminado\033[0m"
-' > /bin/removerhost 
+' > /bin/removerhost
 }
-chmod a+x /bin/removerhost > /dev/null 2>&1
+function payloads(){ echo ".claro.com.br
+.claro.com.sv
+.vivo.com.br
+.claro.com.co
+.tigo.com.co
+.movistar.co
+.ddivulga.com" > /etc/payloads
+}
 
+if cat /etc/so |grep -i ubuntu |grep 16 1> /dev/null 2> /dev/null ; then
+echo -e "\033[1;37mConfigurando, Aguarde por favor...\033[0m"
+apt-get update 1> /dev/null 2> /dev/null
+apt-get install -y squid3 1> /dev/null 2> /dev/null
+
+service apache2 stop 1> /dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+service ssh restart 1> /dev/null 2> /dev/null
+
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid/squid.conf
+
+addihost
+removerhostf
+payloads
+service squid restart 1> /dev/null 2> /dev/null
+echo -e "\033[1;37mPara agregar nuevos Host o Squid ejecute este comando \033[1;32maddhost
+\033[1;37mPara remover ejecute este comando \033[1;32mremoverhost\033[1;37m
+Los hosts se quedan en el archivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTodo terminado ejeute un unsuario de Prueba !! \033[0m"
+exit 0
+fi
+
+if cat /etc/so |grep -i ubuntu 1> /dev/null 2> /dev/null ; then
+echo -e "\033[1;37mConfigurando, Aguarde por favor...\033[0m"
+apt-get update 1> /dev/null 2> /dev/null
+apt-get install -y squid3 1> /dev/null 2> /dev/null
+
+service apache2 stop 1> /dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+service ssh restart 1> /dev/null 2> /dev/null
+
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid3/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid3/squid.conf
+payloads
+service squid3 restart 1> /dev/null 2> /dev/null
+addihost
+removerhostf
+echo -e "\033[1;37mPara agregar nuevos Host o Squid ejecute este comando \033[1;32maddhost
+\033[1;37mPara remover ejecute este comando \033[1;32mremoverhost\033[1;37m
+Los hosts se quedan en el archivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTodo terminado ejeute un unsuario de Prueba !! \033[0m"
+echo -e "\033[0;34m=========================================================\033[0m"
+exit 0
+fi
+
+if cat /etc/so |grep -i centos 1> /dev/null 2> /dev/null ; then
+echo -e "\033[01;37mConfigurando, Aguarde...\033[0m"
+yum -y update 1> /dev/null 2> /dev/null
+yum install -y squid 1> /dev/null 2> /dev/null
+
+service httpd stop 1> /dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+service sshd restart 1> /dev/null 2> /dev/null
+
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid/squid.conf
+payloads
+service squid restart 1> /dev/null 2> /dev/null
+addihost
+removerhostf
+echo -e "\033[1;37mPara adicionar novos hosts ao squid execute o comando \033[1;32maddhost
+\033[1;37mPara remover execute o comando \033[1;32mremoverhost\033[1;37m
+Os hosts ficam no arquivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTudo terminado crie um usuario e teste !! \033[0m"
+exit
+fi
+
+if cat /etc/so |grep -i debian 1> /dev/null 2> /dev/null ; then
+echo -e "\033[01;37mConfigurando, Aguarde...\033[0m"
+apt-get update 1> /dev/null 2> /dev/null
+apt-get install -y squid3 1> /dev/null 2> /dev/null
+service apache2 stop 1> /dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+
+service ssh restart 1> /dev/null 2> /dev/null
+
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid3/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid3/squid.conf
+payloads
+service squid3 restart 1> /dev/null 2> /dev/null
+addihost
+removerhostf
+echo -e "\033[1;37mPara adicionar novos hosts ao squid execute o comando \033[1;32maddhost
+\033[1;37mPara remover execute o comando \033[1;32mremoverhost\033[1;37m
+Os hosts ficam no arquivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTudo terminado crie um usuario e teste !! \033[0m"
+exit 0
+fi
+if cat /etc/issue |grep -i kernel 1> /dev/null 2> /dev/null ; then
+echo -e "\033[01;31mConfigurando, Aguarde...\033[0m"
+yum -y update 1> /dev/null 2> /dev/null
+yum install -y squid 1> /dev/null 2> /dev/null
+
+service httpd stop 1> /dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+service sshd restart 1> /dev/null 2> /dev/null
+
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid/squid.conf
+payloads
+service squid restart 1> /dev/null 2> /dev/null
+addihost
+removerhostf
+echo -e "\033[1;37mPara adicionar novos hosts ao squid execute o comando \033[1;32maddhost
+\033[1;37mPara remover execute o comando \033[1;32mremoverhost\033[1;37m
+Os hosts ficam no arquivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTudo terminado crie um usuario e teste !! \033[0m"
+exit
+fi
+echo -e "\033[01;31mConfigurando, Aguarde...\033[0m"
+yum -y update 1> /dev/null 2> /dev/null
+yum install -y squid 1> /dev/null 2> /dev/null
+apt-get update > /dev/null 2> /dev/null
+apt-get install -y squid3 > /dev/null 2>/dev/null
+service httpd stop 1> /dev/null 2> /dev/null
+service apache2 stop >/dev/null 2> /dev/null
+chattr -i /etc/ssh/sshd_config > /dev/null 2> /dev/null
+sshd_config
+service sshd restart 1> /dev/null 2> /dev/null
+service ssh restart > /dev/null 2> /dev/null
+echo "http_port 80
+http_port 8080
+http_port 8799
+http_port 3128
+visible_hostname VpsPack
+acl ip dstdomain $ip
+http_access allow ip" > /etc/squid*/squid.conf
+echo 'acl accept dstdomain -i "/etc/payloads"
+http_access allow accept
+acl local dstdomain localhost
+http_access allow local
+acl iplocal dstdomain 127.0.0.1
+http_access allow iplocal
+http_access deny all' >> /etc/squid*/squid.conf
+payloads
+service squid restart 1> /dev/null 2> /dev/null
+service squid3 restart > /dev/null 2> /dev/null
+addihost
+removerhostf
+echo -e "\033[1;37mPara adicionar novos hosts ao squid execute o comando \033[1;32maddhost
+\033[1;37mPara remover execute o comando \033[1;32mremoverhost\033[1;37m
+Os hosts ficam no arquivo /etc/payloads\033[0m"
+echo -e "\033[01;31mTudo terminado crie um usuario e teste !! \033[0m"
+}
 function sistemadetalhes(){
 if [ -f /proc/cpuinfo ]
 then
@@ -781,8 +822,6 @@ case $opcao in
   25)
    apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/instalarold && bash instalarold;;
   26)
-   apt-get purge squid -y > /dev/null 2>&1
-   apt-get purge squid3 -y > /dev/null 2>&1
    rm -rf /bin/speedtest.py 2>/dev/null
    rm -rf /bin/deletarusuario 2>/dev/null
    rm -rf /bin/redefinirusuario 2>/dev/null
@@ -790,9 +829,6 @@ case $opcao in
    rm -rf /bin/criarusuario 2>/dev/null
    rm -rf /bin/vps 2>/dev/null
    rm -rf /bin/vpspack 2>/dev/null
-   rm -rf /bin/ajuda 2>/dev/null
-   rm -rf /bin/addhost 2>/dev/null
-   rm -rf /bin/removerhost 2>/dev/null
    rm -rf /bin/ajuda 2>/dev/null;;
   *)
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%44s%s%-20s\n' "OPCIÓN INVÁLIDA..." ; tput sgr0
