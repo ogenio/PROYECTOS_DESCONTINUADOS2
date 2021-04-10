@@ -63,15 +63,11 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 
 ## :octocat: Contribute
 
-1. @Kalix1 - Developer of VPS-MX
-2. @Rufu99 - Contributor
-3. Team Casita-MX - Contributor
-4. Team Illuminati - Contributor
+1. @Kalix1 - Developer of VPS-MX (https://github.com/VPS-MX)
+2. @Rufu99 - Contributor (https://github.com/rudi9999)
+3. Team Casita-MX - Contributor (https://github.com/lacasitamx)
+4. Team Illuminati - Contributor (https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ)
 
--------------------------------------------------------------------------------
-* Repositorios: https://github.com/VPS-MX
-* Repositorios: https://github.com/rudi9999
-* Repositorios: https://github.com/lacasitamx
 -------------------------------------------------------------------------------
 
 ```
