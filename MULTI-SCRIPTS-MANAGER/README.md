@@ -23,9 +23,9 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ## :scroll: Registro de cambios
 
-**VERSION: r089**
+**VERSION: r090**
 
-https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/MULTI-SCRIPTS-MANAGER/main/versao
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/versao
 
 ## :octocat: Contribute
 
