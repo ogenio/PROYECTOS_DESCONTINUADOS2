@@ -35,7 +35,7 @@ update_fun () {
 echo ""
 fun_bar "apt-get update -y"
 fun_bar "apt-get upgrade -y"
-rm -rf $HOME/multiscript2.sh; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/MULTI-SCRIPTS-MANAGER/main/multiscript2.sh > /dev/null 2>&1
+rm -rf $HOME/multiscript2.sh; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/multiscript2.sh > /dev/null 2>&1
 echo ""
 echo -e "\033[1;33m UPDATE COM SUCESSO -\033[1;32m OK !\033[1;37m"
 sleep 4s
@@ -120,7 +120,7 @@ panelweversiones () {
 ##OPCIONES DE SISTEMA
 
 atualizar () {
-    rm -rf $HOME/multiscript2.sh; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/MULTI-SCRIPTS-MANAGER/main/multiscript2.sh; chmod +x multiscript2.sh; ./multiscript2.sh
+    rm -rf $HOME/multiscript2.sh; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/multiscript2.sh; chmod +x multiscript2.sh; ./multiscript2.sh
 }
 remove_multiscripts () {
     rm -rf $HOME/multiscript2.sh && rm -rf /bin/msm
