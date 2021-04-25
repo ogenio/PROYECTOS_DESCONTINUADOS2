@@ -11,6 +11,7 @@
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian) 
 * Recomendamos Ubuntu o Debian Server x86_64
+* Dependiendo del scripts a utilizar devera elegir sistema operativo
 * Se recomienda usar una distro nueva o formatiada
 
 ## :book: Installation
