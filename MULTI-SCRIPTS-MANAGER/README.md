@@ -18,8 +18,9 @@
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/multiscript2.sh; chmod +x multiscript2.sh; ./multiscript2.sh
 
-* ACCESO DIRECTO AL SCRIPTS EXECUTE EL COMANDO: ( msm )
-
+```
+ACCESO DIRECTO AL SCRIPTS EXECUTE EL COMANDO: ( msm )
+```
 -------------------------------------------------------------------------------
 
 ## :scroll: Registro de cambios
