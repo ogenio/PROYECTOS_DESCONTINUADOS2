@@ -44,9 +44,9 @@ BOT MANAGER:
 -RECIBE NOTIFICACIONES CON BOT ESPECIAL
 ```
 
-## :book: Installation ( Team Casita VPS-MX Versao 8.1 )
+## :book: Installation ( Team Illuminati VPS-MX Versao 8.3.1 )
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.1-Casita/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.3.1/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 ```
 VPS-MX (las dependencias faltantes se instalarán automáticamente)
