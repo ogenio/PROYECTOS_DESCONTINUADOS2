@@ -54,14 +54,14 @@ chmod +x /bin/speedtest.py
 
 clear
 echo -e "\033[0;34m ===================================\033[0m"
-echo -e "\033[1;36m INSTALANDO VPSPACK-SERVER v2.0!\033 [0m"
+echo -e "\033[1;36m INSTALANDO VPSPACK-SERVER v2.0! \033[0m"
 echo -e "\033[0;34m ===================================\033[0m"
 echo -e " "
 fun_bar 'inst_scripts'
 sleep 3
 clear
 echo -e "\033[0;34m =============================================================\033[0m"
-echo -e "\033[1;36m VPSPACK-SERVER v2.0!                       \033[1;31m[\033[1;37m VPSPACK v2.0 \033[1;31m] \033[0m"
+echo -e "\033[1;36m VPSPACK-SERVER v2.0!                         \033[1;31m[\033[1;37m VPSPACK v2.0 \033[1;31m] \033[0m"
 echo -e "\033[0;34m =============================================================\033[0m"
 echo -e "\033[1;32m Instalacion concluida\n\033[1;31m Execute vps:"
 echo -e "\033[0;34m =============================================================\033[0m"
