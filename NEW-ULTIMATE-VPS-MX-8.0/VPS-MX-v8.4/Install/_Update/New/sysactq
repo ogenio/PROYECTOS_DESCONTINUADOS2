@@ -216,8 +216,11 @@ echo 'VPS-MX'>> .bashrc
 
 msg -bar2
 echo -e "\033[93m        -- ACTULIZACION DE UBUNTU COMPLETA -- "
+wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/VPS-MX/main/Install/VPS-MX.sh -O /usr/bin/VPS-MX &>/dev/null
+chmod +x /usr/bin/VPS-MX
 msg -bar2
 
+reboot_fun () {
 if [ "$REBOOT" = "1" ]; then
 	echo -e "\033[92m       ❗️ SU VPS SE REINICIARA EN 5 SEGUNDOS ❗️            "
 	msg -bar2
@@ -228,11 +231,12 @@ if [ "$REBOOT" = "1" ]; then
 	done
 	reboot
 fi
-rm -rf   &> /dev/null
+}
 rm -rf /usr/bin/systembin &> /dev/null
-printTitle "Volviendo a $INITIAL_DIR"
-cd "$INITIAL_DIR"
-pwd
-printTitle "Encaso de no reiniciar auto ejecute: 'sudo reboot'"
+printTitle "Se procede a Instalar VPS-MX"
 echo $(date)
-echo "$FRAME"
+msg -bar2
+sleep 7s
+clear
+VPS-MX
+exit
