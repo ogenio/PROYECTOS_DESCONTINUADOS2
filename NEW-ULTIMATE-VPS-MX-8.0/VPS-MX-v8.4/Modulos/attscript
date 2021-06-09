@@ -63,5 +63,6 @@ msg -bar
 read -p " default (n)  [ s | n ]: " -e -i n pase
 [[ "$pase" = "s" || "$pase" = "S" ]] && fun_update
 sudo VPS-MX
+#fim
 
 
