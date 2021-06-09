@@ -61,6 +61,7 @@ sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAA
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/Casita/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
 -------------------------------------------------------------------------------
+
 ## :octocat: Contribute
 
 1. @Kalix1 - Developer of VPS-MX (https://github.com/VPS-MX)

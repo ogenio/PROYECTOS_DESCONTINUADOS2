@@ -48,7 +48,11 @@ BOT MANAGER:
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.1-Casita/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
+```
+VPS-MX (las dependencias faltantes se instalarán automáticamente)
+```
 -------------------------------------------------------------------------------
+
 ## :octocat: Contribute
 
 1. @Kalix1 - Developer of VPS-MX (https://github.com/VPS-MX)
