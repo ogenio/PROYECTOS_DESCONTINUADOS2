@@ -12,7 +12,7 @@ UPDATE 03/03/2021
 * Un sistema operativo basado en Linux (Ubuntu) 
 * Recomendamos Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
-* Importante estas versiones son de Codigo Abierto y Gratuito
+* Importante estas version es de Codigo Abierto y Gratuito
 
 ```
 # SCRIPT VPS•MX ® Script Manager de VPS
@@ -66,9 +66,7 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 1. @Kalix1 - Developer of VPS-MX (https://github.com/VPS-MX)
 2. @Rufu99 - Contributor (https://github.com/rudi9999)
 3. Team Casita-MX - Contributor (https://github.com/lacasitamx)
-4. Team Illuminati - Contributor (https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ)
-
--------------------------------------------------------------------------------
+4. Team Illuminati - Contributor (https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ) 
 
 ```
 ☆ https://t.me/admmanagerfree ☆
