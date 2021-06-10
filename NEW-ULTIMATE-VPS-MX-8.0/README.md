@@ -10,6 +10,8 @@ UPDATE 03/03/2021
 ## :heavy_exclamation_mark: Requerimientos
 
 * Un sistema operativo basado en Linux (Ubuntu) 
+* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
+* Version 8.4 Preferente Ubuntu 20.04 Server x86_64
 * Recomendamos Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
 * Importante estas version es de Codigo Abierto y Gratuito
