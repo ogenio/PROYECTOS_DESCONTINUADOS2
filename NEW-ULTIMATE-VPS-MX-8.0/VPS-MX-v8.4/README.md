@@ -10,6 +10,8 @@ UPDATE 02/04/2021
 ## :heavy_exclamation_mark: Requerimientos
 
 * Un sistema operativo basado en Linux (Ubuntu o Debian) 
+* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
+* Version 8.4 Preferente Ubuntu 20.04 Server x86_64
 * Recomendamos Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
 * Importante esta version es de Codigo Abierto y Gratuito
@@ -18,7 +20,7 @@ UPDATE 02/04/2021
 
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.4/VPS-MX; chmod 777 VPS-MX* && ./VPS-MX*
 
-## :book: Installation Alternativo
+## :book: Installation Alternativo con sources.list 16 o 18
 
 sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.4/instalscript.sh; chmod 777 instalscript.sh* && ./instalscript.sh*
 
