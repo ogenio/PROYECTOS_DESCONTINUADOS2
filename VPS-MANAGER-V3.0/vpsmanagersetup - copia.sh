@@ -1,15 +1,12 @@
 #!/bin/bash
 clear
-rm -rf $HOME/vpsmanagersetup.sh*
-
+rm -rf $HOME/vpsmanagersetup.sh
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
 tput setaf 3 ; tput bold ; echo "" ; echo "Este script irá:" ; echo ""
 echo "● Instalar y configurar el proxy squid en las puertos 80, 3128, 8080 e 8799" ; echo "  para permitir conexiones SSH a este servidor"
 echo "● Configurar OpenSSH para ejecutarse en los puertos 22 e 443"
 echo "● Instalar un conjunto de secuencias de comandos y comandos del sistema para la gestión de los usuarios" ; tput sgr0
-
 echo ""
-
 IP=$(wget -qO- ipv4.icanhazip.com)
 read -p "Para continuar confirme o IP de este servidor: " -e -i $IP ipdovps
 if [ -z "$ipdovps" ]
@@ -17,7 +14,6 @@ then
 	tput setaf 7 ; tput setab 1 ; tput bold ; echo "" ; echo "" ; echo " No ha introducido la dirección IP de este servidor. Inténtalo de nuevo. " ; echo "" ; echo "" ; tput sgr0
 	exit 1
 fi
-
 if [ -f "/root/usuarios.db" ]
 then
 tput setaf 6 ; tput bold ;	echo ""
@@ -32,9 +28,9 @@ tput setaf 6 ; tput bold ;	echo ""
 else
 	awk -F : '$3 >= 500 { print $1 " 1" }' /etc/passwd | grep -v '^nobody' > /root/usuarios.db
 fi
-
 echo ""
-
+read -p "¿Quieres activar la compresión de SSH (puede aumentar el consumo de memoria RAM)? [s/n]) " -e -i n sshcompression
+echo ""
 tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Espere a que la configuración automática" ; echo "" ; tput sgr0
 sleep 3
 apt-get update -y
@@ -44,11 +40,9 @@ rm /root/ExpCleaner.sh /root/CriarUsuario.sh /root/sshlimiter.sh > /dev/null
 apt-get install squid3 bc screen nano unzip dos2unix wget -y
 killall apache2
 apt-get purge apache2 -y
-
 if [ -f "/usr/sbin/ufw" ] ; then
 	ufw allow 443/tcp ; ufw allow 80/tcp ; ufw allow 3128/tcp ; ufw allow 8799/tcp ; ufw allow 8080/tcp
 fi
-
 if [ -d "/etc/squid3/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid.txt -O /tmp/sqd1
@@ -112,7 +106,6 @@ then
 		/etc/init.d/ssh reload > /dev/null
 	fi
 fi
-
 if [ -d "/etc/squid/" ]
 then
 	wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/squid1.txt -O /tmp/sqd1
@@ -172,10 +165,16 @@ then
 		/etc/init.d/ssh restart > /dev/null
 	fi
 fi
-
 echo ""
-
-read -p "¿Quieres activar la compresión de SSH (puede aumentar el consumo de memoria RAM)? [s/n]) " -e -i n sshcompression
+clear
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
+tput setaf 3 ; tput bold ; echo "" ; 
+echo "● Scripts para la gestión de usuarios instalados"
+echo "● Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799"
+echo "● OpenSSH se ejecuta en los puertos 22 y 443"
+echo "● Lea la documentación para evitar preguntas y problemas!"
+echo "● Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
+echo ""
 if [[ "$optiondb" = '2' ]]; then
 	awk -F : '$3 >= 500 { print $1 " 1" }' /etc/passwd | grep -v '^nobody' > /root/usuarios.db
 fi
@@ -186,17 +185,5 @@ fi
 if [[ "$sshcompression" = 'n' ]]; then
 	grep -v "^Compression yes" /etc/ssh/sshd_config > /tmp/sshcp && mv /tmp/sshcp /etc/ssh/sshd_config
 fi
-
-echo ""
-
-clear
-tput setaf 7 ; tput setab 4 ; tput bold ; printf '%35s%s%-20s\n' "VPS-MANAGER V3.0" ; tput sgr0
-tput setaf 3 ; tput bold ; echo "" ; 
-echo "● Scripts para la gestión de usuarios instalados"
-echo "● Proxy squid instalado y en ejecución en los puertos: 80, 3128, 8080 y 8799"
-echo "● OpenSSH se ejecuta en los puertos 22 y 443"
-echo "● Lea la documentación para evitar preguntas y problemas!"
-echo "● Para ver los comandos disponibles, usar el comando: vps" ; tput sgr0
-echo ""
 exit 1
-rm -rf $HOME/vpsmanagersetup.sh*
+rm -rf $HOME/vpsmanagersetup.sh
