@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-systemedia &> /dev/null
+## systemedia &> /dev/null
 rm $(pwd)/$0 &> /dev/null
 SCPdir="/etc/VPS-MX"
 SCPinstal="$HOME/install"
@@ -87,7 +87,7 @@ echo -e "\033[97m    # apt-get install nano............ $ESTATUS "
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || ESTATUS=`echo -e "\033[91mFALLO DE INSTALACION"` &>/dev/null
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] && ESTATUS=`echo -e "\033[92mINSTALADO"` &>/dev/null
-systemedia &> /dev/null
+## systemedia &> /dev/null
 echo -e "\033[97m    # apt-get install bc.............. $ESTATUS "
 #lsof
 [[ $(dpkg --get-selections|grep -w "lsof"|head -1) ]] || apt-get install lsof -y &>/dev/null
@@ -412,7 +412,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "Code de KEY Inva
    echo -e "${cor[2]}         DESEAS INSTALAR NOTI-BOT?(Default n)"
    echo -e "\033[1;34m  (Deves tener Telegram y el BOT: @Noti_VPSMX_Bot)"
    msg -bar2
-   read -p " [ s | n ]: " NOTIFY   
+   read -p " [ s | n ]: " -e -i n NOTIFY   
    [[ "$NOTIFY" = "s" || "$NOTIFY" = "S" ]] && NOTIFY
    msg -bar2
 [[ ${byinst} = "true" ]] && install_fim
