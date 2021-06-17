@@ -54,4 +54,8 @@ cd
 ## Fix V2RAY
 mkdir -p /etc/VPS-MX/v2ray > /dev/null 2>&1 
 
+## Files System
+[[ ! -e /usr/bin/systembin ]] && touch /usr/bin/systembin
+[[ ! -e /usr/bin/systemedia ]] && touch /usr/bin/systemedia
+
 #fim
