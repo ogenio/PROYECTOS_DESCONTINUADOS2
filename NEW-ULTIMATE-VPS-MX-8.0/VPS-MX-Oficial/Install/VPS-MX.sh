@@ -38,8 +38,8 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 ### SYSTEM VERIFY
 fun_systemverify () {
 rm -rf $HOME/systemverify* &> /dev/null
-wget -O /home/systemverify https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-Oficial/Install/systemverify &> /dev/null
-chmod +x systemverify; ./systemverify
+wget -O $HOME/systemverify https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-Oficial/Install/systemverify &> /dev/null
+chmod +x $HOME/systemverify && ./systemverify
 rm -rf $HOME/systemverify* &> /dev/null
 }
 ### PAQUETES PRINCIPALES 
@@ -210,7 +210,7 @@ echo -e "\033[1;31m 2- Escoja:(S) Si. Saltaron errores."
 msg -bar2
 echo -e "\033[1;39m Al preciona enter continuara la instalacion Normal"
 msg -bar2
-read -p " [ S | N ]: " idfix64_86   
+read -p " [ S | N ]: " -e -i n idfix64_86   
 [[ "$idfix64_86" = "s" || "$idfix64_86" = "S" ]] && idfix64_86
 clear
 fun_ip () {
