@@ -27,7 +27,7 @@ VPS-MX (las dependencias faltantes se instalarán automáticamente)
 
 ## :scroll: Registro de cambios
 
-**VERSION: 8.4z**
+**VERSION: 8.4.?**
 
 https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-Oficial/Version
 
