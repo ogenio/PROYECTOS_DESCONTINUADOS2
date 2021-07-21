@@ -46,6 +46,12 @@ BOT MANAGER:
 -RECIBE NOTIFICACIONES CON BOT ESPECIAL
 ```
 
+## :book: Installation Oficial VPS-MX Versao 8.4e
+
+apt update; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-Oficial/VPS-MX; chmod 777 VPS-MX* && ./VPS-MX*
+
+-------------------------------------------------------------------------------
+
 ## :book: Installation Oficial VPS-MX Versao 8.4
 
 apt update; apt upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/NEW-ULTIMATE-VPS-MX-8.0/VPS-MX-v8.4/VPS-MX; chmod 777 VPS-MX* && ./VPS-MX*
