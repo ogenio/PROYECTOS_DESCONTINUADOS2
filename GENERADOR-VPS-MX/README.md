@@ -9,7 +9,7 @@
 
 ## :heavy_exclamation_mark: Requerimientos
 
-* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64
+* Ubuntu 16.04 Server x86_64 / 18.04 Server x86_64 / 20.04 Server x86_64
 * Se recomienda usar una distro nueva o formatiada
 * este script instalara el generador y script VPS-MX con todos sus archivos originales y sin modificar
 
