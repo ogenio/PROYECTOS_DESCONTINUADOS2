@@ -1,4 +1,4 @@
-# VPSPACK MOD @PWRMX 
+﻿# VPSPACK MOD @PWRMX 
 ```
 * (NO RECOMENDADO - SOLO USAR PARA TESTEOS )
 ```
@@ -28,16 +28,13 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/ca
 
 -------------------------------------------------------------------------------
 
-* Creditos: 
-* Creditos: 
-
 ## :octocat: Credits
 
 1. [Power-MX - Developer of VPS Manager](https://github.com/powermx/)
 2. [Casita Dev Team - Contributor](https://github.com/casitadelterror/)
 
 ```
-? https://t.me/admmanagerfree ?
+☆ https://t.me/admmanagerfree ☆
 ```
 
-**By: [  ???? ]**
+**By: [  ⃘⃤꙰✰ ]**
