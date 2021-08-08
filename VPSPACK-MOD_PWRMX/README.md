@@ -31,7 +31,7 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/ca
 ## :octocat: Credits
 
 1. [Power-MX - Developer of VPS Manager](https://github.com/powermx/)
-2. [Casita Dev Team - Contributor](https://github.com/casitadelterror/)
+2. [Casita Dev Team - Contributor](https://github.com/lacasitamx/)
 
 ```
 ☆ https://t.me/admmanagerfree ☆
