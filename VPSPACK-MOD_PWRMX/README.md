@@ -1,5 +1,6 @@
 ﻿# VPSPACK MOD @PWRMX 
 ```
+* UPDATE 12/03/2021 - Proyecto Finalizado
 * (NO RECOMENDADO - SOLO USAR PARA TESTEOS )
 ```
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/VPSPACK-MOD_PWRMX/Imagenes/VPSPACK-MOD_PWRMX.png)
