@@ -42,7 +42,7 @@ echo ""
 fun_bar "apt-get update -y"
 fun_bar "apt-get upgrade -y"
 fun_bar "service ssh restart"
-rm -rf $HOME/multiscript2.sh* > /dev/null 2>&1; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/toolscript2.sh > /dev/null 2>&1
+rm -rf $HOME/toolscript2.sh* > /dev/null 2>&1; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/toolscript2.sh > /dev/null 2>&1
 echo ""
 echo -e "\033[1;33m UPDATE COM SUCESSO -\033[1;32m OK !\033[1;37m"
 sleep 4s
