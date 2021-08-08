@@ -23,7 +23,7 @@ ACCESO DIRECTO AL SCRIPTS EJECUTAR EN CONSOLA EL COMANDO: ( tsm )
 
 **VERSION: r001**
 
-/versao
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/versao
 
 ## :octocat: Credits
 
