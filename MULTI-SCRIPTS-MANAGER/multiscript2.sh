@@ -266,11 +266,6 @@ case "$x" in
    remove_multiscripts
    exit;
    ;;
-   update)
-   clear
-   update_fun
-   exit;
-   ;;
    0 | 00)
 echo -e "\033[1;31mSaindo...\033[0m"
 sleep 2

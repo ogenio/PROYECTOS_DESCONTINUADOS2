@@ -70,8 +70,8 @@ echo -e "\033[1;31m[\033[1;36m07\033[1;31m] \033[1;33mTCP-Tweaker-1.0       \033
 echo -e "\033[1;31m[\033[1;36m08\033[1;31m] \033[1;33mTestador-Velocidad    \033[1;32m(FREE) "
 echo -e "\033[1;31m[\033[1;36m09\033[1;31m] \033[1;33mUser-Backup-1.2       \033[1;32m(FREE) "
 echo -e "$barra"
-echo -e "\033[1;31m[\033[1;36m21\033[1;31m] \033[1;35m[!] \033[1;32mACTUALIZAR                \033[1;31mRam:\033[1;37m $_usor "
-echo -e "\033[1;31m[\033[1;36m22\033[1;31m] \033[1;35m[!] \033[1;31mDESINSTALAR \033[1;35m[\033[1;37m TSM \033[1;35m]       \033[1;31mNucleo:\033[1;37m $_usop "
+echo -e "\033[1;31m[\033[1;36m10\033[1;31m] \033[1;35m[!] \033[1;32mACTUALIZAR                \033[1;31mRam:\033[1;37m $_usor "
+echo -e "\033[1;31m[\033[1;36m11\033[1;31m] \033[1;35m[!] \033[1;31mDESINSTALAR \033[1;35m[\033[1;37m TSM \033[1;35m]       \033[1;31mNucleo:\033[1;37m $_usop "
 echo -e "\033[1;31m[\033[1;36m00\033[1;31m] \033[1;37mSALIR \033[1;32m<\033[1;33m<\033[1;31m<                     \033[1;37m@admmanagerfree\033[0m \033[0m"
 echo -e "$barra"
 echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;31m?\033[1;37m : "; read x
@@ -79,117 +79,57 @@ echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;31m?\033[1;37m : "; read
 case "$x" in 
    1 | 01)
    clear
-   sshplusfree
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/BadUDP/badudp.sh; chmod +x badudp.sh; ./badudp.sh
    exit;
    ;;
    2 | 02)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Capturador-IP/IP; chmod +x IP; ./IP
    exit;
    ;;
    3 | 03)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Install-SSL/sslinstall.sh; chmod +x sslinstall.sh; ./sslinstall.sh
    exit;
    ;;
    4 | 04)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/OpenVPN-Install/openvpn-install.sh; chmod +x openvpn-install.sh; ./openvpn-install.sh
    exit;
    ;;
    5 | 05)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Speedtest-Python/speedtest.py && bash speedtest.py
    exit;
    ;;      
    6 | 06)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/SSL-SHADOWSOCKS/SSL; chmod +x SSL; ./SSL
    exit;
    ;;
    7 | 07)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/TCP-Tweaker-1.0/tcptweaker.sh; chmod +x tcptweaker.sh; ./tcptweaker.sh
    exit;
    ;;
    8 | 08)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Testador-Velocidad/velocity; chmod +x velocity; ./velocity
    exit;
    ;; 
    9 | 09)
    clear
-   XXXXX
+   apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/User-Backup-1.2/userbackup.sh; chmod +x userbackup.sh; ./userbackup.sh
    exit;
    ;;
-   10 | 10)
-   clear
-   XXXXX
-   exit;
-   ;;     
-   11)
-   clear
-   XXXXX
-   exit;
-   ;;     
-   12)
-   clear
-   XXXXX
-   exit;
-   ;;
-   13)
-   clear
-   XXXXX
-   exit;
-   ;;
-   14)
-   clear
-   XXXXX
-   exit;
-   ;;
-   15)
-   clear
-   XXXXX
-   exit;
-   ;;
-   16)
-   clear
-   XXXXX
-   exit;
-   ;;
-   17)
-   clear
-   XXXXX
-   exit;
-   ;;
-   18)
-   clear
-   XXXXX
-   exit;
-   ;;
-   19)
-   clear
-   XXXXX
-   exit;
-   ;;
-   20)
-   clear
-   XXXXX
-   exit;
-   ;;
-   21)
+   10)
    clear
    atualizar
    exit;
    ;;
-   22)
+   11)
    clear
    remove_multiscripts
-   exit;
-   ;;
-   update)
-   clear
-   update_fun
    exit;
    ;;
    0 | 00)
