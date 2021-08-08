@@ -18,15 +18,15 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 -------------------------------------------------------------------------------
 
-## :scroll: Terminos de uso
+## :scroll: Changelog
 
 **VERSION: v3.0**
 
-https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/Install/terminos
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPS-MANAGER-V3.0/terminos
 
-## :octocat: Contribute
+## :octocat: Credits
 
-1. @Phreaker56 - Developer of VPS Manager (Website: https://phreaker56.obex.pw/)
+1. [@Phreaker56 - Developer of VPS Manager](https://phreaker56.obex.pw/)
 2. Team Illuminati - Contributor 
 
 ```

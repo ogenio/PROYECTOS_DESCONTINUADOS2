@@ -17,13 +17,13 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 -------------------------------------------------------------------------------
 
-## :scroll: Registro de cambios
+## :scroll: Changelog
 
 **VERSION: v2.0**
 
-https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/Install/versao
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/VPSPACK-SERVER-V2.0/versao
 
-## :octocat: Contribute
+## :octocat: Credits
 
 1. RicKbrL - Developer of VPS-Pack
 2. Team Illuminati - Contributor 
