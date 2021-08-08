@@ -26,7 +26,7 @@
 
 *  GOLDEN-ADM-MANAGER 
 *  ADM-MANAGER-DANKELTHAHER
-*  VPSPACK-MOD_PWRMX
+*  VPSPACK-MOD-PWRMX
 
 -------------------------------------------------------------------------------
 
