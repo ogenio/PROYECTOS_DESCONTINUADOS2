@@ -22,6 +22,12 @@ ADM-MANAGER (las dependencias faltantes se instalarán automáticamente)
 ```
 -------------------------------------------------------------------------------
 
+## :scroll: Changelog
+
+**VERSION: 24377**
+
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/ADM-MANAGER-MOD/versaoatt
+
 ## :octocat: Credits
 
 1. @E8th4ver - Developer of Adm-Manager
