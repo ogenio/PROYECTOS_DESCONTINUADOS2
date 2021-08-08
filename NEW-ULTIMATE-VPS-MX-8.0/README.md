@@ -1,8 +1,7 @@
 ﻿# VPS-MX By Kalix1 ( MOD NEW-ULTIMATE )
 ```
-UPDATE 03/03/2021
+* UPDATE 12/03/2021 - Proyecto Finalizado
 ```
-
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/NEW-ULTIMATE-VPS-MX-8.0/Imagenes/NEW-ULTIMATE-VPS-MX-8.4.png)
 
 **Manager Script**
@@ -70,12 +69,12 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 -------------------------------------------------------------------------------
 
-## :octocat: Contribute
+## :octocat: Credits
 
-1. @Kalix1 - Developer of VPS-MX (https://github.com/VPS-MX)
-2. @Rufu99 - Contributor (https://github.com/rudi9999)
-3. Team Casita-MX - Contributor (https://github.com/lacasitamx)
-4. Team Illuminati - Contributor (https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ) 
+1. [@Kalix1 - Developer of VPS-MX](https://github.com/VPS-MX)
+2. [@Rufu99 - Contributor](https://github.com/rudi9999)
+3. [Casita Dev Team - Contributor](https://github.com/lacasitamx)
+4. [illuminati Dev Team - Contributor](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ) 
 
 ```
 ☆ https://t.me/admmanagerfree ☆

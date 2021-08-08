@@ -2,7 +2,6 @@
 ```
 * UPDATE 12/03/2021 - Proyecto Finalizado
 ```
-
 ![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/VPS-MANAGER-V3.0/Imagenes/VPS_MANAGER.jpg)
 
 **Manager Script**
@@ -26,7 +25,7 @@ https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADO
 
 ## :octocat: Credits
 
-1. [@Phreaker56 - Developer of VPS Manager](https://phreaker56.obex.pw/)
+1. @Phreaker56 - Developer of VPS Manager
 2. Team Illuminati - Contributor 
 
 ```
