@@ -1,44 +1,36 @@
-﻿# HERRAMIENTAS
+﻿# MULTI-SCRIPTS MANAGER
+```
+* UPDATE 17/03/2021 - Proyecto Finalizado
+```
+![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/MULTI-SCRIPTS-MANAGER/Imagenes/Multi-Scripts-Manager.png)
 
-**Herramientas Externas**
+**Manager Script**
 
-**BadUDP**
+## :heavy_exclamation_mark: Requerimientos
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/BadUDP/badudp.sh; chmod +x badudp.sh; ./badudp.sh
+* Un sistema operativo basado en Linux (Ubuntu o Debian) 
+* Dependiendo del scripts a utilizar devera elegir sistema operativo
+* Se recomienda usar una distro nueva o formatiada
 
-**Capturador-IP**
+## :book: Installation
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Capturador-IP/IP; chmod +x IP; ./IP
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/multiscript2.sh; chmod +x multiscript2.sh; ./multiscript2.sh
 
-**Install-SSL**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Install-SSL/sslinstall.sh; chmod +x sslinstall.sh; ./sslinstall.sh
-
-**SSL - SHADOWSOCKS**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/SSL-SHADOWSOCKS/SSL; chmod +x SSL; ./SSL
-
-**OpenVPN-Install**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/OpenVPN-Install/openvpn-install.sh; chmod +x openvpn-install.sh; ./openvpn-install.sh
-
-**Speedtest-Python**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Speedtest-Python/speedtest.py && bash speedtest.py
-
-**TCP-Tweaker-1.0**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/TCP-Tweaker-1.0/tcptweaker.sh; chmod +x tcptweaker.sh; ./tcptweaker.sh
-
-**Velocity**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/Testador-Velocidad/velocity; chmod +x velocity; ./velocity
-
-**User-Backup-1.2**
-
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/User-Backup-1.2/userbackup.sh; chmod +x userbackup.sh; ./userbackup.sh
-
+```
+ACCESO DIRECTO AL SCRIPTS EJECUTAR EN CONSOLA EL COMANDO: ( msm )
+```
 -------------------------------------------------------------------------------
+
+## :scroll: Changelog
+
+**VERSION: r090**
+
+https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/MULTI-SCRIPTS-MANAGER/versao
+
+## :octocat: Credits
+
+1. [illuminati Dev Team - Contributor](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ)
+2. [Casita Dev Team - Contributor](https://github.com/lacasitamx)
 
 ```
 * SIN MINERIA! 
@@ -50,7 +42,6 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ```
 ☆ https://t.me/admmanagerfree ☆
-
 ```
 
 **By: [  ⃘⃤꙰✰ ]**
