@@ -2,7 +2,7 @@
 ```
 * UPDATE 17/03/2021 - Proyecto Finalizado
 ```
-![logo]( /toolscript.png)
+![logo]( https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/blob/master/HERRAMIENTAS/Imagenes/toolscript.png)
 
 **Tools Script**
 
@@ -12,7 +12,7 @@
 
 ## :book: Installation
 
-/toolscript2.sh; chmod +x toolscript2.sh; ./toolscript2.sh
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/HERRAMIENTAS/toolscript2.sh; chmod +x toolscript2.sh; ./toolscript2.sh
 
 ```
 ACCESO DIRECTO AL SCRIPTS EJECUTAR EN CONSOLA EL COMANDO: ( tsm )
